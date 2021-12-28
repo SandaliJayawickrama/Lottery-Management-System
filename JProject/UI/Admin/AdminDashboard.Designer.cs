@@ -41,16 +41,16 @@ namespace JProject
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.winToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picDashboard = new System.Windows.Forms.PictureBox();
             this.labelUser = new System.Windows.Forms.Label();
             this.lblloggedIn = new System.Windows.Forms.Label();
-            this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.menuAdmin.SuspendLayout();
@@ -136,7 +136,7 @@ namespace JProject
             this.stockToolStripMenuItem1});
             this.menuAdmin.Location = new System.Drawing.Point(0, 159);
             this.menuAdmin.Name = "menuAdmin";
-            this.menuAdmin.Size = new System.Drawing.Size(584, 31);
+            this.menuAdmin.Size = new System.Drawing.Size(734, 31);
             this.menuAdmin.TabIndex = 5;
             this.menuAdmin.Text = "menuadmin";
             // 
@@ -159,6 +159,7 @@ namespace JProject
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
             this.salesToolStripMenuItem.Text = "Tickets";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem
             // 
@@ -168,6 +169,18 @@ namespace JProject
             this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
             this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
             this.purchaseToolStripMenuItem.Text = "Purchases";
+            // 
+            // purchaseToolStripMenuItem1
+            // 
+            this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
+            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(193, 28);
+            this.purchaseToolStripMenuItem1.Text = "Purchase ";
+            // 
+            // purchaseListToolStripMenuItem
+            // 
+            this.purchaseListToolStripMenuItem.Name = "purchaseListToolStripMenuItem";
+            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(193, 28);
+            this.purchaseListToolStripMenuItem.Text = "Purchase List";
             // 
             // returnToolStripMenuItem
             // 
@@ -186,6 +199,12 @@ namespace JProject
             this.winToolStripMenuItem.Name = "winToolStripMenuItem";
             this.winToolStripMenuItem.Size = new System.Drawing.Size(54, 27);
             this.winToolStripMenuItem.Text = "Win";
+            // 
+            // stockToolStripMenuItem1
+            // 
+            this.stockToolStripMenuItem1.Name = "stockToolStripMenuItem1";
+            this.stockToolStripMenuItem1.Size = new System.Drawing.Size(66, 27);
+            this.stockToolStripMenuItem1.Text = "Stock";
             // 
             // panel1
             // 
@@ -230,24 +249,6 @@ namespace JProject
             this.lblloggedIn.Size = new System.Drawing.Size(67, 19);
             this.lblloggedIn.TabIndex = 9;
             this.lblloggedIn.Text = "Admin1";
-            // 
-            // purchaseToolStripMenuItem1
-            // 
-            this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
-            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
-            this.purchaseToolStripMenuItem1.Text = "Purchase ";
-            // 
-            // purchaseListToolStripMenuItem
-            // 
-            this.purchaseListToolStripMenuItem.Name = "purchaseListToolStripMenuItem";
-            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.purchaseListToolStripMenuItem.Text = "Purchase List";
-            // 
-            // stockToolStripMenuItem1
-            // 
-            this.stockToolStripMenuItem1.Name = "stockToolStripMenuItem1";
-            this.stockToolStripMenuItem1.Size = new System.Drawing.Size(66, 27);
-            this.stockToolStripMenuItem1.Text = "Stock";
             // 
             // AdminDashboard
             // 

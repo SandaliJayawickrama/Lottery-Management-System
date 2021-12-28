@@ -96,7 +96,6 @@ namespace JProject.UI
             txtAno.Text = dgvAgents.Rows[rowIndex].Cells[2].Value.ToString();
             txtCreditL.Text = dgvAgents.Rows[rowIndex].Cells[3].Value.ToString();
             txtDescrip.Text = dgvAgents.Rows[rowIndex].Cells[4].Value.ToString();
-
         }
 
         private void dgvAgents_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -193,5 +192,7 @@ namespace JProject.UI
                 e.Handled = true;
             }
         }
+
+
     }
 }

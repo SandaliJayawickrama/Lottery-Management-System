@@ -1,4 +1,5 @@
 ﻿using JProject.UI;
+using JProject.UI.Admin;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,6 +65,12 @@ namespace JProject
         {
             Agents agents = new Agents();
             agents.Show();
+        }
+
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TicketsA tickets = new TicketsA();
+            tickets.Show();
         }
     }
 }

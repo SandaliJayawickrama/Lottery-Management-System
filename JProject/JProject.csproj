@@ -47,12 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ticketsA_BLL.cs" />
     <Compile Include="BLL\AgentBLL.cs" />
     <Compile Include="BLL\loginBLL.cs" />
     <Compile Include="BLL\AdminBLL\userBLL.cs" />
     <Compile Include="DAL\AgentDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
     <Compile Include="DAL\AdminDAL\userDAL.cs" />
+    <Compile Include="DAL\TicketsDAL.cs" />
     <Compile Include="UI\Admin\AdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,11 +69,11 @@
     <Compile Include="UI\Admin\FrmUsers.Designer.cs">
       <DependentUpon>FrmUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Admin\Tickets_A.cs">
+    <Compile Include="UI\Admin\TicketsA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Admin\Tickets_A.Designer.cs">
-      <DependentUpon>Tickets_A.cs</DependentUpon>
+    <Compile Include="UI\Admin\TicketsA.Designer.cs">
+      <DependentUpon>TicketsA.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Agents.cs">
       <SubType>Form</SubType>
@@ -84,6 +86,18 @@
     </Compile>
     <Compile Include="UI\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Purchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Purchase.Designer.cs">
+      <DependentUpon>Purchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\User\TicketsU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\User\TicketsU.Designer.cs">
+      <DependentUpon>TicketsU.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\User\UserDashboard.cs">
       <SubType>Form</SubType>
@@ -106,8 +120,8 @@
     <EmbeddedResource Include="UI\Admin\FrmUsers.resx">
       <DependentUpon>FrmUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Admin\Tickets_A.resx">
-      <DependentUpon>Tickets_A.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Admin\TicketsA.resx">
+      <DependentUpon>TicketsA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Agents.resx">
       <DependentUpon>Agents.cs</DependentUpon>
@@ -115,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Purchase.resx">
+      <DependentUpon>Purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\User\TicketsU.resx">
+      <DependentUpon>TicketsU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\User\UserDashboard.resx">
       <DependentUpon>UserDashboard.cs</DependentUpon>

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JProject.UI.Admin
+namespace JProject.UI
 {
-    public partial class Tickets_A : Form
+    public partial class Purchase : Form
     {
-        public Tickets_A()
+        public Purchase()
         {
             InitializeComponent();
         }

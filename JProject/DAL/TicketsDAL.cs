@@ -1,4 +1,5 @@
 ﻿using JProject.BLL;
+using JProject.BLL.AdminBLL;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,19 +12,19 @@ using System.Windows.Forms;
 
 namespace JProject.DAL
 {
-    class AgentDAL
+    class TicketsDAL
     {
         static string myconnstring = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
-        
+
         #region Select Data from Database
-            public DataTable Select()
+        public DataTable Select()
         {
             SqlConnection conn = new SqlConnection(myconnstring);
 
             DataTable dt = new DataTable();
             try
             {
-                string sql = "SELECT * FROM agents";
+                string sql = "SELECT * FROM tickets";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -43,22 +44,23 @@ namespace JProject.DAL
         #endregion
 
         #region Insert Data into Database
-            public bool Insert(AgentBLL a)
+        public bool Insert(ticketsA_BLL t)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(myconnstring);
-
             try
             {
-                string sql = "INSERT INTO agents (agent_name, agent_no, credit_Limit, description, added_date, added_by) VALUES (@agent_name, @agent_no, @credit_Limit, @description, @added_date, @added_by)";
+                string sql = "INSERT into tickets (ticket_code, ticket_name, ticket_type, ticket_Uprice, ticket_Bprice, t_description, added_date, added_by) VALUES (@ticket_code, @ticket_name, @ticket_type, @ticket_Uprice, @ticket_Bprice, @t_description, @added_date, @added_by)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@agent_name", a.agent_name);
-                cmd.Parameters.AddWithValue("@agent_no", a.agent_no);
-                cmd.Parameters.AddWithValue("@credit_Limit", a.credit_Limit);
-                cmd.Parameters.AddWithValue("@description", a.description);
-                cmd.Parameters.AddWithValue("@added_date", a.added_date);
-                cmd.Parameters.AddWithValue("@added_by", a.added_by);
+                cmd.Parameters.AddWithValue("@ticket_code", t.ticket_code);
+                cmd.Parameters.AddWithValue("@ticket_name", t.ticket_name);
+                cmd.Parameters.AddWithValue("@ticket_type", t.ticket_type);
+                cmd.Parameters.AddWithValue("@ticket_Uprice", t.ticket_Uprice);
+                cmd.Parameters.AddWithValue("@ticket_Bprice", t.ticket_Bprice);
+                cmd.Parameters.AddWithValue("@t_description", t.t_description);
+                cmd.Parameters.AddWithValue("@added_date", t.added_date);
+                cmd.Parameters.AddWithValue("@added_by", t.added_by);
 
                 conn.Open();
 
@@ -72,7 +74,7 @@ namespace JProject.DAL
                     isSuccess = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -80,34 +82,33 @@ namespace JProject.DAL
             {
                 conn.Close();
             }
-
             return isSuccess;
         }
         #endregion
 
         #region Update Data in Database
-            public bool Update(AgentBLL a)
+        public bool Update(ticketsA_BLL t)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(myconnstring);
 
             try
             {
-                string sql = "UPDATE agents SET agent_name=@agent_name, agent_no=@agent_no, credit_Limit=@credit_Limit, description=@description, added_date=@added_date, added_by=@added_by WHERE id=@id";
+                string sql = "UPDATE tickets SET ticket_code=@ticket_code, ticket_name=@ticket_name, @ticket_type=@ticket_type, ticket_Uprice=@ticket_Uprice, ticket_Bprice=@ticket_Bprice, t_description=@t_description, added_date=@added_date, added_by=@added_by WHERE ticket_name=@ticket_name";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@agent_name", a.agent_name);
-                cmd.Parameters.AddWithValue("@agent_no", a.agent_no);
-                cmd.Parameters.AddWithValue("@credit_Limit", a.credit_Limit);
-                cmd.Parameters.AddWithValue("@description", a.description);
-                cmd.Parameters.AddWithValue("added_date", a.added_date);
-                cmd.Parameters.AddWithValue("@added_by", a.added_by);
-                cmd.Parameters.AddWithValue("@id", a.id);
+                cmd.Parameters.AddWithValue("@ticket_code", t.ticket_code);
+                cmd.Parameters.AddWithValue("@ticket_name", t.ticket_name);
+                cmd.Parameters.AddWithValue("@ticket_type", t.ticket_type);
+                cmd.Parameters.AddWithValue("@ticket_Uprice", t.ticket_Uprice);
+                cmd.Parameters.AddWithValue("@ticket_Bprice", t.ticket_Bprice);
+                cmd.Parameters.AddWithValue("@t_description", t.t_description);
+                cmd.Parameters.AddWithValue("@added_date", t.added_date);
+                cmd.Parameters.AddWithValue("@added_by", t.added_by);
 
                 conn.Open();
-
                 int rows = cmd.ExecuteNonQuery();
-                if(rows > 0)
+                if (rows > 0)
                 {
                     isSuccess = true;
                 }
@@ -116,7 +117,7 @@ namespace JProject.DAL
                     isSuccess = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -129,22 +130,22 @@ namespace JProject.DAL
         #endregion
 
         #region Delete Data from Database
-            public bool Delete(AgentBLL a)
+        public bool Delete(ticketsA_BLL t)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(myconnstring);
 
             try
             {
-                string sql = "DELETE FROM agents WHERE id=@id";
+                string sql = "DELETE FROM tickets WHERE ticket_name=@ticket_name";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", a.id);
+                cmd.Parameters.AddWithValue("@ticket_name", t.ticket_name);
                 conn.Open();
 
                 int rows = cmd.ExecuteNonQuery();
 
-                if(rows > 0)
+                if (rows > 0)
                 {
                     isSuccess = true;
                 }
@@ -153,7 +154,7 @@ namespace JProject.DAL
                     isSuccess = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -161,27 +162,24 @@ namespace JProject.DAL
             {
                 conn.Close();
             }
-
             return isSuccess;
         }
         #endregion
 
-        #region Search Agents in Database
-            public DataTable Search(string keyword)
+        #region Search Data from Database
+        public DataTable Search(string keyword)
         {
             SqlConnection conn = new SqlConnection(myconnstring);
-
             DataTable dt = new DataTable();
             try
             {
-                string sql = "SELECT * FROM agents WHERE id LIKE '%"+keyword+"%' OR agent_name LIKE '%"+keyword+"%' OR agent_no LIKE '%"+keyword+"%' ";
-
+                string sql = "SELECT * FROM tickets WHERE ticket_code LIKE '%" + keyword + "%' OR ticket_name LIKE '%" + keyword + "%' OR ticket_type LIKE '%" + keyword + "%' ";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 conn.Open();
                 adapter.Fill(dt);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -193,24 +191,22 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Getting Username from Database
+        #region Getting Username from Database For addedBy
         public userBLL GetUsername(string username)
         {
-            userBLL a = new userBLL();
+            userBLL u = new userBLL();
             SqlConnection conn = new SqlConnection(myconnstring);
             DataTable dt = new DataTable();
-
             try
             {
-                string sql = "SELECT username FROM users WHERE username = '"+username+"' ";
+                string sql = "SELECT username FROM users WHERE username = '" + username + "' ";
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                 conn.Open();
 
                 adapter.Fill(dt);
-
                 if (dt.Rows.Count > 0)
                 {
-                    a.username = dt.Rows[0]["username"].ToString();
+                    u.username = dt.Rows[0]["username"].ToString();
                 }
             }
             catch (Exception ex)
@@ -221,10 +217,10 @@ namespace JProject.DAL
             {
                 conn.Close();
             }
-
-            return a;
+            return u;
         }
         #endregion
+
 
     }
 }

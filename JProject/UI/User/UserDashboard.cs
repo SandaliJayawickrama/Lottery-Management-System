@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JProject.UI.User;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,8 @@ namespace JProject.UI
 
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TicketsU ticketsU = new TicketsU();
+            ticketsU.Show();
         }
 
         private void purchaseToolStripMenuItem_Click(object sender, EventArgs e)
