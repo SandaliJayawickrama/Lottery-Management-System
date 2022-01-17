@@ -21,7 +21,7 @@ namespace JProject.UI
 
         AgentBLL a = new AgentBLL();
         AgentDAL dal = new AgentDAL();
-
+        userDAL Udal = new userDAL();
 
         private void lblType_Click(object sender, EventArgs e)
         {
@@ -48,7 +48,7 @@ namespace JProject.UI
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
-            userBLL urs = dal.GetUsername(loggedUser);
+            userBLL urs = Udal.GetUsername(loggedUser);
 
             a.added_by = urs.username;
 
@@ -120,7 +120,7 @@ namespace JProject.UI
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
-            userBLL usr = dal.GetUsername(loggedUser);
+            userBLL usr = Udal.GetUsername(loggedUser);
 
             a.added_by = usr.username;
 

@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\PurchaseBLL.cs" />
+    <Compile Include="BLL\Purchase_TransactionBLL.cs" />
     <Compile Include="BLL\ticketsA_BLL.cs" />
     <Compile Include="BLL\AgentBLL.cs" />
     <Compile Include="BLL\loginBLL.cs" />
@@ -54,6 +57,8 @@
     <Compile Include="DAL\AgentDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
     <Compile Include="DAL\AdminDAL\userDAL.cs" />
+    <Compile Include="DAL\PurchaseDAL.cs" />
+    <Compile Include="DAL\Purchase_TransactionDAL.cs" />
     <Compile Include="DAL\TicketsDAL.cs" />
     <Compile Include="UI\Admin\AdminDashboard.cs">
       <SubType>Form</SubType>
@@ -92,6 +97,12 @@
     </Compile>
     <Compile Include="UI\Purchase.Designer.cs">
       <DependentUpon>Purchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Sales.Designer.cs">
+      <DependentUpon>Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\User\TicketsU.cs">
       <SubType>Form</SubType>
@@ -132,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Purchase.resx">
       <DependentUpon>Purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Sales.resx">
+      <DependentUpon>Sales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\User\TicketsU.resx">
       <DependentUpon>TicketsU.cs</DependentUpon>

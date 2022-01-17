@@ -74,5 +74,10 @@ namespace JProject.UI
                 MessageBox.Show("Login Faild..!");
             }
         }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

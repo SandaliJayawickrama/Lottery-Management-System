@@ -173,13 +173,14 @@ namespace JProject
             // purchaseToolStripMenuItem1
             // 
             this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
-            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(193, 28);
+            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
             this.purchaseToolStripMenuItem1.Text = "Purchase ";
+            this.purchaseToolStripMenuItem1.Click += new System.EventHandler(this.purchaseToolStripMenuItem1_Click);
             // 
             // purchaseListToolStripMenuItem
             // 
             this.purchaseListToolStripMenuItem.Name = "purchaseListToolStripMenuItem";
-            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(193, 28);
+            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
             this.purchaseListToolStripMenuItem.Text = "Purchase List";
             // 
             // returnToolStripMenuItem

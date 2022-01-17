@@ -22,6 +22,7 @@ namespace JProject.UI.User
 
         ticketsA_BLL t = new ticketsA_BLL();
         TicketsDAL dal = new TicketsDAL();
+        userDAL Udal = new userDAL();
 
         private void TicketsU_Load(object sender, EventArgs e)
         {
@@ -51,7 +52,7 @@ namespace JProject.UI.User
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
-            userBLL urs = dal.GetUsername(loggedUser);
+            userBLL urs = Udal.GetUsername(loggedUser);
 
             t.added_by = urs.username;
 

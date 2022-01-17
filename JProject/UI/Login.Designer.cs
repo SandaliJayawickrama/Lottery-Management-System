@@ -30,14 +30,14 @@ namespace JProject.UI
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbltype = new System.Windows.Forms.Label();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.lblusername = new System.Windows.Forms.Label();
-            this.txtusername = new System.Windows.Forms.TextBox();
+            this.combotype = new System.Windows.Forms.ComboBox();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.txtpassword = new System.Windows.Forms.TextBox();
             this.lblpassword = new System.Windows.Forms.Label();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.combotype = new System.Windows.Forms.ComboBox();
-            this.lbltype = new System.Windows.Forms.Label();
+            this.txtusername = new System.Windows.Forms.TextBox();
+            this.lblusername = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +58,16 @@ namespace JProject.UI
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // lbltype
+            // 
+            this.lbltype.AutoSize = true;
+            this.lbltype.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltype.Location = new System.Drawing.Point(40, 217);
+            this.lbltype.Name = "lbltype";
+            this.lbltype.Size = new System.Drawing.Size(86, 20);
+            this.lbltype.TabIndex = 8;
+            this.lbltype.Text = "User Type";
+            // 
             // lblHeader
             // 
             this.lblHeader.AutoSize = true;
@@ -68,23 +78,29 @@ namespace JProject.UI
             this.lblHeader.TabIndex = 1;
             this.lblHeader.Text = "Login";
             // 
-            // lblusername
+            // combotype
             // 
-            this.lblusername.AutoSize = true;
-            this.lblusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblusername.Location = new System.Drawing.Point(43, 109);
-            this.lblusername.Name = "lblusername";
-            this.lblusername.Size = new System.Drawing.Size(91, 20);
-            this.lblusername.TabIndex = 2;
-            this.lblusername.Text = "User name";
+            this.combotype.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combotype.FormattingEnabled = true;
+            this.combotype.Items.AddRange(new object[] {
+            "Admin",
+            "User"});
+            this.combotype.Location = new System.Drawing.Point(148, 214);
+            this.combotype.Name = "combotype";
+            this.combotype.Size = new System.Drawing.Size(253, 28);
+            this.combotype.TabIndex = 7;
             // 
-            // txtusername
+            // btnLogin
             // 
-            this.txtusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtusername.Location = new System.Drawing.Point(148, 106);
-            this.txtusername.Name = "txtusername";
-            this.txtusername.Size = new System.Drawing.Size(253, 27);
-            this.txtusername.TabIndex = 3;
+            this.btnLogin.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(148, 303);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(176, 58);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtpassword
             // 
@@ -105,39 +121,23 @@ namespace JProject.UI
             this.lblpassword.TabIndex = 4;
             this.lblpassword.Text = "Password";
             // 
-            // btnLogin
+            // txtusername
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(148, 303);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(176, 58);
-            this.btnLogin.TabIndex = 6;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.txtusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtusername.Location = new System.Drawing.Point(148, 106);
+            this.txtusername.Name = "txtusername";
+            this.txtusername.Size = new System.Drawing.Size(253, 27);
+            this.txtusername.TabIndex = 3;
             // 
-            // combotype
+            // lblusername
             // 
-            this.combotype.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.combotype.FormattingEnabled = true;
-            this.combotype.Items.AddRange(new object[] {
-            "Admin",
-            "User"});
-            this.combotype.Location = new System.Drawing.Point(148, 214);
-            this.combotype.Name = "combotype";
-            this.combotype.Size = new System.Drawing.Size(253, 28);
-            this.combotype.TabIndex = 7;
-            // 
-            // lbltype
-            // 
-            this.lbltype.AutoSize = true;
-            this.lbltype.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltype.Location = new System.Drawing.Point(40, 217);
-            this.lbltype.Name = "lbltype";
-            this.lbltype.Size = new System.Drawing.Size(86, 20);
-            this.lbltype.TabIndex = 8;
-            this.lbltype.Text = "User Type";
+            this.lblusername.AutoSize = true;
+            this.lblusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblusername.Location = new System.Drawing.Point(43, 109);
+            this.lblusername.Name = "lblusername";
+            this.lblusername.Size = new System.Drawing.Size(91, 20);
+            this.lblusername.TabIndex = 2;
+            this.lblusername.Text = "User name";
             // 
             // Login
             // 
@@ -149,6 +149,7 @@ namespace JProject.UI
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

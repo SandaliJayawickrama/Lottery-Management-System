@@ -39,5 +39,11 @@ namespace JProject.UI
             Agents agents = new Agents();
             agents.Show();
         }
+
+        private void purchaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Purchase purchase = new Purchase();
+            purchase.Show();
+        }
     }
 }

@@ -72,5 +72,11 @@ namespace JProject
             TicketsA tickets = new TicketsA();
             tickets.Show();
         }
+
+        private void purchaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Purchase purchase = new Purchase();
+            purchase.Show();
+        }
     }
 }

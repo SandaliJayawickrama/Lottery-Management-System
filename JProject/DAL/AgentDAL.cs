@@ -169,16 +169,24 @@ namespace JProject.DAL
         #region Search Agents in Database
             public DataTable Search(string keyword)
         {
+            //Create a Database connection
             SqlConnection conn = new SqlConnection(myconnstring);
 
+            //Create a Data Table to hold the values temporaly
             DataTable dt = new DataTable();
             try
             {
                 string sql = "SELECT * FROM agents WHERE id LIKE '%"+keyword+"%' OR agent_name LIKE '%"+keyword+"%' OR agent_no LIKE '%"+keyword+"%' ";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Create SqlData Adapter to execute the query
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open Database connection
                 conn.Open();
+
+                //Transfer the data from SqlDataAdapter to DataTable
                 adapter.Fill(dt);
             }
             catch(Exception ex)
@@ -193,38 +201,7 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Getting Username from Database
-        public userBLL GetUsername(string username)
-        {
-            userBLL a = new userBLL();
-            SqlConnection conn = new SqlConnection(myconnstring);
-            DataTable dt = new DataTable();
-
-            try
-            {
-                string sql = "SELECT username FROM users WHERE username = '"+username+"' ";
-                SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
-                conn.Open();
-
-                adapter.Fill(dt);
-
-                if (dt.Rows.Count > 0)
-                {
-                    a.username = dt.Rows[0]["username"].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return a;
-        }
-        #endregion
+        
 
     }
 }

@@ -191,25 +191,33 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Getting Username from Database For addedBy
-        public userBLL GetUsername(string username)
+        #region Search Ticket Name For Purchase Module
+        public ticketsA_BLL SearchTicket_ForPuechase(string keyword)
         {
-            userBLL u = new userBLL();
+            ticketsA_BLL tPurchase = new ticketsA_BLL();
+
             SqlConnection conn = new SqlConnection(myconnstring);
             DataTable dt = new DataTable();
+
             try
             {
-                string sql = "SELECT username FROM users WHERE username = '" + username + "' ";
+                string sql = "SELECT ticket_name, ticket_type, ticket_Uprice FROM tickets WHERE ticket_name LIKE '%"+keyword+"%' ";
+
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                 conn.Open();
 
+                //Pass the values from adapter to dt
                 adapter.Fill(dt);
+
+                //If we have any values on dt then set the values to ticketsA_BLL
                 if (dt.Rows.Count > 0)
                 {
-                    u.username = dt.Rows[0]["username"].ToString();
+                    tPurchase.ticket_name = dt.Rows[0]["ticket_name"].ToString();
+                    tPurchase.ticket_type = dt.Rows[0]["ticket_type"].ToString();
+                    tPurchase.ticket_Uprice = decimal.Parse(dt.Rows[0]["ticket_Uprice"].ToString());
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -217,10 +225,8 @@ namespace JProject.DAL
             {
                 conn.Close();
             }
-            return u;
+            return tPurchase;
         }
         #endregion
-
-
     }
 }
