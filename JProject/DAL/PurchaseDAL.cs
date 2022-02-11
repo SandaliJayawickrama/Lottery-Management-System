@@ -15,33 +15,6 @@ namespace JProject.DAL
     {
         static string myconnstring = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
 
-        /*#region Select Data from Database
-        public DataTable Select()
-        {
-            SqlConnection conn = new SqlConnection(myconnstring);
-
-            DataTable dt = new DataTable();
-            try
-            {
-                string sql = "SELECT * FROM purchase";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                conn.Open();
-                adapter.Fill(dt);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return dt;
-        }
-        #endregion*/
-
         #region Insert Method for Purchase
         public bool InsertPurchases(PurchaseBLL p)
         {

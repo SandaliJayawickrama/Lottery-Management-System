@@ -57,7 +57,8 @@ namespace JProject.UI
                 //Faild to Insert Data
                 MessageBox.Show("Faild to add new user..!");
             }
-            //Refreshing Data Grid View
+
+            //Load Data on Data Grid View
             DataTable dt = dal.Select();
             dgvUser.DataSource = dt;
         }

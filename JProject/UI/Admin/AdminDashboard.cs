@@ -78,5 +78,23 @@ namespace JProject
             Purchase purchase = new Purchase();
             purchase.Show();
         }
+
+        private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Sales sales = new Sales();
+            sales.Show();
+        }
+
+        private void purchaseReturnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Return_Purchase return_Purchase = new Return_Purchase();
+            return_Purchase.Show();
+        }
+
+        private void purchaseListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Instant_purchases instant_Purchases = new Instant_purchases();
+            instant_Purchases.Show();
+        }
     }
 }

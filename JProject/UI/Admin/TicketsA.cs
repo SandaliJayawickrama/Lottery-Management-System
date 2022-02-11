@@ -34,9 +34,10 @@ namespace JProject.UI.Admin
             txtTcode.Text = "";
             txtTname.Text = "";
             cmbType.Text = "";
+            cmbCat.Text = "";
             txtUprice.Text = "";
+            txtSalesPrice.Text = "";
             txtBprice.Text = "";
-            txtDes.Text = "";
         }
 
         private void lblHeader1_Click(object sender, EventArgs e)
@@ -49,9 +50,10 @@ namespace JProject.UI.Admin
             t.ticket_code = txtTcode.Text;
             t.ticket_name = txtTname.Text;
             t.ticket_type = cmbType.Text;
+            t.category = cmbCat.Text;
             t.ticket_Uprice = decimal.Parse(txtUprice.Text);
+            t.sales_Uprice = decimal.Parse(txtSalesPrice.Text);
             t.ticket_Bprice = decimal.Parse(txtBprice.Text);
-            t.t_description = txtDes.Text;
             t.added_date = DateTime.Now;
 
             //getting the user name of LoggedIn user
@@ -87,9 +89,10 @@ namespace JProject.UI.Admin
             txtTcode.Text = dgvTickets.Rows[rowIndex].Cells[0].Value.ToString();
             txtTname.Text = dgvTickets.Rows[rowIndex].Cells[1].Value.ToString();
             cmbType.Text = dgvTickets.Rows[rowIndex].Cells[2].Value.ToString();
+            cmbCat.Text = dgvTickets.Rows[rowIndex].Cells[8].Value.ToString();
             txtUprice.Text = dgvTickets.Rows[rowIndex].Cells[3].Value.ToString();
+            txtSalesPrice.Text = dgvTickets.Rows[rowIndex].Cells[7].Value.ToString();
             txtBprice.Text = dgvTickets.Rows[rowIndex].Cells[4].Value.ToString();
-            txtDes.Text = dgvTickets.Rows[rowIndex].Cells[5].Value.ToString();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -98,9 +101,10 @@ namespace JProject.UI.Admin
             t.ticket_code = txtTcode.Text;
             t.ticket_name = txtTname.Text;
             t.ticket_type = cmbType.Text;
+            t.category = cmbCat.Text;
             t.ticket_Uprice = decimal.Parse(txtUprice.Text);
+            t.sales_Uprice = decimal.Parse(txtSalesPrice.Text);
             t.ticket_Bprice = decimal.Parse(txtBprice.Text);
-            t.t_description = txtDes.Text;
             t.added_date = DateTime.Now;
 
             //getting the user name of LoggedIn user
@@ -131,7 +135,7 @@ namespace JProject.UI.Admin
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //Getting Agent Id from the form
+            //Getting Ticket name from the form
             t.ticket_code = txtTname.Text;
 
             bool success = dal.Delete(t);
@@ -187,6 +191,9 @@ namespace JProject.UI.Admin
             }
         }
 
+        private void dgvTickets_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
     }
 }

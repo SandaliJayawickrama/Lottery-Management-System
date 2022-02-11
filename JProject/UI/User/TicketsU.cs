@@ -37,7 +37,7 @@ namespace JProject.UI.User
             cmbType.Text = "";
             txtUprice.Text = "";
             txtBprice.Text = "";
-            txtDes.Text = "";
+            txtSalePrice.Text = "";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -45,9 +45,10 @@ namespace JProject.UI.User
             t.ticket_code = txtTcode.Text;
             t.ticket_name = txtTname.Text;
             t.ticket_type = cmbType.Text;
+            t.category = cmbCat.Text;
             t.ticket_Uprice = decimal.Parse(txtUprice.Text);
+            t.sales_Uprice = decimal.Parse(txtSalePrice.Text);
             t.ticket_Bprice = decimal.Parse(txtBprice.Text);
-            t.t_description = txtDes.Text;
             t.added_date = DateTime.Now;
 
             //getting the user name of LoggedIn user

@@ -23,7 +23,7 @@ namespace JProject.DAL
             SqlConnection conn = new SqlConnection(myconnstring);
             try
             {
-                string sql = "INSERT INTO purchase_transaction (inv_no, supplier, total_quantity, grand_total, inv_date, added_date, added_by) VALUES (@inv_no, @supplier, @total_quantity, @grand_total, @inv_date, @added_date, @added_by); SELECT @@IDENTITY;";
+                string sql = "INSERT INTO purchase_transaction (inv_no, supplier, total_quantity, grand_total, inv_date, added_date, added_by, category) VALUES (@inv_no, @supplier, @total_quantity, @grand_total, @inv_date, @added_date, @added_by, @category); SELECT @@IDENTITY;";
           
                 //Sql command to pass the value in sql query
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -36,7 +36,8 @@ namespace JProject.DAL
                 cmd.Parameters.AddWithValue("@inv_date", pt.inv_date);
                 cmd.Parameters.AddWithValue("@added_date", pt.added_date);
                 cmd.Parameters.AddWithValue("@added_by", pt.added_by);
-
+                cmd.Parameters.AddWithValue("@category", pt.category);
+                
                 //Open Database Connection
                 conn.Open();
 

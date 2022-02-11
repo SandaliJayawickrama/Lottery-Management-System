@@ -48,17 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Instant_PurchasesBLL.cs" />
+    <Compile Include="BLL\Instant_StockBLL.cs" />
     <Compile Include="BLL\PurchaseBLL.cs" />
     <Compile Include="BLL\Purchase_TransactionBLL.cs" />
+    <Compile Include="BLL\ReturnsBLL.cs" />
+    <Compile Include="BLL\Return_TransactionBLL.cs" />
+    <Compile Include="BLL\SalesBLL.cs" />
+    <Compile Include="BLL\Sales_TransactionBLL.cs" />
+    <Compile Include="BLL\StockBLL.cs" />
     <Compile Include="BLL\ticketsA_BLL.cs" />
     <Compile Include="BLL\AgentBLL.cs" />
     <Compile Include="BLL\loginBLL.cs" />
     <Compile Include="BLL\AdminBLL\userBLL.cs" />
     <Compile Include="DAL\AgentDAL.cs" />
+    <Compile Include="DAL\Instant_PurchasesDAL.cs" />
+    <Compile Include="DAL\Instant_StockDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
     <Compile Include="DAL\AdminDAL\userDAL.cs" />
     <Compile Include="DAL\PurchaseDAL.cs" />
     <Compile Include="DAL\Purchase_TransactionDAL.cs" />
+    <Compile Include="DAL\ReturnsDAL.cs" />
+    <Compile Include="DAL\Return_TransactionDAL.cs" />
+    <Compile Include="DAL\SalesDAL.cs" />
+    <Compile Include="DAL\Sales_TransactionDAL.cs" />
+    <Compile Include="DAL\StockDAL.cs" />
     <Compile Include="DAL\TicketsDAL.cs" />
     <Compile Include="UI\Admin\AdminDashboard.cs">
       <SubType>Form</SubType>
@@ -86,6 +100,18 @@
     <Compile Include="UI\Agents.Designer.cs">
       <DependentUpon>Agents.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Bill.Designer.cs">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Instant_purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Instant_purchases.Designer.cs">
+      <DependentUpon>Instant_purchases.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +123,12 @@
     </Compile>
     <Compile Include="UI\Purchase.Designer.cs">
       <DependentUpon>Purchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Return_Purchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Return_Purchase.Designer.cs">
+      <DependentUpon>Return_Purchase.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Sales.cs">
       <SubType>Form</SubType>
@@ -138,11 +170,20 @@
       <DependentUpon>Agents.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bill.resx">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Instant_purchases.resx">
+      <DependentUpon>Instant_purchases.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Purchase.resx">
       <DependentUpon>Purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Return_Purchase.resx">
+      <DependentUpon>Return_Purchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Sales.resx">
       <DependentUpon>Sales.cs</DependentUpon>

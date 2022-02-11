@@ -50,7 +50,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "INSERT INTO agents (agent_name, agent_no, credit_Limit, description, added_date, added_by) VALUES (@agent_name, @agent_no, @credit_Limit, @description, @added_date, @added_by)";
+                string sql = "INSERT INTO agents (agent_name, agent_no, credit_Limit, description, added_date, added_by, agent_address) VALUES (@agent_name, @agent_no, @credit_Limit, @description, @added_date, @added_by, @agent_address)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@agent_name", a.agent_name);
@@ -59,6 +59,7 @@ namespace JProject.DAL
                 cmd.Parameters.AddWithValue("@description", a.description);
                 cmd.Parameters.AddWithValue("@added_date", a.added_date);
                 cmd.Parameters.AddWithValue("@added_by", a.added_by);
+                cmd.Parameters.AddWithValue("@agent_address", a.agent_address);
 
                 conn.Open();
 
@@ -93,7 +94,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "UPDATE agents SET agent_name=@agent_name, agent_no=@agent_no, credit_Limit=@credit_Limit, description=@description, added_date=@added_date, added_by=@added_by WHERE id=@id";
+                string sql = "UPDATE agents SET agent_name=@agent_name, agent_no=@agent_no, credit_Limit=@credit_Limit, description=@description, added_date=@added_date, added_by=@added_by, agent_address=@agent_address WHERE id=@id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@agent_name", a.agent_name);
@@ -103,6 +104,7 @@ namespace JProject.DAL
                 cmd.Parameters.AddWithValue("added_date", a.added_date);
                 cmd.Parameters.AddWithValue("@added_by", a.added_by);
                 cmd.Parameters.AddWithValue("@id", a.id);
+                cmd.Parameters.AddWithValue("@agent_address", a.agent_address);              
 
                 conn.Open();
 
@@ -176,7 +178,7 @@ namespace JProject.DAL
             DataTable dt = new DataTable();
             try
             {
-                string sql = "SELECT * FROM agents WHERE id LIKE '%"+keyword+"%' OR agent_name LIKE '%"+keyword+"%' OR agent_no LIKE '%"+keyword+"%' ";
+                string sql = "SELECT * FROM agents WHERE id LIKE '%"+keyword+"%' OR agent_name LIKE '%"+keyword+"%' OR agent_no LIKE '%"+keyword+ "%' OR agent_address LIKE '%" + keyword + "%' ";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
@@ -201,7 +203,43 @@ namespace JProject.DAL
         }
         #endregion
 
-        
+        #region Search Agent for Sales module
+        public AgentBLL SearchAgent_ForSales(string keyword)
+        {
+            AgentBLL agentSales = new AgentBLL();
+
+            SqlConnection conn = new SqlConnection(myconnstring);
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT agent_name, agent_no, agent_address FROM agents WHERE agent_name LIKE '%" + keyword + "%' OR agent_no LIKE '%" + keyword + "%' OR agent_address LIKE '%" + keyword + "%' ";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
+                conn.Open();
+
+                //Pass the values from adapter to dt
+                adapter.Fill(dt);
+
+                //If we have any values on dt then set the values to ticketsA_BLL
+                if (dt.Rows.Count > 0)
+                {
+                    agentSales.agent_name = dt.Rows[0]["agent_name"].ToString();
+                    agentSales.agent_no = dt.Rows[0]["agent_no"].ToString();
+                    agentSales.agent_address = dt.Rows[0]["agent_address"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return agentSales;
+        }
+        #endregion
 
     }
 }

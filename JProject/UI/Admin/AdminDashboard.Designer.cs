@@ -44,13 +44,17 @@ namespace JProject
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.winToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picDashboard = new System.Windows.Forms.PictureBox();
             this.labelUser = new System.Windows.Forms.Label();
             this.lblloggedIn = new System.Windows.Forms.Label();
+            this.purchaseListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.menuAdmin.SuspendLayout();
@@ -165,7 +169,8 @@ namespace JProject
             // 
             this.purchaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.purchaseToolStripMenuItem1,
-            this.purchaseListToolStripMenuItem});
+            this.purchaseListToolStripMenuItem,
+            this.purchaseListToolStripMenuItem1});
             this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
             this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
             this.purchaseToolStripMenuItem.Text = "Purchases";
@@ -173,27 +178,53 @@ namespace JProject
             // purchaseToolStripMenuItem1
             // 
             this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
-            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
-            this.purchaseToolStripMenuItem1.Text = "Purchase ";
+            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
+            this.purchaseToolStripMenuItem1.Text = "Purchase - Draw";
             this.purchaseToolStripMenuItem1.Click += new System.EventHandler(this.purchaseToolStripMenuItem1_Click);
             // 
             // purchaseListToolStripMenuItem
             // 
             this.purchaseListToolStripMenuItem.Name = "purchaseListToolStripMenuItem";
-            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.purchaseListToolStripMenuItem.Text = "Purchase List";
+            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
+            this.purchaseListToolStripMenuItem.Text = "Purchase - Instant";
+            this.purchaseListToolStripMenuItem.Click += new System.EventHandler(this.purchaseListToolStripMenuItem_Click);
             // 
             // returnToolStripMenuItem
             // 
+            this.returnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salesToolStripMenuItem1,
+            this.salesListToolStripMenuItem});
             this.returnToolStripMenuItem.Name = "returnToolStripMenuItem";
             this.returnToolStripMenuItem.Size = new System.Drawing.Size(62, 27);
             this.returnToolStripMenuItem.Text = "Sales";
             // 
+            // salesToolStripMenuItem1
+            // 
+            this.salesToolStripMenuItem1.Name = "salesToolStripMenuItem1";
+            this.salesToolStripMenuItem1.Size = new System.Drawing.Size(162, 28);
+            this.salesToolStripMenuItem1.Text = "Sales";
+            this.salesToolStripMenuItem1.Click += new System.EventHandler(this.salesToolStripMenuItem1_Click);
+            // 
+            // salesListToolStripMenuItem
+            // 
+            this.salesListToolStripMenuItem.Name = "salesListToolStripMenuItem";
+            this.salesListToolStripMenuItem.Size = new System.Drawing.Size(162, 28);
+            this.salesListToolStripMenuItem.Text = "Sales List";
+            // 
             // stockToolStripMenuItem
             // 
+            this.stockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseReturnToolStripMenuItem});
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(83, 27);
             this.stockToolStripMenuItem.Text = "Returns";
+            // 
+            // purchaseReturnToolStripMenuItem
+            // 
+            this.purchaseReturnToolStripMenuItem.Name = "purchaseReturnToolStripMenuItem";
+            this.purchaseReturnToolStripMenuItem.Size = new System.Drawing.Size(220, 28);
+            this.purchaseReturnToolStripMenuItem.Text = "Purchase Return";
+            this.purchaseReturnToolStripMenuItem.Click += new System.EventHandler(this.purchaseReturnToolStripMenuItem_Click);
             // 
             // winToolStripMenuItem
             // 
@@ -251,6 +282,12 @@ namespace JProject
             this.lblloggedIn.TabIndex = 9;
             this.lblloggedIn.Text = "Admin1";
             // 
+            // purchaseListToolStripMenuItem1
+            // 
+            this.purchaseListToolStripMenuItem1.Name = "purchaseListToolStripMenuItem1";
+            this.purchaseListToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
+            this.purchaseListToolStripMenuItem1.Text = "Purchase List";
+            // 
             // AdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -304,6 +341,10 @@ namespace JProject
         private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem purchaseListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem salesListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseReturnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseListToolStripMenuItem1;
     }
 }
 

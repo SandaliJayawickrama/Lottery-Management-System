@@ -27,6 +27,8 @@ namespace JProject.UI
         userDAL Udal = new userDAL();
         PurchaseDAL pDAL = new PurchaseDAL();
         Purchase_TransactionDAL ptDAL = new Purchase_TransactionDAL();
+        StockDAL StDal = new StockDAL();
+ 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -43,6 +45,7 @@ namespace JProject.UI
             purchaseDT.Columns.Add("Ending Bcode");
             purchaseDT.Columns.Add("Draw No");
             purchaseDT.Columns.Add("Draw date");
+            purchaseDT.Columns.Add("Supplier");
         }
 
         private void txtLineTotal_TextChanged(object sender, EventArgs e)
@@ -58,12 +61,12 @@ namespace JProject.UI
             //Check the value
             if (keyword=="")
             {
-                txtTname.Text = "";
-                txtSupplier.Text = "";
+                txtTickName.Text = "";
+                txtSup.Text = "";
                 txtUprice.Text = "0";
-                txtDrawNo.Text = "";
-                dtpDrawDate.Text = "";
-                txtStBcode.Text = "";
+                txtDrno.Text = "";
+                dtpDrdate.Text = "";
+                txtStBcode.Text = "0";
                 txtQty.Text = "0";
                 txtEdBcode.Text = "";
                 txtLineTotal.Text = "0";               
@@ -74,8 +77,8 @@ namespace JProject.UI
             ticketsA_BLL t = Tdal.SearchTicket_ForPuechase(keyword);
 
             //Set the values on textboxes, based on t object
-            txtTname.Text = t.ticket_name;
-            txtSupplier.Text = t.ticket_type;
+            txtTickName.Text = t.ticket_name;
+            txtSup.Text = t.ticket_type;
             txtUprice.Text = t.ticket_Uprice.ToString();
         }
 
@@ -89,21 +92,25 @@ namespace JProject.UI
             {
                 decimal Uprice = decimal.Parse(txtUprice.Text);
                 decimal Qty = decimal.Parse(txtQty.Text);
+                decimal StBcode = decimal.Parse(txtStBcode.Text);
 
-                //calculate Line Total
+                //calculate Line-Total & Ending-Barcode
                 decimal lineTotal = Uprice * Qty;
-                //display line total in text box
+                decimal endBcode = StBcode + Qty - 1;
+
+                //display line-total & & Ending-Barcode in text boxes
                 txtLineTotal.Text = lineTotal.ToString();
+                txtEdBcode.Text = endBcode.ToString();
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string Tname = txtTname.Text;
-            //string supplier = txtSupplier.Text;
+            string Tname = txtTickName.Text;
+            string Supplier = txtSup.Text;
             decimal Uprice = decimal.Parse(txtUprice.Text);
-            string drawNo = txtDrawNo.Text;
-            DateTime drawDate = DateTime.Parse(dtpDrawDate.Text);
+            string drawNo = txtDrno.Text;
+            DateTime drawDate = DateTime.Parse(dtpDrdate.Text);
             string STcode = txtStBcode.Text;
             decimal Qty = decimal.Parse(txtQty.Text);
             string EDcode = txtEdBcode.Text;           
@@ -113,9 +120,12 @@ namespace JProject.UI
             decimal totQty = decimal.Parse(txtTotalQty.Text);
             totQty = totQty + Qty;
 
-            //calculate grand total
+            //calculate grand total amount
             decimal grandTotal = decimal.Parse(txtGndTotal.Text);
             grandTotal = grandTotal + lineTotal;
+
+            //Get Ticket category
+            string category = Tdal.GetTicketCategory(Tname, Supplier);
 
             //check wether the ticket name is search or not
             if (Tname=="" || Qty == 0)
@@ -123,10 +133,14 @@ namespace JProject.UI
                 //Display Error message
                 MessageBox.Show("Invalid Ticket or Quantity!");
             }
+            else if(category=="" || category== "Instant" || category== "Special Instant")
+            {
+                MessageBox.Show("Cannot add Instant Tickets");
+            }
             else
             {
                 //Add ticket to the data Grid view
-                purchaseDT.Rows.Add(Tname, Uprice, Qty, lineTotal, STcode, EDcode, drawNo, drawDate);
+                purchaseDT.Rows.Add(Tname, Uprice, Qty, lineTotal, STcode, EDcode, drawNo, drawDate, Supplier);
                 
                 //Show in DataGridView
                 dgvPurchases.DataSource = purchaseDT;
@@ -139,15 +153,15 @@ namespace JProject.UI
         private void clear()
         {
             txtSearch.Text = "";
-            txtTname.Text = "";
+            txtTickName.Text = "";
             txtUprice.Text = "0";
-            txtDrawNo.Text = "";
-            dtpDrawDate.Text = "";
-            txtStBcode.Text = "";
+            txtDrno.Text = "";
+            dtpDrdate.Text = "";
+            txtStBcode.Text = "0";
             txtQty.Text = "0";
             txtEdBcode.Text = "";
             txtLineTotal.Text = "0";
-            txtSupplier.Text = "";
+            txtSup.Text = "";
         }
 
         private void txtTname_KeyPress(object sender, KeyPressEventArgs e)
@@ -204,6 +218,15 @@ namespace JProject.UI
             }
         }
 
+        private void txtCat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
         private void lblSupplier1_Click(object sender, EventArgs e)
         {
 
@@ -220,6 +243,7 @@ namespace JProject.UI
             pur_Trans.grand_total = Math.Round(decimal.Parse(txtGndTotal.Text),2);
             pur_Trans.inv_date = DateTime.Parse(dtpInvDate.Text);
             pur_Trans.added_date = DateTime.Now;
+            pur_Trans.category = txtCat.Text;
 
             //get the username of logged in user
             string username = Login.loggedIn;
@@ -256,11 +280,25 @@ namespace JProject.UI
                     purchase.inv_date = DateTime.Parse(dtpInvDate.Text);
                     purchase.added_date = DateTime.Now;
                     purchase.added_by = usr.username;
-                    purchase.supplier = cmbSupplier.Text;
+                    purchase.supplier = purchaseDT.Rows[i][8].ToString();
+
+                    //Get Stock
+                    StockBLL stock = new StockBLL();
+
+                    stock.ticket_name = purchaseDT.Rows[i][0].ToString();
+                    stock.starting_Bcode = purchaseDT.Rows[i][4].ToString();
+                    stock.ending_Bcode = purchaseDT.Rows[i][5].ToString();
+                    stock.draw_no = purchaseDT.Rows[i][6].ToString();
+                    stock.draw_date = DateTime.Parse(purchaseDT.Rows[i][7].ToString());
+                    stock.quantity = decimal.Parse(purchaseDT.Rows[i][2].ToString());
+                    stock.supplier = purchaseDT.Rows[i][8].ToString();
+
+                    bool stkSuccess = false;
+                    stkSuccess = StDal.InsertStock(stock);
 
                     //Insert Purchasess into Database
                     bool P = pDAL.InsertPurchases(purchase);
-                    isSuccess = PT && P;
+                    isSuccess = PT && P && stkSuccess;
                 }
               
                 if (isSuccess == true)
@@ -280,12 +318,12 @@ namespace JProject.UI
                     txtTotalQty.Text = "0";
                     txtGndTotal.Text = "0";
                     txtSearch.Text = "";
-                    txtSupplier.Text = "";
-                    txtTname.Text = "";
+                    txtSup.Text = "";
+                    txtTickName.Text = "";
                     txtUprice.Text = "0";
-                    txtDrawNo.Text = "";
-                    dtpDrawDate.Text = "";
-                    txtStBcode.Text = "";
+                    txtDrno.Text = "";
+                    dtpDrdate.Text = "";
+                    txtStBcode.Text = "0";
                     txtQty.Text = "0";
                     txtEdBcode.Text = "";
                     txtLineTotal.Text = "0";
@@ -293,11 +331,11 @@ namespace JProject.UI
                 else
                 {
                     //Purchase fail
-                    MessageBox.Show("Purchase failed");
+                    MessageBox.Show("Failed to add..!");
                 }
             }
         }
 
-
+        
     }
 }

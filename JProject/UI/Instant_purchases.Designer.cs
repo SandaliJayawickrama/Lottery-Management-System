@@ -1,7 +1,7 @@
 ﻿
 namespace JProject.UI
 {
-    partial class Purchase
+    partial class Instant_purchases
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,6 @@ namespace JProject.UI
         private void InitializeComponent()
         {
             this.lblHeader1 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtInvNo = new System.Windows.Forms.TextBox();
-            this.lblInvoiceNo = new System.Windows.Forms.Label();
-            this.lblTname = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtCat = new System.Windows.Forms.TextBox();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -42,27 +37,24 @@ namespace JProject.UI
             this.lblSupplier1 = new System.Windows.Forms.Label();
             this.dtpInvDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblInvoiceNo = new System.Windows.Forms.Label();
+            this.txtInvNo = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtSup = new System.Windows.Forms.TextBox();
-            this.txtStBcode = new System.Windows.Forms.TextBox();
             this.txtLineTotal = new System.Windows.Forms.TextBox();
             this.lblLineTotal = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblQty = new System.Windows.Forms.Label();
-            this.txtEdBcode = new System.Windows.Forms.TextBox();
             this.txtQty = new System.Windows.Forms.TextBox();
-            this.dtpDrdate = new System.Windows.Forms.DateTimePicker();
-            this.txtDrno = new System.Windows.Forms.TextBox();
-            this.lblEdBcode = new System.Windows.Forms.Label();
             this.txtUprice = new System.Windows.Forms.TextBox();
             this.txtTickName = new System.Windows.Forms.TextBox();
-            this.lblStBcode = new System.Windows.Forms.Label();
             this.lblUprice = new System.Windows.Forms.Label();
-            this.lblDrawNo = new System.Windows.Forms.Label();
-            this.lblDrawDate = new System.Windows.Forms.Label();
             this.lblSupplier = new System.Windows.Forms.Label();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.lblTname = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dgvPurchases = new System.Windows.Forms.DataGridView();
+            this.dgvInsPurchases = new System.Windows.Forms.DataGridView();
             this.lblHeader2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -74,7 +66,7 @@ namespace JProject.UI
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPurchases)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInsPurchases)).BeginInit();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,58 +75,11 @@ namespace JProject.UI
             this.lblHeader1.AutoSize = true;
             this.lblHeader1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader1.ForeColor = System.Drawing.Color.Teal;
-            this.lblHeader1.Location = new System.Drawing.Point(643, 9);
+            this.lblHeader1.Location = new System.Drawing.Point(577, 9);
             this.lblHeader1.Name = "lblHeader1";
-            this.lblHeader1.Size = new System.Drawing.Size(253, 32);
-            this.lblHeader1.TabIndex = 31;
-            this.lblHeader1.Text = "Purchases - Draw";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(227, 14);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(362, 27);
-            this.txtSearch.TabIndex = 33;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(12, 17);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(179, 20);
-            this.lblSearch.TabIndex = 32;
-            this.lblSearch.Text = "Search Ticket Name";
-            // 
-            // txtInvNo
-            // 
-            this.txtInvNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvNo.Location = new System.Drawing.Point(118, 18);
-            this.txtInvNo.Name = "txtInvNo";
-            this.txtInvNo.Size = new System.Drawing.Size(309, 27);
-            this.txtInvNo.TabIndex = 36;
-            // 
-            // lblInvoiceNo
-            // 
-            this.lblInvoiceNo.AutoSize = true;
-            this.lblInvoiceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceNo.Location = new System.Drawing.Point(12, 15);
-            this.lblInvoiceNo.Name = "lblInvoiceNo";
-            this.lblInvoiceNo.Size = new System.Drawing.Size(100, 24);
-            this.lblInvoiceNo.TabIndex = 35;
-            this.lblInvoiceNo.Text = "Invoice No";
-            // 
-            // lblTname
-            // 
-            this.lblTname.AutoSize = true;
-            this.lblTname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTname.Location = new System.Drawing.Point(3, 86);
-            this.lblTname.Name = "lblTname";
-            this.lblTname.Size = new System.Drawing.Size(100, 20);
-            this.lblTname.TabIndex = 37;
-            this.lblTname.Text = "Ticket name";
+            this.lblHeader1.Size = new System.Drawing.Size(258, 32);
+            this.lblHeader1.TabIndex = 32;
+            this.lblHeader1.Text = "Instant Purchases";
             // 
             // panel1
             // 
@@ -146,26 +91,26 @@ namespace JProject.UI
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblInvoiceNo);
             this.panel1.Controls.Add(this.txtInvNo);
-            this.panel1.Location = new System.Drawing.Point(12, 73);
+            this.panel1.Location = new System.Drawing.Point(12, 64);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1458, 66);
-            this.panel1.TabIndex = 40;
+            this.panel1.TabIndex = 41;
             // 
             // txtCat
             // 
             this.txtCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCat.Location = new System.Drawing.Point(1295, 25);
+            this.txtCat.Location = new System.Drawing.Point(1297, 21);
             this.txtCat.Name = "txtCat";
             this.txtCat.Size = new System.Drawing.Size(79, 27);
             this.txtCat.TabIndex = 60;
-            this.txtCat.Text = "Draw";
+            this.txtCat.Text = "Instant";
             this.txtCat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCat_KeyPress);
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(1187, 25);
+            this.lblCategory.Location = new System.Drawing.Point(1189, 21);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(85, 24);
             this.lblCategory.TabIndex = 41;
@@ -192,14 +137,13 @@ namespace JProject.UI
             this.lblSupplier1.Size = new System.Drawing.Size(80, 24);
             this.lblSupplier1.TabIndex = 39;
             this.lblSupplier1.Text = "Supplier";
-            this.lblSupplier1.Click += new System.EventHandler(this.lblSupplier1_Click);
             // 
             // dtpInvDate
             // 
             this.dtpInvDate.CustomFormat = "yyyy-MM-dd";
             this.dtpInvDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpInvDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpInvDate.Location = new System.Drawing.Point(569, 16);
+            this.dtpInvDate.Location = new System.Drawing.Point(566, 22);
             this.dtpInvDate.Name = "dtpInvDate";
             this.dtpInvDate.Size = new System.Drawing.Size(154, 27);
             this.dtpInvDate.TabIndex = 38;
@@ -208,74 +152,74 @@ namespace JProject.UI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(450, 16);
+            this.label1.Location = new System.Drawing.Point(447, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 24);
             this.label1.TabIndex = 37;
             this.label1.Text = "Invoice Date";
             // 
+            // lblInvoiceNo
+            // 
+            this.lblInvoiceNo.AutoSize = true;
+            this.lblInvoiceNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInvoiceNo.Location = new System.Drawing.Point(13, 21);
+            this.lblInvoiceNo.Name = "lblInvoiceNo";
+            this.lblInvoiceNo.Size = new System.Drawing.Size(100, 24);
+            this.lblInvoiceNo.TabIndex = 35;
+            this.lblInvoiceNo.Text = "Invoice No";
+            // 
+            // txtInvNo
+            // 
+            this.txtInvNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvNo.Location = new System.Drawing.Point(118, 18);
+            this.txtInvNo.Name = "txtInvNo";
+            this.txtInvNo.Size = new System.Drawing.Size(309, 27);
+            this.txtInvNo.TabIndex = 36;
+            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtSup);
-            this.panel2.Controls.Add(this.txtStBcode);
             this.panel2.Controls.Add(this.txtLineTotal);
             this.panel2.Controls.Add(this.lblLineTotal);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.lblQty);
-            this.panel2.Controls.Add(this.txtEdBcode);
             this.panel2.Controls.Add(this.txtQty);
-            this.panel2.Controls.Add(this.dtpDrdate);
-            this.panel2.Controls.Add(this.txtDrno);
-            this.panel2.Controls.Add(this.lblEdBcode);
             this.panel2.Controls.Add(this.txtUprice);
             this.panel2.Controls.Add(this.txtTickName);
-            this.panel2.Controls.Add(this.lblStBcode);
             this.panel2.Controls.Add(this.lblUprice);
-            this.panel2.Controls.Add(this.lblDrawNo);
-            this.panel2.Controls.Add(this.lblDrawDate);
             this.panel2.Controls.Add(this.lblSupplier);
             this.panel2.Controls.Add(this.lblSearch);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.lblTname);
-            this.panel2.Location = new System.Drawing.Point(12, 161);
+            this.panel2.Location = new System.Drawing.Point(12, 154);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1458, 237);
-            this.panel2.TabIndex = 41;
+            this.panel2.Size = new System.Drawing.Size(1458, 175);
+            this.panel2.TabIndex = 42;
             // 
             // txtSup
             // 
             this.txtSup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSup.Location = new System.Drawing.Point(212, 122);
+            this.txtSup.Location = new System.Drawing.Point(277, 122);
             this.txtSup.Name = "txtSup";
             this.txtSup.Size = new System.Drawing.Size(117, 24);
             this.txtSup.TabIndex = 59;
             // 
-            // txtStBcode
-            // 
-            this.txtStBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStBcode.Location = new System.Drawing.Point(773, 122);
-            this.txtStBcode.Name = "txtStBcode";
-            this.txtStBcode.Size = new System.Drawing.Size(234, 24);
-            this.txtStBcode.TabIndex = 58;
-            this.txtStBcode.Text = "0";
-            // 
             // txtLineTotal
             // 
             this.txtLineTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLineTotal.Location = new System.Drawing.Point(668, 186);
+            this.txtLineTotal.Location = new System.Drawing.Point(935, 120);
             this.txtLineTotal.Name = "txtLineTotal";
             this.txtLineTotal.Size = new System.Drawing.Size(234, 24);
             this.txtLineTotal.TabIndex = 56;
             this.txtLineTotal.Text = "0";
-            this.txtLineTotal.TextChanged += new System.EventHandler(this.txtLineTotal_TextChanged);
             this.txtLineTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLineTotal_KeyPress);
             // 
             // lblLineTotal
             // 
             this.lblLineTotal.AutoSize = true;
             this.lblLineTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLineTotal.Location = new System.Drawing.Point(552, 190);
+            this.lblLineTotal.Location = new System.Drawing.Point(941, 86);
             this.lblLineTotal.Name = "lblLineTotal";
             this.lblLineTotal.Size = new System.Drawing.Size(93, 20);
             this.lblLineTotal.TabIndex = 55;
@@ -285,7 +229,7 @@ namespace JProject.UI
             // 
             this.btnAdd.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(1265, 173);
+            this.btnAdd.Location = new System.Drawing.Point(1248, 111);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(127, 35);
             this.btnAdd.TabIndex = 54;
@@ -297,24 +241,16 @@ namespace JProject.UI
             // 
             this.lblQty.AutoSize = true;
             this.lblQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQty.Location = new System.Drawing.Point(1023, 86);
+            this.lblQty.Location = new System.Drawing.Point(618, 86);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(71, 20);
             this.lblQty.TabIndex = 53;
             this.lblQty.Text = "Quantity";
             // 
-            // txtEdBcode
-            // 
-            this.txtEdBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdBcode.Location = new System.Drawing.Point(1208, 122);
-            this.txtEdBcode.Name = "txtEdBcode";
-            this.txtEdBcode.Size = new System.Drawing.Size(234, 24);
-            this.txtEdBcode.TabIndex = 52;
-            // 
             // txtQty
             // 
             this.txtQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQty.Location = new System.Drawing.Point(1027, 122);
+            this.txtQty.Location = new System.Drawing.Point(622, 120);
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(159, 24);
             this.txtQty.TabIndex = 51;
@@ -322,38 +258,10 @@ namespace JProject.UI
             this.txtQty.TextChanged += new System.EventHandler(this.txtQty_TextChanged);
             this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
             // 
-            // dtpDrdate
-            // 
-            this.dtpDrdate.CustomFormat = "yyyy-MM-dd";
-            this.dtpDrdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDrdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDrdate.Location = new System.Drawing.Point(622, 120);
-            this.dtpDrdate.Name = "dtpDrdate";
-            this.dtpDrdate.Size = new System.Drawing.Size(126, 24);
-            this.dtpDrdate.TabIndex = 39;
-            // 
-            // txtDrno
-            // 
-            this.txtDrno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDrno.Location = new System.Drawing.Point(482, 120);
-            this.txtDrno.Name = "txtDrno";
-            this.txtDrno.Size = new System.Drawing.Size(117, 24);
-            this.txtDrno.TabIndex = 49;
-            // 
-            // lblEdBcode
-            // 
-            this.lblEdBcode.AutoSize = true;
-            this.lblEdBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEdBcode.Location = new System.Drawing.Point(1204, 86);
-            this.lblEdBcode.Name = "lblEdBcode";
-            this.lblEdBcode.Size = new System.Drawing.Size(128, 20);
-            this.lblEdBcode.TabIndex = 48;
-            this.lblEdBcode.Text = "Ending Barcode";
-            // 
             // txtUprice
             // 
             this.txtUprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUprice.Location = new System.Drawing.Point(347, 120);
+            this.txtUprice.Location = new System.Drawing.Point(459, 122);
             this.txtUprice.Name = "txtUprice";
             this.txtUprice.Size = new System.Drawing.Size(106, 24);
             this.txtUprice.TabIndex = 47;
@@ -363,86 +271,85 @@ namespace JProject.UI
             // txtTickName
             // 
             this.txtTickName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTickName.Location = new System.Drawing.Point(7, 120);
+            this.txtTickName.Location = new System.Drawing.Point(32, 120);
             this.txtTickName.Name = "txtTickName";
             this.txtTickName.Size = new System.Drawing.Size(186, 24);
             this.txtTickName.TabIndex = 46;
-            this.txtTickName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTname_KeyPress);
-            // 
-            // lblStBcode
-            // 
-            this.lblStBcode.AutoSize = true;
-            this.lblStBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStBcode.Location = new System.Drawing.Point(769, 86);
-            this.lblStBcode.Name = "lblStBcode";
-            this.lblStBcode.Size = new System.Drawing.Size(130, 20);
-            this.lblStBcode.TabIndex = 44;
-            this.lblStBcode.Text = "Staring Barcode";
+            this.txtTickName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTickName_KeyPress);
             // 
             // lblUprice
             // 
             this.lblUprice.AutoSize = true;
             this.lblUprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUprice.Location = new System.Drawing.Point(343, 86);
+            this.lblUprice.Location = new System.Drawing.Point(455, 86);
             this.lblUprice.Name = "lblUprice";
             this.lblUprice.Size = new System.Drawing.Size(83, 20);
             this.lblUprice.TabIndex = 42;
             this.lblUprice.Text = "Unit Price";
             // 
-            // lblDrawNo
-            // 
-            this.lblDrawNo.AutoSize = true;
-            this.lblDrawNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDrawNo.Location = new System.Drawing.Point(484, 86);
-            this.lblDrawNo.Name = "lblDrawNo";
-            this.lblDrawNo.Size = new System.Drawing.Size(75, 20);
-            this.lblDrawNo.TabIndex = 41;
-            this.lblDrawNo.Text = "Draw No";
-            // 
-            // lblDrawDate
-            // 
-            this.lblDrawDate.AutoSize = true;
-            this.lblDrawDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDrawDate.Location = new System.Drawing.Point(632, 86);
-            this.lblDrawDate.Name = "lblDrawDate";
-            this.lblDrawDate.Size = new System.Drawing.Size(90, 20);
-            this.lblDrawDate.TabIndex = 40;
-            this.lblDrawDate.Text = "Draw Date";
-            // 
             // lblSupplier
             // 
             this.lblSupplier.AutoSize = true;
             this.lblSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupplier.Location = new System.Drawing.Point(223, 86);
+            this.lblSupplier.Location = new System.Drawing.Point(288, 86);
             this.lblSupplier.Name = "lblSupplier";
             this.lblSupplier.Size = new System.Drawing.Size(70, 20);
             this.lblSupplier.TabIndex = 38;
             this.lblSupplier.Text = "Supplier";
             // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.Location = new System.Drawing.Point(12, 17);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(179, 20);
+            this.lblSearch.TabIndex = 32;
+            this.lblSearch.Text = "Search Ticket Name";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(227, 14);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(362, 27);
+            this.txtSearch.TabIndex = 33;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // lblTname
+            // 
+            this.lblTname.AutoSize = true;
+            this.lblTname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTname.Location = new System.Drawing.Point(28, 86);
+            this.lblTname.Name = "lblTname";
+            this.lblTname.Size = new System.Drawing.Size(100, 20);
+            this.lblTname.TabIndex = 37;
+            this.lblTname.Text = "Ticket name";
+            // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dgvPurchases);
+            this.panel3.Controls.Add(this.dgvInsPurchases);
             this.panel3.Controls.Add(this.lblHeader2);
-            this.panel3.Location = new System.Drawing.Point(12, 417);
+            this.panel3.Location = new System.Drawing.Point(12, 358);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(813, 421);
-            this.panel3.TabIndex = 42;
+            this.panel3.Size = new System.Drawing.Size(813, 480);
+            this.panel3.TabIndex = 43;
             // 
-            // dgvPurchases
+            // dgvInsPurchases
             // 
-            this.dgvPurchases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPurchases.Location = new System.Drawing.Point(16, 36);
-            this.dgvPurchases.Name = "dgvPurchases";
-            this.dgvPurchases.RowHeadersWidth = 51;
-            this.dgvPurchases.RowTemplate.Height = 24;
-            this.dgvPurchases.Size = new System.Drawing.Size(778, 367);
-            this.dgvPurchases.TabIndex = 40;
+            this.dgvInsPurchases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInsPurchases.Location = new System.Drawing.Point(16, 52);
+            this.dgvInsPurchases.Name = "dgvInsPurchases";
+            this.dgvInsPurchases.RowHeadersWidth = 51;
+            this.dgvInsPurchases.RowTemplate.Height = 24;
+            this.dgvInsPurchases.Size = new System.Drawing.Size(778, 409);
+            this.dgvInsPurchases.TabIndex = 40;
             // 
             // lblHeader2
             // 
             this.lblHeader2.AutoSize = true;
             this.lblHeader2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader2.Location = new System.Drawing.Point(12, 9);
+            this.lblHeader2.Location = new System.Drawing.Point(13, 18);
             this.lblHeader2.Name = "lblHeader2";
             this.lblHeader2.Size = new System.Drawing.Size(144, 24);
             this.lblHeader2.TabIndex = 39;
@@ -457,10 +364,10 @@ namespace JProject.UI
             this.panel4.Controls.Add(this.lblGndTotal);
             this.panel4.Controls.Add(this.lblTotalQty);
             this.panel4.Controls.Add(this.lblHeader3);
-            this.panel4.Location = new System.Drawing.Point(851, 417);
+            this.panel4.Location = new System.Drawing.Point(841, 376);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(619, 421);
-            this.panel4.TabIndex = 43;
+            this.panel4.TabIndex = 44;
             // 
             // btnSave
             // 
@@ -524,7 +431,7 @@ namespace JProject.UI
             this.lblHeader3.TabIndex = 40;
             this.lblHeader3.Text = "Calculation Details";
             // 
-            // Purchase
+            // Instant_purchases
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -535,17 +442,17 @@ namespace JProject.UI
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblHeader1);
-            this.Name = "Purchase";
+            this.Name = "Instant_purchases";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Purchase";
-            this.Load += new System.EventHandler(this.Purchase_Load);
+            this.Text = "Instant_purchases";
+            this.Load += new System.EventHandler(this.Instant_purchases_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPurchases)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInsPurchases)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -556,46 +463,38 @@ namespace JProject.UI
         #endregion
 
         private System.Windows.Forms.Label lblHeader1;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.TextBox txtInvNo;
-        private System.Windows.Forms.Label lblInvoiceNo;
-        private System.Windows.Forms.Label lblTname;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DateTimePicker dtpInvDate;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtTickName;
-        private System.Windows.Forms.Label lblStBcode;
-        private System.Windows.Forms.Label lblUprice;
-        private System.Windows.Forms.Label lblDrawNo;
-        private System.Windows.Forms.Label lblDrawDate;
-        private System.Windows.Forms.Label lblSupplier;
-        private System.Windows.Forms.TextBox txtUprice;
-        private System.Windows.Forms.TextBox txtEdBcode;
-        private System.Windows.Forms.TextBox txtQty;
-        private System.Windows.Forms.DateTimePicker dtpDrdate;
-        private System.Windows.Forms.TextBox txtDrno;
-        private System.Windows.Forms.Label lblEdBcode;
-        private System.Windows.Forms.Label lblQty;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblHeader2;
-        private System.Windows.Forms.Label lblHeader3;
-        private System.Windows.Forms.DataGridView dgvPurchases;
-        private System.Windows.Forms.Label lblGndTotal;
-        private System.Windows.Forms.Label lblTotalQty;
-        private System.Windows.Forms.TextBox txtGndTotal;
-        private System.Windows.Forms.TextBox txtTotalQty;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtLineTotal;
-        private System.Windows.Forms.Label lblLineTotal;
-        private System.Windows.Forms.ComboBox cmbSupplier;
-        private System.Windows.Forms.Label lblSupplier1;
-        private System.Windows.Forms.TextBox txtStBcode;
-        private System.Windows.Forms.TextBox txtSup;
         private System.Windows.Forms.TextBox txtCat;
         private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.ComboBox cmbSupplier;
+        private System.Windows.Forms.Label lblSupplier1;
+        private System.Windows.Forms.DateTimePicker dtpInvDate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblInvoiceNo;
+        private System.Windows.Forms.TextBox txtInvNo;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox txtSup;
+        private System.Windows.Forms.TextBox txtLineTotal;
+        private System.Windows.Forms.Label lblLineTotal;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Label lblQty;
+        private System.Windows.Forms.TextBox txtQty;
+        private System.Windows.Forms.TextBox txtUprice;
+        private System.Windows.Forms.TextBox txtTickName;
+        private System.Windows.Forms.Label lblUprice;
+        private System.Windows.Forms.Label lblSupplier;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label lblTname;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridView dgvInsPurchases;
+        private System.Windows.Forms.Label lblHeader2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txtTotalQty;
+        private System.Windows.Forms.TextBox txtGndTotal;
+        private System.Windows.Forms.Label lblGndTotal;
+        private System.Windows.Forms.Label lblTotalQty;
+        private System.Windows.Forms.Label lblHeader3;
     }
 }

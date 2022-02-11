@@ -45,6 +45,7 @@ namespace JProject.UI
             a.credit_Limit = decimal.Parse(txtCreditL.Text);
             a.description = txtDescrip.Text;
             a.added_date = DateTime.Now;
+            a.agent_address = txtAaddress.Text;
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
@@ -84,6 +85,7 @@ namespace JProject.UI
             txtAno.Text = "";
             txtCreditL.Text = "";
             txtDescrip.Text = "";
+            txtAaddress.Text = "";
         }
 
         private void dgvAgents_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -93,9 +95,10 @@ namespace JProject.UI
 
             txtAId.Text = dgvAgents.Rows[rowIndex].Cells[0].Value.ToString();
             txtAname.Text = dgvAgents.Rows[rowIndex].Cells[1].Value.ToString();
-            txtAno.Text = dgvAgents.Rows[rowIndex].Cells[2].Value.ToString();
+            txtAno.Text = dgvAgents.Rows[rowIndex].Cells[2].Value.ToString();           
             txtCreditL.Text = dgvAgents.Rows[rowIndex].Cells[3].Value.ToString();
             txtDescrip.Text = dgvAgents.Rows[rowIndex].Cells[4].Value.ToString();
+            txtAaddress.Text = dgvAgents.Rows[rowIndex].Cells[5].Value.ToString();
         }
 
         private void dgvAgents_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,6 +120,7 @@ namespace JProject.UI
             a.credit_Limit = decimal.Parse(txtCreditL.Text);
             a.description = txtDescrip.Text;
             a.added_date = DateTime.Now;
+            a.agent_address = txtAaddress.Text;
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
