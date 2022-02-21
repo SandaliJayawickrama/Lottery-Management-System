@@ -19,5 +19,13 @@ namespace JProject.BLL
         public string added_by { get; set; }
         public string category { get; set; }
         public DataTable PurchaseTrans { get; set; }
+        public decimal cash { get; set; }
+        public decimal bank { get; set; }
+        public decimal scan_nlb { get; set; }
+        public decimal scan_dlb { get; set; }
+        public decimal return_nlb { get; set; }
+        public decimal return_dlb { get; set; }
+        public decimal credit { get; set; }
+
     }
 }

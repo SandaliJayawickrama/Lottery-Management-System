@@ -16,5 +16,6 @@ namespace JProject.BLL
         public string added_by { get; set; }
         public DateTime added_date { get; set; }
         public string agent_address { get; set; }
+        public decimal credit_amount { get; set; }
     }
 }

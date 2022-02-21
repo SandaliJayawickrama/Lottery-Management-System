@@ -338,7 +338,6 @@ namespace JProject.UI
             }
         }
 
-        
         private void Sales_Load(object sender, EventArgs e)
         {
             txtInvNo.Text = salesDal.CreateSalesInvNo();
@@ -454,16 +453,34 @@ namespace JProject.UI
             salesTranBll.added_by = usr.username;
             salesTranBll.SalesTrans = SalesDT;
 
+            //Get Agent details to Update Credit Amount In Agents Table
+            string AgentName = txtAgentName.Text;
+            string AgentNo = txtAgentNo.Text;
+            decimal creditAmount = decimal.Parse(txtCredit.Text);
+            decimal creditLimit = agDal.GetCreditLimit(AgentName,AgentNo);
+            decimal currentCredit = agDal.GetCurrentCreditAmount(AgentName,AgentNo);
+
             bool isSuccess = false;
 
             using (TransactionScope scope = new TransactionScope())
             {
                 int sales_tranID = -1;
-
                 bool StranSuccess = salesDal.InsertSalesTransaction(salesTranBll, out sales_tranID);
 
+                decimal totCredit = currentCredit + creditAmount;
+                bool AgCrSuccess = false;
+                if (creditLimit >= totCredit)
+                {
+                    AgCrSuccess = agDal.IncreaseCreditAmount(AgentName, AgentNo, creditAmount);
+                }
+                else
+                {
+                    MessageBox.Show("Credit Limit Exceeded!");
+                }
+
+
                 //Use for loop to insert sales
-                for(int i=0; i<SalesDT.Rows.Count; i++)
+                for (int i=0; i<SalesDT.Rows.Count; i++)
                 {
                     SalesBLL sales = new SalesBLL();
 
@@ -481,8 +498,7 @@ namespace JProject.UI
                     sales.added_by = usr.username;
                     sales.unit_price = decimal.Parse(SalesDT.Rows[i][3].ToString());
                     //sales.draw_date = DateTime.Parse(SalesDT.Rows[i][2].ToString());
-
-                    
+                   
                     string DrDate = SalesDT.Rows[i][2].ToString();
                     if (DrDate == "NULL" || DrDate=="")
                     {
@@ -529,8 +545,7 @@ namespace JProject.UI
                     //Insert sales into Database
                     bool SalesSuccess = Sdal.InsertSales(sales);
 
-                    isSuccess = StranSuccess && stkSuccess && SalesSuccess;
-                    //isSuccess = StranSuccess &&  SalesSuccess;
+                    isSuccess = StranSuccess && stkSuccess && SalesSuccess && AgCrSuccess;
                 }
 
                 decimal balance = BalanceCalculation();
@@ -630,6 +645,90 @@ namespace JProject.UI
             
         }
 
-        
+        private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtWinNlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtWinDlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFreeNlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFreeDlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtReturnNlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtReturnDlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCredit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBalance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtTotAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -289,5 +289,76 @@ namespace JProject.DAL
         }
         #endregion
 
+
+
+        #region Select Stock for Ins-Stock List Gridview
+        public DataTable SelectInsStocksList()
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            DataTable dt = new DataTable();
+            DataTable filledDT = new DataTable();
+            try
+            {
+                string sql = "SELECT * FROM instant_stock";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                conn.Open();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    filledDT = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return filledDT;
+        }
+        #endregion
+
+        #region Search Ins-Stock in Database
+        public DataTable SearchInsStock(string keyword)
+        {
+            //Create a Database connection
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            //Create a Data Table to hold the values temporaly
+            DataTable dt = new DataTable();
+            try
+            {
+                string sql = "SELECT * FROM instant_stock WHERE ticket_name LIKE '%" + keyword + "%' OR supplier LIKE '%" + keyword + "%' ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Create SqlData Adapter to execute the query
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open Database connection
+                conn.Open();
+
+                //Transfer the data from SqlDataAdapter to DataTable
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+        #endregion
+
     }
 }

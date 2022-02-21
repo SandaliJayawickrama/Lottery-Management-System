@@ -15,7 +15,7 @@ namespace JProject.DAL
     {
         static string myconnstring = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
 
-        #region Get last Row Sales Id From Sales_Transaction Table
+        #region Get last Row Sales Id From Sales_Transaction Table to create SalesId
         public int GetLastSales_TransactionId()
         {
             SqlConnection conn = new SqlConnection(myconnstring);
@@ -131,6 +131,463 @@ namespace JProject.DAL
             }
 
             return isSuccess;
+        }
+        #endregion
+
+
+
+        #region Select Sales list for SalesList Gridview
+        public DataTable SelectSalesList()
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            DataTable dt = new DataTable();
+            DataTable filledDT = new DataTable();
+            try
+            {
+                string sql = "SELECT st_id, inv_no, agent_name, agent_no, total_qty, total_billAmount, added_date FROM sales_transaction";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                conn.Open();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    filledDT = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return filledDT;
+        }
+        #endregion
+
+        #region Search Sales in Database
+        public DataTable SearchSales(string keyword)
+        {
+            //Create a Database connection
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            //Create a Data Table to hold the values temporaly
+            DataTable dt = new DataTable();
+            try
+            {
+                string sql = "SELECT st_id, inv_no, agent_name, agent_no, total_qty, total_billAmount, added_date FROM sales_transaction WHERE agent_name LIKE '%" + keyword + "%' OR inv_no LIKE '%" + keyword + "%' OR added_date LIKE '%" + keyword + "%' ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Create SqlData Adapter to execute the query
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open Database connection
+                conn.Open();
+
+                //Transfer the data from SqlDataAdapter to DataTable
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+        #endregion
+
+
+
+        #region Getting Sales Transaction details For Agent Summery
+        /*public Sales_TransactionBLL GetSalesTransForAgentSummery(string givenDate)
+        {
+            Sales_TransactionBLL stBll = new Sales_TransactionBLL();
+            SqlConnection conn = new SqlConnection(myconnstring);
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT agent_name, agent_no, total_billAmount, cash, winings_nlb, winings_dlb, return_nlb, return_dlb, free_nlb, free_dlb, credits FROM sales_transaction WHERE agent_name = '" + givenDate + "' ";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    stBll.agent_name = dt.Rows[0]["agent_name"].ToString();
+                    stBll.agent_no = dt.Rows[0]["agent_no"].ToString();
+                    stBll.total_billAmount = decimal.Parse(dt.Rows[0]["total_billAmount"].ToString());
+                    stBll.cash = decimal.Parse(dt.Rows[0]["cash"].ToString());
+                    stBll.winings_nlb = decimal.Parse(dt.Rows[0]["winings_nlb"].ToString());
+                    stBll.winings_dlb = decimal.Parse(dt.Rows[0]["winings_dlb"].ToString());
+                    stBll.return_nlb = decimal.Parse(dt.Rows[0]["return_nlb"].ToString());
+                    stBll.return_dlb = decimal.Parse(dt.Rows[0]["return_dlb"].ToString());
+                    stBll.credits = decimal.Parse(dt.Rows[0]["free_nlb"].ToString());
+                    stBll.free_nlb = decimal.Parse(dt.Rows[0]["free_dlb"].ToString());
+                    stBll.free_dlb = decimal.Parse(dt.Rows[0]["credits"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return stBll;
+        }*/
+        #endregion
+
+        #region Select Sales list for SalesList Gridview Agent Summery
+        public DataTable SelectSalesTransForAgentSummery(DateTime givenDate)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            DataTable dt = new DataTable();
+            DataTable filledDT = new DataTable();
+            try
+            {
+                string sql = "SELECT s.agent_name, s.agent_no, s.total_billAmount, s.cash, s.winings_nlb, s.winings_dlb, s.return_nlb, s.return_dlb, s.free_nlb, s.free_dlb, s.credits, a.credit_amount FROM sales_transaction s, agents a WHERE s.agent_name=a.agent_name AND s.added_date = '" + givenDate + "' ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                conn.Open();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    filledDT = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return filledDT;
+        }
+        #endregion
+
+
+
+        #region Get the Total(sum) value of Monthly Sales Amount
+        public decimal GetMonthlySalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(total_billAmount),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get the Total(sum) value of Monthly Cash Sales Amount
+        public decimal GetMonthlyCashSalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(cash),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get the Total(sum) value of Monthly Credit Sales Amount
+        public decimal GetMonthlyCreditSalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(credits),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get the Total(sum) value of Monthly Nlb Win Sales Amount
+        public decimal GetMonthlyNlbWinSalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(winings_nlb),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get the Total(sum) value of Monthly Dlb Win Sales Amount
+        public decimal GetMonthlyDlbWinSalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(winings_dlb),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get Total Cash and Win sales
+        public decimal GetTotalCashBankWinSales(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            decimal cash = GetMonthlyCashSalesAmount(month, year);
+            decimal Nlbwin = GetMonthlyNlbWinSalesAmount(month, year);
+            decimal Dlbwin = GetMonthlyDlbWinSalesAmount(month, year);
+
+
+            total = cash + Nlbwin + Dlbwin;
+
+            return total;
+        }
+        #endregion
+
+        #region Get the Total(sum) value of Monthly Nlb Return Sales Amount
+        public decimal GetMonthlyNlbRetSalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(return_nlb),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get the Total(sum) value of Monthly Dlb Return Sales Amount
+        public decimal GetMonthlyDlbRetSalesAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(return_dlb),0) as total FROM sales_transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
+        }
+        #endregion
+
+        #region Get Total Nlb, Dlb Return sales
+        public decimal GetTotalReturnSales(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            decimal NlbRet = GetMonthlyNlbRetSalesAmount(month, year);
+            decimal DlbRet = GetMonthlyDlbRetSalesAmount(month, year);
+
+            total = NlbRet + DlbRet;
+
+            return total;
         }
         #endregion
     }

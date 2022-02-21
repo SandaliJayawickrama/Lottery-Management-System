@@ -337,6 +337,8 @@ namespace JProject.UI
             // 
             // dgvInsPurchases
             // 
+            this.dgvInsPurchases.AllowUserToAddRows = false;
+            this.dgvInsPurchases.AllowUserToDeleteRows = false;
             this.dgvInsPurchases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInsPurchases.Location = new System.Drawing.Point(16, 52);
             this.dgvInsPurchases.Name = "dgvInsPurchases";

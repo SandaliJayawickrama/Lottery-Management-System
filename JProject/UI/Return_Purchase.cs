@@ -29,7 +29,7 @@ namespace JProject.UI
 
         private void Return_Purchase_Load(object sender, EventArgs e)
         {
-            returnsDT.Columns.Add("Ticket_name");
+           returnsDT.Columns.Add("Ticket_name");
             returnsDT.Columns.Add("Starting Bcode");
             returnsDT.Columns.Add("Quantity");
             returnsDT.Columns.Add("Ending Bcode");
@@ -61,11 +61,11 @@ namespace JProject.UI
             txtDrno.Text = dgvStock.Rows[rowIndex].Cells[4].Value.ToString();
             txtQty.Text = dgvStock.Rows[rowIndex].Cells[6].Value.ToString();
             txtSup.Text = dgvStock.Rows[rowIndex].Cells[7].Value.ToString();
-            //txtDrDate.Text = dgvStock.Rows[rowIndex].Cells[5].Value.ToString();
-            DateTime DrDate = new DateTime();
+            txtDrDate.Text = dgvStock.Rows[rowIndex].Cells[5].Value.ToString();
+            /*DateTime DrDate = new DateTime();
             string date = dgvStock.Rows[rowIndex].Cells[5].Value.ToString();
             DrDate = DateTime.Parse(date);
-            txtDrDate.Text = DrDate.ToString("dd-MM-yyyy");
+            txtDrDate.Text = DrDate.ToString("dd-MM-yyyy");*/
 
             //Get Unit Price
             string Tname = txtTickName.Text.ToString();
@@ -85,7 +85,7 @@ namespace JProject.UI
             string tName = txtTickName.Text;
             string supplier = txtSup.Text;
             string drNo = txtDrno.Text;
-            string drDate = txtDrDate.Text;
+            string drDate = txtDrDate.Text.ToString();
             string StBcode = txtStBcode.Text;
             string EdBcode = txtEdBcode.Text;
             decimal Qty = decimal.Parse(txtQty.Text);
@@ -161,7 +161,7 @@ namespace JProject.UI
                     returnBll.ticket_name = returnsDT.Rows[i][0].ToString();
                     returnBll.supplier = returnsDT.Rows[i][7].ToString();
                     returnBll.draw_no = returnsDT.Rows[i][5].ToString();
-                    returnBll.draw_date = DateTime.Parse(returnsDT.Rows[i][6].ToString());                  
+                    returnBll.draw_date = DateTime.Parse(returnsDT.Rows[i][6].ToString());
                     returnBll.starting_Bcode = returnsDT.Rows[i][1].ToString();
                     returnBll.ending_Bcode = returnsDT.Rows[i][3].ToString();
                     returnBll.quantity = decimal.Parse(returnsDT.Rows[i][2].ToString());

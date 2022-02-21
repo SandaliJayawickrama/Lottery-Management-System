@@ -88,6 +88,8 @@ namespace JProject.UI.User
             // 
             // dgvTicketsU
             // 
+            this.dgvTicketsU.AllowUserToAddRows = false;
+            this.dgvTicketsU.AllowUserToDeleteRows = false;
             this.dgvTicketsU.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTicketsU.Location = new System.Drawing.Point(480, 273);
             this.dgvTicketsU.Name = "dgvTicketsU";

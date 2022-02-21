@@ -422,109 +422,26 @@ namespace JProject.DAL
 
 
 
-
-        #region Decrease Stock Qty by Sales
-        /*public bool DecreaseQty(string Bcode, string drawNo, string tName, decimal NewQty)
-        {
-            bool isSuccess = false;
-            SqlConnection conn = new SqlConnection(myconnstring);
-
-            try
-            {
-                
-                decimal CurrentQty = GetCurrentTotalQty(drawNo, tName);
-
-                if (CurrentQty > 0)
-                {
-                    decimal TotalQty = CurrentQty - NewQty;
-
-                    if (TotalQty > 0)
-                    {
-                        isSuccess = UpdateQtyAndStBcode(tName, Bcode, TotalQty);
-                    }
-                    else if (TotalQty < 0)
-                    {
-                        isSuccess = false;
-                    }
-                    else if (TotalQty == 0)
-                    {
-                        isSuccess = DeleteStock(tName, Bcode);
-                    }
-                }
-                else
-                {
-                    isSuccess = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return isSuccess;
-        }*/
-        #endregion
-
-        #region Increase Stock Qty by Purchasing
-        /*public bool IncreaseQty(StockBLL s, string drawNo, decimal NewQty)
-        {
-            bool isSuccess = false;
-            SqlConnection conn = new SqlConnection(myconnstring);
-
-            try
-            {
-                decimal CurrentQty = CheckAndGetCurrentQty(drawNo);
-
-                if (CurrentQty > 0)
-                {
-                    decimal TotalQty = CurrentQty + NewQty;
-                    isSuccess = UpdateQuantity(drawNo, TotalQty);
-                }
-                else
-                {
-                    isSuccess = InsertStock(s);
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return isSuccess;
-        }*/
-        #endregion
-
-        #region Get Stock Qty as Inventory for SalesFrm
-        /*public decimal GetInventoryBalance(string drawNo, string tikName)
+        #region Select Stock for Stock List Gridview
+        public DataTable SelectStockList()
         {
             SqlConnection conn = new SqlConnection(myconnstring);
-            decimal qty = 0;
 
             DataTable dt = new DataTable();
-
+            DataTable filledDT = new DataTable();
             try
             {
-                string sql = "SELECT quantity FROM stock WHERE draw_no = @draw_no AND ticket_name=@ticket_name ";
+                string sql = "SELECT stk_id, ticket_name, quantity, starting_Bcode, ending_Bcode, draw_no, draw_date, supplier FROM stock ";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@draw_no", drawNo);
-                cmd.Parameters.AddWithValue("@ticket_name", tikName);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-
                 conn.Open();
-
                 adapter.Fill(dt);
 
                 if (dt.Rows.Count > 0)
                 {
-                    qty = decimal.Parse(dt.Rows[0]["quantity"].ToString());
+                    filledDT = dt;
                 }
             }
             catch (Exception ex)
@@ -535,14 +452,43 @@ namespace JProject.DAL
             {
                 conn.Close();
             }
-            return qty;
-        }*/
+            return filledDT;
+        }
         #endregion
 
+        #region Search Stock in Database
+        public DataTable SearchStock(string keyword)
+        {
+            //Create a Database connection
+            SqlConnection conn = new SqlConnection(myconnstring);
 
+            //Create a Data Table to hold the values temporaly
+            DataTable dt = new DataTable();
+            try
+            {
+                string sql = "SELECT stk_id, ticket_name, quantity, starting_Bcode, ending_Bcode, draw_no, draw_date, supplier FROM stock WHERE ticket_name LIKE '%" + keyword + "%' OR draw_no LIKE '%" + keyword + "%' OR draw_date LIKE '%" + keyword + "%' OR supplier LIKE '%" + keyword + "%' ";
 
+                SqlCommand cmd = new SqlCommand(sql, conn);
 
+                //Create SqlData Adapter to execute the query
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
+                //Open Database connection
+                conn.Open();
 
+                //Transfer the data from SqlDataAdapter to DataTable
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+        #endregion
     }
 }

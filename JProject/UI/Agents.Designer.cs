@@ -112,6 +112,8 @@ namespace JProject.UI
             // 
             // dgvAgents
             // 
+            this.dgvAgents.AllowUserToAddRows = false;
+            this.dgvAgents.AllowUserToDeleteRows = false;
             this.dgvAgents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAgents.Location = new System.Drawing.Point(492, 246);
             this.dgvAgents.Name = "dgvAgents";

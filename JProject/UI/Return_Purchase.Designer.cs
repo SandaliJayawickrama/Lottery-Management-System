@@ -309,6 +309,8 @@ namespace JProject.UI
             // 
             // dgvReturn
             // 
+            this.dgvReturn.AllowUserToAddRows = false;
+            this.dgvReturn.AllowUserToDeleteRows = false;
             this.dgvReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReturn.Location = new System.Drawing.Point(16, 45);
             this.dgvReturn.Name = "dgvReturn";
@@ -348,6 +350,8 @@ namespace JProject.UI
             // 
             // dgvStock
             // 
+            this.dgvStock.AllowUserToAddRows = false;
+            this.dgvStock.AllowUserToDeleteRows = false;
             this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStock.Location = new System.Drawing.Point(16, 47);
             this.dgvStock.Name = "dgvStock";

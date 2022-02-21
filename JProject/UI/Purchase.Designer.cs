@@ -65,6 +65,23 @@ namespace JProject.UI
             this.dgvPurchases = new System.Windows.Forms.DataGridView();
             this.lblHeader2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnCalc = new System.Windows.Forms.Button();
+            this.txtCredit = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtBalance = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtRetNlb = new System.Windows.Forms.TextBox();
+            this.txtRetDlb = new System.Windows.Forms.TextBox();
+            this.txtScanNlb = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtScanDlb = new System.Windows.Forms.TextBox();
+            this.txtBank = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCash = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtTotalQty = new System.Windows.Forms.TextBox();
             this.txtGndTotal = new System.Windows.Forms.TextBox();
@@ -146,7 +163,7 @@ namespace JProject.UI
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblInvoiceNo);
             this.panel1.Controls.Add(this.txtInvNo);
-            this.panel1.Location = new System.Drawing.Point(12, 73);
+            this.panel1.Location = new System.Drawing.Point(12, 61);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1458, 66);
             this.panel1.TabIndex = 40;
@@ -238,7 +255,7 @@ namespace JProject.UI
             this.panel2.Controls.Add(this.lblSearch);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.lblTname);
-            this.panel2.Location = new System.Drawing.Point(12, 161);
+            this.panel2.Location = new System.Drawing.Point(12, 143);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1458, 237);
             this.panel2.TabIndex = 41;
@@ -423,19 +440,21 @@ namespace JProject.UI
             // 
             this.panel3.Controls.Add(this.dgvPurchases);
             this.panel3.Controls.Add(this.lblHeader2);
-            this.panel3.Location = new System.Drawing.Point(12, 417);
+            this.panel3.Location = new System.Drawing.Point(12, 396);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(813, 421);
+            this.panel3.Size = new System.Drawing.Size(813, 442);
             this.panel3.TabIndex = 42;
             // 
             // dgvPurchases
             // 
+            this.dgvPurchases.AllowUserToAddRows = false;
+            this.dgvPurchases.AllowUserToDeleteRows = false;
             this.dgvPurchases.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPurchases.Location = new System.Drawing.Point(16, 36);
+            this.dgvPurchases.Location = new System.Drawing.Point(16, 47);
             this.dgvPurchases.Name = "dgvPurchases";
             this.dgvPurchases.RowHeadersWidth = 51;
             this.dgvPurchases.RowTemplate.Height = 24;
-            this.dgvPurchases.Size = new System.Drawing.Size(778, 367);
+            this.dgvPurchases.Size = new System.Drawing.Size(778, 377);
             this.dgvPurchases.TabIndex = 40;
             // 
             // lblHeader2
@@ -451,24 +470,207 @@ namespace JProject.UI
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.btnCalc);
+            this.panel4.Controls.Add(this.txtCredit);
+            this.panel4.Controls.Add(this.label9);
+            this.panel4.Controls.Add(this.txtBalance);
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.txtRetNlb);
+            this.panel4.Controls.Add(this.txtRetDlb);
+            this.panel4.Controls.Add(this.txtScanNlb);
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.txtScanDlb);
+            this.panel4.Controls.Add(this.txtBank);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.txtCash);
+            this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Controls.Add(this.txtTotalQty);
             this.panel4.Controls.Add(this.txtGndTotal);
             this.panel4.Controls.Add(this.lblGndTotal);
             this.panel4.Controls.Add(this.lblTotalQty);
             this.panel4.Controls.Add(this.lblHeader3);
-            this.panel4.Location = new System.Drawing.Point(851, 417);
+            this.panel4.Location = new System.Drawing.Point(851, 396);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(619, 421);
+            this.panel4.Size = new System.Drawing.Size(619, 442);
             this.panel4.TabIndex = 43;
+            // 
+            // btnCalc
+            // 
+            this.btnCalc.BackColor = System.Drawing.Color.LightCoral;
+            this.btnCalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalc.Location = new System.Drawing.Point(152, 385);
+            this.btnCalc.Name = "btnCalc";
+            this.btnCalc.Size = new System.Drawing.Size(102, 37);
+            this.btnCalc.TabIndex = 79;
+            this.btnCalc.Text = "Calculate";
+            this.btnCalc.UseVisualStyleBackColor = false;
+            this.btnCalc.Click += new System.EventHandler(this.btnCalc_Click);
+            // 
+            // txtCredit
+            // 
+            this.txtCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCredit.Location = new System.Drawing.Point(212, 295);
+            this.txtCredit.Name = "txtCredit";
+            this.txtCredit.Size = new System.Drawing.Size(205, 24);
+            this.txtCredit.TabIndex = 78;
+            this.txtCredit.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(10, 295);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(60, 20);
+            this.label9.TabIndex = 77;
+            this.label9.Text = "Credit";
+            // 
+            // txtBalance
+            // 
+            this.txtBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBalance.ForeColor = System.Drawing.Color.Red;
+            this.txtBalance.Location = new System.Drawing.Point(113, 340);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(177, 24);
+            this.txtBalance.TabIndex = 76;
+            this.txtBalance.Text = "0";
+            this.txtBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBalance_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(15, 340);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(70, 20);
+            this.label8.TabIndex = 75;
+            this.label8.Text = "Balance";
+            // 
+            // txtRetNlb
+            // 
+            this.txtRetNlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRetNlb.Location = new System.Drawing.Point(212, 259);
+            this.txtRetNlb.Name = "txtRetNlb";
+            this.txtRetNlb.Size = new System.Drawing.Size(177, 24);
+            this.txtRetNlb.TabIndex = 74;
+            this.txtRetNlb.Text = "0";
+            // 
+            // txtRetDlb
+            // 
+            this.txtRetDlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRetDlb.Location = new System.Drawing.Point(421, 259);
+            this.txtRetDlb.Name = "txtRetDlb";
+            this.txtRetDlb.Size = new System.Drawing.Size(177, 24);
+            this.txtRetDlb.TabIndex = 72;
+            this.txtRetDlb.Text = "0";
+            // 
+            // txtScanNlb
+            // 
+            this.txtScanNlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanNlb.Location = new System.Drawing.Point(212, 220);
+            this.txtScanNlb.Name = "txtScanNlb";
+            this.txtScanNlb.Size = new System.Drawing.Size(177, 24);
+            this.txtScanNlb.TabIndex = 70;
+            this.txtScanNlb.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(474, 197);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 18);
+            this.label7.TabIndex = 68;
+            this.label7.Text = "DLB";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(271, 197);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 18);
+            this.label6.TabIndex = 60;
+            this.label6.Text = "NLB";
+            // 
+            // txtScanDlb
+            // 
+            this.txtScanDlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanDlb.Location = new System.Drawing.Point(421, 220);
+            this.txtScanDlb.Name = "txtScanDlb";
+            this.txtScanDlb.Size = new System.Drawing.Size(177, 24);
+            this.txtScanDlb.TabIndex = 67;
+            this.txtScanDlb.Text = "0";
+            // 
+            // txtBank
+            // 
+            this.txtBank.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBank.Location = new System.Drawing.Point(212, 162);
+            this.txtBank.Name = "txtBank";
+            this.txtBank.Size = new System.Drawing.Size(205, 24);
+            this.txtBank.TabIndex = 65;
+            this.txtBank.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(10, 259);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 20);
+            this.label5.TabIndex = 64;
+            this.label5.Text = "Returns";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(10, 224);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(180, 20);
+            this.label4.TabIndex = 63;
+            this.label4.Text = "Scan tickets (Email)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 162);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 20);
+            this.label3.TabIndex = 62;
+            this.label3.Text = "Bank Slip";
+            // 
+            // txtCash
+            // 
+            this.txtCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCash.Location = new System.Drawing.Point(212, 126);
+            this.txtCash.Name = "txtCash";
+            this.txtCash.Size = new System.Drawing.Size(205, 24);
+            this.txtCash.TabIndex = 61;
+            this.txtCash.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(10, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.TabIndex = 60;
+            this.label2.Text = "Cash";
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(233, 310);
+            this.btnSave.Location = new System.Drawing.Point(350, 374);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(174, 63);
+            this.btnSave.Size = new System.Drawing.Size(159, 48);
             this.btnSave.TabIndex = 55;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -477,19 +679,19 @@ namespace JProject.UI
             // txtTotalQty
             // 
             this.txtTotalQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalQty.Location = new System.Drawing.Point(176, 150);
+            this.txtTotalQty.Location = new System.Drawing.Point(83, 72);
             this.txtTotalQty.Name = "txtTotalQty";
-            this.txtTotalQty.Size = new System.Drawing.Size(346, 27);
+            this.txtTotalQty.Size = new System.Drawing.Size(141, 27);
             this.txtTotalQty.TabIndex = 59;
             this.txtTotalQty.Text = "0";
             this.txtTotalQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalQty_KeyPress);
             // 
             // txtGndTotal
             // 
-            this.txtGndTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGndTotal.Location = new System.Drawing.Point(176, 214);
+            this.txtGndTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGndTotal.Location = new System.Drawing.Point(359, 72);
             this.txtGndTotal.Name = "txtGndTotal";
-            this.txtGndTotal.Size = new System.Drawing.Size(346, 27);
+            this.txtGndTotal.Size = new System.Drawing.Size(177, 27);
             this.txtGndTotal.TabIndex = 55;
             this.txtGndTotal.Text = "0";
             this.txtGndTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGndTotal_KeyPress);
@@ -497,10 +699,10 @@ namespace JProject.UI
             // lblGndTotal
             // 
             this.lblGndTotal.AutoSize = true;
-            this.lblGndTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGndTotal.Location = new System.Drawing.Point(14, 215);
+            this.lblGndTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGndTotal.Location = new System.Drawing.Point(379, 45);
             this.lblGndTotal.Name = "lblGndTotal";
-            this.lblGndTotal.Size = new System.Drawing.Size(119, 24);
+            this.lblGndTotal.Size = new System.Drawing.Size(108, 20);
             this.lblGndTotal.TabIndex = 56;
             this.lblGndTotal.Text = "Grand Total";
             // 
@@ -508,7 +710,7 @@ namespace JProject.UI
             // 
             this.lblTotalQty.AutoSize = true;
             this.lblTotalQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalQty.Location = new System.Drawing.Point(14, 150);
+            this.lblTotalQty.Location = new System.Drawing.Point(79, 45);
             this.lblTotalQty.Name = "lblTotalQty";
             this.lblTotalQty.Size = new System.Drawing.Size(127, 20);
             this.lblTotalQty.TabIndex = 55;
@@ -518,7 +720,7 @@ namespace JProject.UI
             // 
             this.lblHeader3.AutoSize = true;
             this.lblHeader3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader3.Location = new System.Drawing.Point(13, 61);
+            this.lblHeader3.Location = new System.Drawing.Point(8, 7);
             this.lblHeader3.Name = "lblHeader3";
             this.lblHeader3.Size = new System.Drawing.Size(181, 24);
             this.lblHeader3.TabIndex = 40;
@@ -597,5 +799,22 @@ namespace JProject.UI
         private System.Windows.Forms.TextBox txtSup;
         private System.Windows.Forms.TextBox txtCat;
         private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.TextBox txtCash;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtScanNlb;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtScanDlb;
+        private System.Windows.Forms.TextBox txtBank;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtRetNlb;
+        private System.Windows.Forms.TextBox txtRetDlb;
+        private System.Windows.Forms.TextBox txtBalance;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtCredit;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnCalc;
     }
 }

@@ -39,22 +39,33 @@ namespace JProject
             this.menuAdmin = new System.Windows.Forms.MenuStrip();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agentListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agentListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ticketListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.salesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.winToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesSummeryDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picDashboard = new System.Windows.Forms.PictureBox();
             this.labelUser = new System.Windows.Forms.Label();
             this.lblloggedIn = new System.Windows.Forms.Label();
-            this.purchaseListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthlyBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settlementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.payableSettleNLBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.menuAdmin.SuspendLayout();
@@ -137,7 +148,8 @@ namespace JProject
             this.returnToolStripMenuItem,
             this.stockToolStripMenuItem,
             this.winToolStripMenuItem,
-            this.stockToolStripMenuItem1});
+            this.stockToolStripMenuItem1,
+            this.settlementsToolStripMenuItem});
             this.menuAdmin.Location = new System.Drawing.Point(0, 159);
             this.menuAdmin.Name = "menuAdmin";
             this.menuAdmin.Size = new System.Drawing.Size(734, 31);
@@ -153,17 +165,59 @@ namespace JProject
             // 
             // itemsToolStripMenuItem
             // 
+            this.itemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.agentsToolStripMenuItem,
+            this.agentListToolStripMenuItem,
+            this.agentListToolStripMenuItem1});
             this.itemsToolStripMenuItem.Name = "itemsToolStripMenuItem";
             this.itemsToolStripMenuItem.Size = new System.Drawing.Size(77, 27);
             this.itemsToolStripMenuItem.Text = "Agents";
             this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
+            // agentsToolStripMenuItem
+            // 
+            this.agentsToolStripMenuItem.Name = "agentsToolStripMenuItem";
+            this.agentsToolStripMenuItem.Size = new System.Drawing.Size(188, 28);
+            this.agentsToolStripMenuItem.Text = "Add Agent";
+            this.agentsToolStripMenuItem.Click += new System.EventHandler(this.agentsToolStripMenuItem_Click);
+            // 
+            // agentListToolStripMenuItem
+            // 
+            this.agentListToolStripMenuItem.Name = "agentListToolStripMenuItem";
+            this.agentListToolStripMenuItem.Size = new System.Drawing.Size(188, 28);
+            this.agentListToolStripMenuItem.Text = "Credit Settle";
+            this.agentListToolStripMenuItem.Click += new System.EventHandler(this.agentListToolStripMenuItem_Click);
+            // 
+            // agentListToolStripMenuItem1
+            // 
+            this.agentListToolStripMenuItem1.Name = "agentListToolStripMenuItem1";
+            this.agentListToolStripMenuItem1.Size = new System.Drawing.Size(188, 28);
+            this.agentListToolStripMenuItem1.Text = "Agent List";
+            this.agentListToolStripMenuItem1.Click += new System.EventHandler(this.agentListToolStripMenuItem1_Click);
+            // 
             // salesToolStripMenuItem
             // 
+            this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addTicketToolStripMenuItem,
+            this.ticketListToolStripMenuItem});
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
             this.salesToolStripMenuItem.Text = "Tickets";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
+            // 
+            // addTicketToolStripMenuItem
+            // 
+            this.addTicketToolStripMenuItem.Name = "addTicketToolStripMenuItem";
+            this.addTicketToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
+            this.addTicketToolStripMenuItem.Text = "Add Ticket";
+            this.addTicketToolStripMenuItem.Click += new System.EventHandler(this.addTicketToolStripMenuItem_Click);
+            // 
+            // ticketListToolStripMenuItem
+            // 
+            this.ticketListToolStripMenuItem.Name = "ticketListToolStripMenuItem";
+            this.ticketListToolStripMenuItem.Size = new System.Drawing.Size(175, 28);
+            this.ticketListToolStripMenuItem.Text = "Ticket List";
+            this.ticketListToolStripMenuItem.Click += new System.EventHandler(this.ticketListToolStripMenuItem_Click);
             // 
             // purchaseToolStripMenuItem
             // 
@@ -189,6 +243,13 @@ namespace JProject
             this.purchaseListToolStripMenuItem.Text = "Purchase - Instant";
             this.purchaseListToolStripMenuItem.Click += new System.EventHandler(this.purchaseListToolStripMenuItem_Click);
             // 
+            // purchaseListToolStripMenuItem1
+            // 
+            this.purchaseListToolStripMenuItem1.Name = "purchaseListToolStripMenuItem1";
+            this.purchaseListToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
+            this.purchaseListToolStripMenuItem1.Text = "Purchase List";
+            this.purchaseListToolStripMenuItem1.Click += new System.EventHandler(this.purchaseListToolStripMenuItem1_Click);
+            // 
             // returnToolStripMenuItem
             // 
             this.returnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -210,6 +271,7 @@ namespace JProject
             this.salesListToolStripMenuItem.Name = "salesListToolStripMenuItem";
             this.salesListToolStripMenuItem.Size = new System.Drawing.Size(162, 28);
             this.salesListToolStripMenuItem.Text = "Sales List";
+            this.salesListToolStripMenuItem.Click += new System.EventHandler(this.salesListToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem
             // 
@@ -228,15 +290,43 @@ namespace JProject
             // 
             // winToolStripMenuItem
             // 
+            this.winToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salesSummeryDailyToolStripMenuItem,
+            this.monthlyBalancesToolStripMenuItem});
             this.winToolStripMenuItem.Name = "winToolStripMenuItem";
-            this.winToolStripMenuItem.Size = new System.Drawing.Size(54, 27);
-            this.winToolStripMenuItem.Text = "Win";
+            this.winToolStripMenuItem.Size = new System.Drawing.Size(83, 27);
+            this.winToolStripMenuItem.Text = "Reports";
+            this.winToolStripMenuItem.Click += new System.EventHandler(this.winToolStripMenuItem_Click);
+            // 
+            // salesSummeryDailyToolStripMenuItem
+            // 
+            this.salesSummeryDailyToolStripMenuItem.Name = "salesSummeryDailyToolStripMenuItem";
+            this.salesSummeryDailyToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
+            this.salesSummeryDailyToolStripMenuItem.Text = "Sales Summery - Daily";
+            this.salesSummeryDailyToolStripMenuItem.Click += new System.EventHandler(this.salesSummeryDailyToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem1
             // 
+            this.stockToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stockToolStripMenuItem2,
+            this.stockInstantToolStripMenuItem});
             this.stockToolStripMenuItem1.Name = "stockToolStripMenuItem1";
-            this.stockToolStripMenuItem1.Size = new System.Drawing.Size(66, 27);
-            this.stockToolStripMenuItem1.Text = "Stock";
+            this.stockToolStripMenuItem1.Size = new System.Drawing.Size(73, 27);
+            this.stockToolStripMenuItem1.Text = "Stocks";
+            // 
+            // stockToolStripMenuItem2
+            // 
+            this.stockToolStripMenuItem2.Name = "stockToolStripMenuItem2";
+            this.stockToolStripMenuItem2.Size = new System.Drawing.Size(206, 28);
+            this.stockToolStripMenuItem2.Text = "Stock - Draw";
+            this.stockToolStripMenuItem2.Click += new System.EventHandler(this.stockToolStripMenuItem2_Click);
+            // 
+            // stockInstantToolStripMenuItem
+            // 
+            this.stockInstantToolStripMenuItem.Name = "stockInstantToolStripMenuItem";
+            this.stockInstantToolStripMenuItem.Size = new System.Drawing.Size(206, 28);
+            this.stockInstantToolStripMenuItem.Text = "Stock - Instant";
+            this.stockInstantToolStripMenuItem.Click += new System.EventHandler(this.stockInstantToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -282,11 +372,27 @@ namespace JProject
             this.lblloggedIn.TabIndex = 9;
             this.lblloggedIn.Text = "Admin1";
             // 
-            // purchaseListToolStripMenuItem1
+            // monthlyBalancesToolStripMenuItem
             // 
-            this.purchaseListToolStripMenuItem1.Name = "purchaseListToolStripMenuItem1";
-            this.purchaseListToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
-            this.purchaseListToolStripMenuItem1.Text = "Purchase List";
+            this.monthlyBalancesToolStripMenuItem.Name = "monthlyBalancesToolStripMenuItem";
+            this.monthlyBalancesToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
+            this.monthlyBalancesToolStripMenuItem.Text = "Monthly Balances";
+            this.monthlyBalancesToolStripMenuItem.Click += new System.EventHandler(this.monthlyBalancesToolStripMenuItem_Click);
+            // 
+            // settlementsToolStripMenuItem
+            // 
+            this.settlementsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.payableSettleNLBToolStripMenuItem});
+            this.settlementsToolStripMenuItem.Name = "settlementsToolStripMenuItem";
+            this.settlementsToolStripMenuItem.Size = new System.Drawing.Size(114, 27);
+            this.settlementsToolStripMenuItem.Text = "Settlements";
+            // 
+            // payableSettleNLBToolStripMenuItem
+            // 
+            this.payableSettleNLBToolStripMenuItem.Name = "payableSettleNLBToolStripMenuItem";
+            this.payableSettleNLBToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.payableSettleNLBToolStripMenuItem.Text = "Settle Payables";
+            this.payableSettleNLBToolStripMenuItem.Click += new System.EventHandler(this.payableSettleNLBToolStripMenuItem_Click);
             // 
             // AdminDashboard
             // 
@@ -345,6 +451,17 @@ namespace JProject
         private System.Windows.Forms.ToolStripMenuItem salesListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseReturnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseListToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem agentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agentListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem agentListToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem addTicketToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ticketListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem stockInstantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesSummeryDailyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem monthlyBalancesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settlementsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem payableSettleNLBToolStripMenuItem;
     }
 }
 

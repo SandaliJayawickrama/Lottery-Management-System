@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -60,6 +61,46 @@ namespace JProject.DAL
             }
 
             return isSuccess;
+        }
+        #endregion
+
+
+        #region Get the Total(sum) value of Monthly Return Amount
+        public decimal GetMonthlyReturnAmount(int month, int year)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+            decimal total = 0;
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT coalesce(SUM(tot_amount),0) as total FROM return_Transaction WHERE month(added_date)=@month AND YEAR(added_date)=@year ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@month", month);
+                cmd.Parameters.AddWithValue("@year", year);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                conn.Open();
+
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    total = decimal.Parse(dt.Rows[0]["total"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return total;
         }
         #endregion
     }

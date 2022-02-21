@@ -502,6 +502,8 @@ namespace JProject.UI
             // 
             // dgvSales
             // 
+            this.dgvSales.AllowUserToAddRows = false;
+            this.dgvSales.AllowUserToDeleteRows = false;
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSales.Location = new System.Drawing.Point(14, 35);
             this.dgvSales.Name = "dgvSales";
@@ -555,6 +557,7 @@ namespace JProject.UI
             this.txtFreeDlb.Size = new System.Drawing.Size(144, 24);
             this.txtFreeDlb.TabIndex = 82;
             this.txtFreeDlb.Text = "0";
+            this.txtFreeDlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFreeDlb_KeyPress);
             // 
             // label6
             // 
@@ -574,6 +577,7 @@ namespace JProject.UI
             this.txtFreeNlb.Size = new System.Drawing.Size(144, 24);
             this.txtFreeNlb.TabIndex = 81;
             this.txtFreeNlb.Text = "0";
+            this.txtFreeNlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFreeNlb_KeyPress);
             // 
             // label7
             // 
@@ -614,6 +618,7 @@ namespace JProject.UI
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(323, 24);
             this.txtBalance.TabIndex = 77;
+            this.txtBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBalance_KeyPress);
             // 
             // lblBalance
             // 
@@ -633,6 +638,7 @@ namespace JProject.UI
             this.txtCredit.Size = new System.Drawing.Size(323, 24);
             this.txtCredit.TabIndex = 75;
             this.txtCredit.Text = "0";
+            this.txtCredit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCredit_KeyPress);
             // 
             // lblCredit
             // 
@@ -653,6 +659,7 @@ namespace JProject.UI
             this.txtWinDlb.Size = new System.Drawing.Size(143, 24);
             this.txtWinDlb.TabIndex = 73;
             this.txtWinDlb.Text = "0";
+            this.txtWinDlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWinDlb_KeyPress);
             // 
             // lblDlbW
             // 
@@ -682,6 +689,7 @@ namespace JProject.UI
             this.txtWinNlb.Size = new System.Drawing.Size(142, 24);
             this.txtWinNlb.TabIndex = 71;
             this.txtWinNlb.Text = "0";
+            this.txtWinNlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWinNlb_KeyPress);
             // 
             // txtReturnDlb
             // 
@@ -691,6 +699,7 @@ namespace JProject.UI
             this.txtReturnDlb.Size = new System.Drawing.Size(144, 24);
             this.txtReturnDlb.TabIndex = 69;
             this.txtReturnDlb.Text = "0";
+            this.txtReturnDlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReturnDlb_KeyPress);
             // 
             // lblDlbR
             // 
@@ -730,6 +739,7 @@ namespace JProject.UI
             this.txtReturnNlb.Size = new System.Drawing.Size(144, 24);
             this.txtReturnNlb.TabIndex = 65;
             this.txtReturnNlb.Text = "0";
+            this.txtReturnNlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReturnNlb_KeyPress);
             // 
             // lblReturn
             // 
@@ -750,6 +760,7 @@ namespace JProject.UI
             this.txtCash.TabIndex = 63;
             this.txtCash.Text = "0";
             this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged);
+            this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCash_KeyPress);
             // 
             // lblCash
             // 
@@ -769,6 +780,7 @@ namespace JProject.UI
             this.txtTotAmount.Size = new System.Drawing.Size(323, 27);
             this.txtTotAmount.TabIndex = 61;
             this.txtTotAmount.Text = "0";
+            this.txtTotAmount.TextChanged += new System.EventHandler(this.txtTotAmount_TextChanged);
             this.txtTotAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotAmount_KeyPress);
             // 
             // lblTotAmount
@@ -886,6 +898,8 @@ namespace JProject.UI
             // 
             // dgvSalesStock
             // 
+            this.dgvSalesStock.AllowUserToAddRows = false;
+            this.dgvSalesStock.AllowUserToDeleteRows = false;
             this.dgvSalesStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSalesStock.Location = new System.Drawing.Point(207, 3);
             this.dgvSalesStock.Name = "dgvSalesStock";

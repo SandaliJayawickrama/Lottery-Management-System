@@ -244,6 +244,13 @@ namespace JProject.UI
             pur_Trans.inv_date = DateTime.Parse(dtpInvDate.Text);
             pur_Trans.added_date = DateTime.Now;
             pur_Trans.category = txtCat.Text;
+            pur_Trans.cash = decimal.Parse(txtCash.Text);
+            pur_Trans.bank = decimal.Parse(txtBank.Text);
+            pur_Trans.scan_nlb = decimal.Parse(txtScanNlb.Text);
+            pur_Trans.scan_dlb = decimal.Parse(txtScanDlb.Text);
+            pur_Trans.return_nlb = decimal.Parse(txtRetNlb.Text);
+            pur_Trans.return_dlb = decimal.Parse(txtRetDlb.Text);
+            pur_Trans.credit = decimal.Parse(txtCredit.Text);
 
             //get the username of logged in user
             string username = Login.loggedIn;
@@ -300,8 +307,11 @@ namespace JProject.UI
                     bool P = pDAL.InsertPurchases(purchase);
                     isSuccess = PT && P && stkSuccess;
                 }
-              
-                if (isSuccess == true)
+
+                decimal balance = BalanceCalculation();
+                txtBalance.Text = balance.ToString();
+
+                if (isSuccess == true && balance == 0 && txtInvNo.Text!="")
                 {
                     //Purchase Complete
                     scope.Complete();
@@ -336,6 +346,41 @@ namespace JProject.UI
             }
         }
 
-        
+        private decimal BalanceCalculation()
+        {
+            decimal total = decimal.Parse(txtGndTotal.Text);
+            decimal cash = decimal.Parse(txtCash.Text);
+            decimal bank = decimal.Parse(txtBank.Text);
+            decimal scanNlb = decimal.Parse(txtScanNlb.Text);
+            decimal scanDlb = decimal.Parse(txtScanDlb.Text);
+            decimal retNlb = decimal.Parse(txtRetNlb.Text);
+            decimal retDlb = decimal.Parse(txtRetDlb.Text);
+            decimal credit = decimal.Parse(txtCredit.Text);
+
+            decimal balance = total - (cash + bank + scanNlb + scanDlb + retNlb + retDlb + credit);
+
+            if (cash == 0 && bank == 0 && scanNlb == 0 && scanDlb == 0 && retNlb == 0 && retDlb == 0 && credit == 0)
+            {
+                balance = total;
+            }
+
+            return balance;
+        }
+
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+            decimal balance = BalanceCalculation();
+
+            txtBalance.Text = balance.ToString();
+        }
+
+        private void txtBalance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

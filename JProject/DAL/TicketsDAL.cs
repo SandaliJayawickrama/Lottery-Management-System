@@ -353,6 +353,76 @@ namespace JProject.DAL
         }
         #endregion
 
+
+
+        #region Select Ticket list for Ticket List Gridview
+        public DataTable SelectTicketList()
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            DataTable dt = new DataTable();
+            DataTable filledDT = new DataTable();
+            try
+            {
+                string sql = "SELECT ticket_code, ticket_name, ticket_type, category, ticket_Uprice, sales_Uprice FROM tickets";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                conn.Open();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    filledDT = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return filledDT;
+        }
+        #endregion
+
+        #region Search Tickets in Database
+        public DataTable SearchTicket(string keyword)
+        {
+            //Create a Database connection
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            //Create a Data Table to hold the values temporaly
+            DataTable dt = new DataTable();
+            try
+            {
+                string sql = "SELECT ticket_code, ticket_name, ticket_type, category, ticket_Uprice, sales_Uprice FROM tickets WHERE ticket_name LIKE '%" + keyword + "%' OR ticket_type LIKE '%" + keyword + "%' OR category LIKE '%" + keyword + "%' ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //Create SqlData Adapter to execute the query
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                //Open Database connection
+                conn.Open();
+
+                //Transfer the data from SqlDataAdapter to DataTable
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
+        #endregion
     }
 }
 
