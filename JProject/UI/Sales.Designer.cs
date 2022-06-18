@@ -295,6 +295,7 @@ namespace JProject.UI
             this.txtQty.TabIndex = 51;
             this.txtQty.Text = "0";
             this.txtQty.TextChanged += new System.EventHandler(this.txtQty_TextChanged);
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
             // 
             // txtStBcode
             // 

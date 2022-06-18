@@ -382,5 +382,10 @@ namespace JProject.UI
                 e.Handled = true;
             }
         }
+
+        private void txtCredit_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

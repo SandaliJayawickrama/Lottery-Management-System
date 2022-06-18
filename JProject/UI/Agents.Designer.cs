@@ -49,6 +49,8 @@ namespace JProject.UI
             this.lblAgentId = new System.Windows.Forms.Label();
             this.txtAaddress = new System.Windows.Forms.TextBox();
             this.lblAgentAddress = new System.Windows.Forms.Label();
+            this.txtCreditBalance = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAgents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@ namespace JProject.UI
             this.btnDelete.BackColor = System.Drawing.Color.LightPink;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(152, 648);
+            this.btnDelete.Location = new System.Drawing.Point(147, 696);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(187, 50);
             this.btnDelete.TabIndex = 27;
@@ -70,7 +72,7 @@ namespace JProject.UI
             this.btnUpdate.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(274, 529);
+            this.btnUpdate.Location = new System.Drawing.Point(269, 577);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(187, 50);
             this.btnUpdate.TabIndex = 26;
@@ -83,7 +85,7 @@ namespace JProject.UI
             this.btnAdd.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(40, 529);
+            this.btnAdd.Location = new System.Drawing.Point(35, 577);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(187, 50);
             this.btnAdd.TabIndex = 25;
@@ -94,7 +96,7 @@ namespace JProject.UI
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(602, 120);
+            this.txtSearch.Location = new System.Drawing.Point(690, 125);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(548, 28);
             this.txtSearch.TabIndex = 24;
@@ -104,7 +106,7 @@ namespace JProject.UI
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(520, 123);
+            this.lblSearch.Location = new System.Drawing.Point(608, 128);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(76, 24);
             this.lblSearch.TabIndex = 23;
@@ -115,11 +117,11 @@ namespace JProject.UI
             this.dgvAgents.AllowUserToAddRows = false;
             this.dgvAgents.AllowUserToDeleteRows = false;
             this.dgvAgents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAgents.Location = new System.Drawing.Point(492, 246);
+            this.dgvAgents.Location = new System.Drawing.Point(536, 212);
             this.dgvAgents.Name = "dgvAgents";
             this.dgvAgents.RowHeadersWidth = 51;
             this.dgvAgents.RowTemplate.Height = 24;
-            this.dgvAgents.Size = new System.Drawing.Size(712, 452);
+            this.dgvAgents.Size = new System.Drawing.Size(796, 497);
             this.dgvAgents.TabIndex = 22;
             this.dgvAgents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgents_CellContentClick);
             this.dgvAgents.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvAgents_RowHeaderMouseDoubleClick);
@@ -128,7 +130,7 @@ namespace JProject.UI
             // txtAno
             // 
             this.txtAno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAno.Location = new System.Drawing.Point(135, 245);
+            this.txtAno.Location = new System.Drawing.Point(167, 245);
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(309, 28);
             this.txtAno.TabIndex = 19;
@@ -147,7 +149,7 @@ namespace JProject.UI
             // txtCreditL
             // 
             this.txtCreditL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreditL.Location = new System.Drawing.Point(134, 367);
+            this.txtCreditL.Location = new System.Drawing.Point(166, 367);
             this.txtCreditL.Name = "txtCreditL";
             this.txtCreditL.Size = new System.Drawing.Size(309, 28);
             this.txtCreditL.TabIndex = 17;
@@ -166,7 +168,7 @@ namespace JProject.UI
             // txtAname
             // 
             this.txtAname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAname.Location = new System.Drawing.Point(135, 184);
+            this.txtAname.Location = new System.Drawing.Point(167, 184);
             this.txtAname.Name = "txtAname";
             this.txtAname.Size = new System.Drawing.Size(309, 28);
             this.txtAname.TabIndex = 15;
@@ -184,7 +186,7 @@ namespace JProject.UI
             // txtDescrip
             // 
             this.txtDescrip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescrip.Location = new System.Drawing.Point(134, 433);
+            this.txtDescrip.Location = new System.Drawing.Point(166, 493);
             this.txtDescrip.Name = "txtDescrip";
             this.txtDescrip.Size = new System.Drawing.Size(309, 28);
             this.txtDescrip.TabIndex = 29;
@@ -193,7 +195,7 @@ namespace JProject.UI
             // 
             this.lblDes.AutoSize = true;
             this.lblDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDes.Location = new System.Drawing.Point(12, 433);
+            this.lblDes.Location = new System.Drawing.Point(12, 493);
             this.lblDes.Name = "lblDes";
             this.lblDes.Size = new System.Drawing.Size(104, 24);
             this.lblDes.TabIndex = 28;
@@ -204,17 +206,17 @@ namespace JProject.UI
             this.lblHeader1.AutoSize = true;
             this.lblHeader1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader1.ForeColor = System.Drawing.Color.Teal;
-            this.lblHeader1.Location = new System.Drawing.Point(518, 9);
+            this.lblHeader1.Location = new System.Drawing.Point(561, 9);
             this.lblHeader1.Name = "lblHeader1";
             this.lblHeader1.Size = new System.Drawing.Size(217, 32);
             this.lblHeader1.TabIndex = 30;
-            this.lblHeader1.Text = "Register Agent";
+            this.lblHeader1.Text = "Agent Register";
             // 
             // lblHeader2
             // 
             this.lblHeader2.AutoSize = true;
             this.lblHeader2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader2.Location = new System.Drawing.Point(497, 209);
+            this.lblHeader2.Location = new System.Drawing.Point(541, 175);
             this.lblHeader2.Name = "lblHeader2";
             this.lblHeader2.Size = new System.Drawing.Size(102, 24);
             this.lblHeader2.TabIndex = 32;
@@ -223,10 +225,11 @@ namespace JProject.UI
             // txtAId
             // 
             this.txtAId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAId.Location = new System.Drawing.Point(135, 124);
+            this.txtAId.Location = new System.Drawing.Point(167, 124);
             this.txtAId.Name = "txtAId";
             this.txtAId.Size = new System.Drawing.Size(309, 28);
             this.txtAId.TabIndex = 34;
+            this.txtAId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAId_KeyPress);
             // 
             // lblAgentId
             // 
@@ -242,7 +245,7 @@ namespace JProject.UI
             // txtAaddress
             // 
             this.txtAaddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAaddress.Location = new System.Drawing.Point(135, 305);
+            this.txtAaddress.Location = new System.Drawing.Point(167, 305);
             this.txtAaddress.Name = "txtAaddress";
             this.txtAaddress.Size = new System.Drawing.Size(309, 28);
             this.txtAaddress.TabIndex = 36;
@@ -257,12 +260,35 @@ namespace JProject.UI
             this.lblAgentAddress.TabIndex = 35;
             this.lblAgentAddress.Text = "Address";
             // 
+            // txtCreditBalance
+            // 
+            this.txtCreditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreditBalance.Location = new System.Drawing.Point(166, 432);
+            this.txtCreditBalance.Name = "txtCreditBalance";
+            this.txtCreditBalance.Size = new System.Drawing.Size(309, 28);
+            this.txtCreditBalance.TabIndex = 38;
+            this.txtCreditBalance.TextChanged += new System.EventHandler(this.txtCreditBalance_TextChanged);
+            this.txtCreditBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreditBalance_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 436);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 24);
+            this.label1.TabIndex = 37;
+            this.label1.Text = "Credit Balance";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // Agents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(1216, 775);
+            this.ClientSize = new System.Drawing.Size(1353, 775);
+            this.Controls.Add(this.txtCreditBalance);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAaddress);
             this.Controls.Add(this.lblAgentAddress);
             this.Controls.Add(this.txtAId);
@@ -315,5 +341,7 @@ namespace JProject.UI
         private System.Windows.Forms.Label lblAgentId;
         private System.Windows.Forms.TextBox txtAaddress;
         private System.Windows.Forms.Label lblAgentAddress;
+        private System.Windows.Forms.TextBox txtCreditBalance;
+        private System.Windows.Forms.Label label1;
     }
 }

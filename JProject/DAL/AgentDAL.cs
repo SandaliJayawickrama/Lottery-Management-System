@@ -60,7 +60,7 @@ namespace JProject.DAL
                 cmd.Parameters.AddWithValue("@added_date", a.added_date);
                 cmd.Parameters.AddWithValue("@added_by", a.added_by);
                 cmd.Parameters.AddWithValue("@agent_address", a.agent_address);
-                cmd.Parameters.AddWithValue("@credit_amount", 0);
+                cmd.Parameters.AddWithValue("@credit_amount", a.credit_amount);
 
                 conn.Open();
 
@@ -95,7 +95,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "UPDATE agents SET agent_name=@agent_name, agent_no=@agent_no, credit_Limit=@credit_Limit, description=@description, added_date=@added_date, added_by=@added_by, agent_address=@agent_address WHERE id=@id";
+                string sql = "UPDATE agents SET agent_name=@agent_name, agent_no=@agent_no, credit_Limit=@credit_Limit, description=@description, added_date=@added_date, added_by=@added_by, agent_address=@agent_address, credit_amount=@credit_amount WHERE id=@id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("@agent_name", a.agent_name);
@@ -105,7 +105,9 @@ namespace JProject.DAL
                 cmd.Parameters.AddWithValue("added_date", a.added_date);
                 cmd.Parameters.AddWithValue("@added_by", a.added_by);
                 cmd.Parameters.AddWithValue("@id", a.id);
-                cmd.Parameters.AddWithValue("@agent_address", a.agent_address);              
+                cmd.Parameters.AddWithValue("@agent_address", a.agent_address);
+                cmd.Parameters.AddWithValue("@credit_amount", a.credit_amount);
+                
 
                 conn.Open();
 
@@ -544,7 +546,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "SELECT sum(credit_amount) AS totalCredit FROM agents";
+                string sql = "SELECT coalesce(sum(credit_amount),0) AS totalCredit FROM agents";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
               

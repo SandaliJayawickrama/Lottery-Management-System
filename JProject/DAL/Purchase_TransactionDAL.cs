@@ -158,7 +158,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "SELECT sum(grand_total) AS totalpurchase FROM purchase_transaction WHERE added_date = '" + givenDate + "' ";
+                string sql = "SELECT coalesce(sum(grand_total),0) AS totalpurchase FROM purchase_transaction WHERE added_date = '" + givenDate + "' ";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
 

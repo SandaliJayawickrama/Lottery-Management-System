@@ -172,6 +172,10 @@ namespace JProject
             SettleNlb.Show();
         }
 
-       
+        private void balanceManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Balances_Management balancesAdd = new Balances_Management();
+            balancesAdd.Show();
+        }
     }
 }

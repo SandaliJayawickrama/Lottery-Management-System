@@ -518,6 +518,7 @@ namespace JProject.UI
             this.txtCredit.Size = new System.Drawing.Size(205, 24);
             this.txtCredit.TabIndex = 78;
             this.txtCredit.Text = "0";
+            this.txtCredit.TextChanged += new System.EventHandler(this.txtCredit_TextChanged);
             // 
             // label9
             // 

@@ -56,16 +56,17 @@ namespace JProject
             this.purchaseReturnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.winToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesSummeryDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthlyBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.stockInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settlementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.payableSettleNLBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picDashboard = new System.Windows.Forms.PictureBox();
             this.labelUser = new System.Windows.Forms.Label();
             this.lblloggedIn = new System.Windows.Forms.Label();
-            this.monthlyBalancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settlementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.payableSettleNLBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.menuAdmin.SuspendLayout();
@@ -152,7 +153,7 @@ namespace JProject
             this.settlementsToolStripMenuItem});
             this.menuAdmin.Location = new System.Drawing.Point(0, 159);
             this.menuAdmin.Name = "menuAdmin";
-            this.menuAdmin.Size = new System.Drawing.Size(734, 31);
+            this.menuAdmin.Size = new System.Drawing.Size(884, 31);
             this.menuAdmin.TabIndex = 5;
             this.menuAdmin.Text = "menuadmin";
             // 
@@ -305,6 +306,13 @@ namespace JProject
             this.salesSummeryDailyToolStripMenuItem.Text = "Sales Summery - Daily";
             this.salesSummeryDailyToolStripMenuItem.Click += new System.EventHandler(this.salesSummeryDailyToolStripMenuItem_Click);
             // 
+            // monthlyBalancesToolStripMenuItem
+            // 
+            this.monthlyBalancesToolStripMenuItem.Name = "monthlyBalancesToolStripMenuItem";
+            this.monthlyBalancesToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
+            this.monthlyBalancesToolStripMenuItem.Text = "Monthly Balances";
+            this.monthlyBalancesToolStripMenuItem.Click += new System.EventHandler(this.monthlyBalancesToolStripMenuItem_Click);
+            // 
             // stockToolStripMenuItem1
             // 
             this.stockToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -327,6 +335,22 @@ namespace JProject
             this.stockInstantToolStripMenuItem.Size = new System.Drawing.Size(206, 28);
             this.stockInstantToolStripMenuItem.Text = "Stock - Instant";
             this.stockInstantToolStripMenuItem.Click += new System.EventHandler(this.stockInstantToolStripMenuItem_Click);
+            // 
+            // settlementsToolStripMenuItem
+            // 
+            this.settlementsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.payableSettleNLBToolStripMenuItem,
+            this.balanceManagementToolStripMenuItem});
+            this.settlementsToolStripMenuItem.Name = "settlementsToolStripMenuItem";
+            this.settlementsToolStripMenuItem.Size = new System.Drawing.Size(114, 27);
+            this.settlementsToolStripMenuItem.Text = "Settlements";
+            // 
+            // payableSettleNLBToolStripMenuItem
+            // 
+            this.payableSettleNLBToolStripMenuItem.Name = "payableSettleNLBToolStripMenuItem";
+            this.payableSettleNLBToolStripMenuItem.Size = new System.Drawing.Size(261, 28);
+            this.payableSettleNLBToolStripMenuItem.Text = "Settle Payables";
+            this.payableSettleNLBToolStripMenuItem.Click += new System.EventHandler(this.payableSettleNLBToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -372,27 +396,12 @@ namespace JProject
             this.lblloggedIn.TabIndex = 9;
             this.lblloggedIn.Text = "Admin1";
             // 
-            // monthlyBalancesToolStripMenuItem
+            // balanceManagementToolStripMenuItem
             // 
-            this.monthlyBalancesToolStripMenuItem.Name = "monthlyBalancesToolStripMenuItem";
-            this.monthlyBalancesToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
-            this.monthlyBalancesToolStripMenuItem.Text = "Monthly Balances";
-            this.monthlyBalancesToolStripMenuItem.Click += new System.EventHandler(this.monthlyBalancesToolStripMenuItem_Click);
-            // 
-            // settlementsToolStripMenuItem
-            // 
-            this.settlementsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.payableSettleNLBToolStripMenuItem});
-            this.settlementsToolStripMenuItem.Name = "settlementsToolStripMenuItem";
-            this.settlementsToolStripMenuItem.Size = new System.Drawing.Size(114, 27);
-            this.settlementsToolStripMenuItem.Text = "Settlements";
-            // 
-            // payableSettleNLBToolStripMenuItem
-            // 
-            this.payableSettleNLBToolStripMenuItem.Name = "payableSettleNLBToolStripMenuItem";
-            this.payableSettleNLBToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.payableSettleNLBToolStripMenuItem.Text = "Settle Payables";
-            this.payableSettleNLBToolStripMenuItem.Click += new System.EventHandler(this.payableSettleNLBToolStripMenuItem_Click);
+            this.balanceManagementToolStripMenuItem.Name = "balanceManagementToolStripMenuItem";
+            this.balanceManagementToolStripMenuItem.Size = new System.Drawing.Size(261, 28);
+            this.balanceManagementToolStripMenuItem.Text = "Balance Management";
+            this.balanceManagementToolStripMenuItem.Click += new System.EventHandler(this.balanceManagementToolStripMenuItem_Click);
             // 
             // AdminDashboard
             // 
@@ -462,6 +471,7 @@ namespace JProject
         private System.Windows.Forms.ToolStripMenuItem monthlyBalancesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settlementsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem payableSettleNLBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balanceManagementToolStripMenuItem;
     }
 }
 

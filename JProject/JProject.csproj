@@ -62,6 +62,7 @@
     <Compile Include="BLL\loginBLL.cs" />
     <Compile Include="BLL\AdminBLL\userBLL.cs" />
     <Compile Include="DAL\AgentDAL.cs" />
+    <Compile Include="DAL\BalancesDAL.cs" />
     <Compile Include="DAL\Instant_PurchasesDAL.cs" />
     <Compile Include="DAL\Instant_StockDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
@@ -111,6 +112,12 @@
     </Compile>
     <Compile Include="UI\Agent_List.Designer.cs">
       <DependentUpon>Agent_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Balances_Management.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Balances_Management.Designer.cs">
+      <DependentUpon>Balances_Management.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Credit_Settle.cs">
       <SubType>Form</SubType>
@@ -229,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Agent_List.resx">
       <DependentUpon>Agent_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Balances_Management.resx">
+      <DependentUpon>Balances_Management.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Credit_Settle.resx">
       <DependentUpon>Credit_Settle.cs</DependentUpon>

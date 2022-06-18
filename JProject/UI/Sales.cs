@@ -730,5 +730,14 @@ namespace JProject.UI
         {
 
         }
+
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -46,6 +46,7 @@ namespace JProject.UI
             a.description = txtDescrip.Text;
             a.added_date = DateTime.Now;
             a.agent_address = txtAaddress.Text;
+            a.credit_amount = decimal.Parse(txtCreditBalance.Text);
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
@@ -86,6 +87,7 @@ namespace JProject.UI
             txtCreditL.Text = "";
             txtDescrip.Text = "";
             txtAaddress.Text = "";
+            txtCreditBalance.Text = "";
         }
 
         private void dgvAgents_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -98,7 +100,8 @@ namespace JProject.UI
             txtAno.Text = dgvAgents.Rows[rowIndex].Cells[2].Value.ToString();           
             txtCreditL.Text = dgvAgents.Rows[rowIndex].Cells[3].Value.ToString();
             txtDescrip.Text = dgvAgents.Rows[rowIndex].Cells[4].Value.ToString();
-            txtAaddress.Text = dgvAgents.Rows[rowIndex].Cells[5].Value.ToString();
+            txtAaddress.Text = dgvAgents.Rows[rowIndex].Cells[7].Value.ToString();
+            txtCreditBalance.Text = dgvAgents.Rows[rowIndex].Cells[8].Value.ToString();
         }
 
         private void dgvAgents_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -121,6 +124,7 @@ namespace JProject.UI
             a.description = txtDescrip.Text;
             a.added_date = DateTime.Now;
             a.agent_address = txtAaddress.Text;
+            a.credit_amount = decimal.Parse(txtCreditBalance.Text);
 
             //getting the user name of LoggedIn user
             string loggedUser = Login.loggedIn;
@@ -197,6 +201,32 @@ namespace JProject.UI
             }
         }
 
+        private void label1_Click_1(object sender, EventArgs e)
+        {
 
+        }
+
+        private void txtCreditBalance_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtCreditBalance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
