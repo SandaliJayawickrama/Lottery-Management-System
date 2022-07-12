@@ -39,7 +39,7 @@ namespace JProject.UI
 
         private void purchaseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Purchase purchase = new Purchase();
+            Purchases purchase = new Purchases();
             purchase.Show();
         }
 

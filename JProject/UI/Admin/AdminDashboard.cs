@@ -73,7 +73,7 @@ namespace JProject
 
         private void purchaseToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Purchase purchase = new Purchase();
+            Purchases purchase = new Purchases();
             purchase.Show();
         }
 
@@ -176,6 +176,22 @@ namespace JProject
         {
             Balances_Management balancesAdd = new Balances_Management();
             balancesAdd.Show();
+        }
+
+        private void purchaseOrderDrawToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void drawToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Purchase_Order purchase_order = new Purchase_Order();
+            purchase_order.Show();
+        }
+
+        private void instantToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

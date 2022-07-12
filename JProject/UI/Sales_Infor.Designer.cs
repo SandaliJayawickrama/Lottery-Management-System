@@ -62,6 +62,7 @@ namespace JProject.UI
             this.dgvSalesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSalesList.Location = new System.Drawing.Point(42, 153);
             this.dgvSalesList.Name = "dgvSalesList";
+            this.dgvSalesList.ReadOnly = true;
             this.dgvSalesList.RowHeadersWidth = 51;
             this.dgvSalesList.RowTemplate.Height = 24;
             this.dgvSalesList.Size = new System.Drawing.Size(1035, 557);

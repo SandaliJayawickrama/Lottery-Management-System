@@ -76,6 +76,9 @@ namespace JProject.DAL
         }
         #endregion
 
+
+
+
         #region Select Puechses for Purchse List Gridview
         public DataTable SelectPurchaseList()
         {
@@ -423,7 +426,7 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Get Total Cash and Bank Purchases
+        #region Get Total Monthly Cash and Bank Purchases
         public decimal GetTotalCashBankWinPurchases(int month, int year)
         {
             SqlConnection conn = new SqlConnection(myconnstring);

@@ -44,5 +44,10 @@ namespace JProject.UI
                 dgvAgentList.DataSource = dt;
             }
         }
+
+        private void dgvAgentList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

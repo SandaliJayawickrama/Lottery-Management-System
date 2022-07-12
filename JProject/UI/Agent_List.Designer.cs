@@ -54,10 +54,12 @@ namespace JProject.UI
             this.dgvAgentList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAgentList.Location = new System.Drawing.Point(37, 135);
             this.dgvAgentList.Name = "dgvAgentList";
+            this.dgvAgentList.ReadOnly = true;
             this.dgvAgentList.RowHeadersWidth = 51;
             this.dgvAgentList.RowTemplate.Height = 24;
             this.dgvAgentList.Size = new System.Drawing.Size(1230, 557);
             this.dgvAgentList.TabIndex = 35;
+            this.dgvAgentList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAgentList_CellContentClick);
             // 
             // lblSearchAgent
             // 

@@ -87,6 +87,7 @@ namespace JProject.UI
             this.dgvAgentSummery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAgentSummery.Location = new System.Drawing.Point(12, 73);
             this.dgvAgentSummery.Name = "dgvAgentSummery";
+            this.dgvAgentSummery.ReadOnly = true;
             this.dgvAgentSummery.RowHeadersWidth = 51;
             this.dgvAgentSummery.RowTemplate.Height = 24;
             this.dgvAgentSummery.Size = new System.Drawing.Size(1379, 411);

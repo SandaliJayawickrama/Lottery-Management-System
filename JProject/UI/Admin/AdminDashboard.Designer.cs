@@ -49,6 +49,7 @@ namespace JProject
             this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrderDrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.salesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,11 +63,14 @@ namespace JProject
             this.stockInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settlementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.payableSettleNLBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picDashboard = new System.Windows.Forms.PictureBox();
             this.labelUser = new System.Windows.Forms.Label();
             this.lblloggedIn = new System.Windows.Forms.Label();
-            this.balanceManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFooter.SuspendLayout();
             this.menuAdmin.SuspendLayout();
@@ -153,7 +157,7 @@ namespace JProject
             this.settlementsToolStripMenuItem});
             this.menuAdmin.Location = new System.Drawing.Point(0, 159);
             this.menuAdmin.Name = "menuAdmin";
-            this.menuAdmin.Size = new System.Drawing.Size(884, 31);
+            this.menuAdmin.Size = new System.Drawing.Size(734, 31);
             this.menuAdmin.TabIndex = 5;
             this.menuAdmin.Text = "menuadmin";
             // 
@@ -225,7 +229,9 @@ namespace JProject
             this.purchaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.purchaseToolStripMenuItem1,
             this.purchaseListToolStripMenuItem,
-            this.purchaseListToolStripMenuItem1});
+            this.purchaseListToolStripMenuItem1,
+            this.purchaseOrderDrawToolStripMenuItem,
+            this.addStockToolStripMenuItem});
             this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
             this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
             this.purchaseToolStripMenuItem.Text = "Purchases";
@@ -233,23 +239,33 @@ namespace JProject
             // purchaseToolStripMenuItem1
             // 
             this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
-            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
+            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(269, 28);
             this.purchaseToolStripMenuItem1.Text = "Purchase - Draw";
             this.purchaseToolStripMenuItem1.Click += new System.EventHandler(this.purchaseToolStripMenuItem1_Click);
             // 
             // purchaseListToolStripMenuItem
             // 
             this.purchaseListToolStripMenuItem.Name = "purchaseListToolStripMenuItem";
-            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
+            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(269, 28);
             this.purchaseListToolStripMenuItem.Text = "Purchase - Instant";
             this.purchaseListToolStripMenuItem.Click += new System.EventHandler(this.purchaseListToolStripMenuItem_Click);
             // 
             // purchaseListToolStripMenuItem1
             // 
             this.purchaseListToolStripMenuItem1.Name = "purchaseListToolStripMenuItem1";
-            this.purchaseListToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
+            this.purchaseListToolStripMenuItem1.Size = new System.Drawing.Size(269, 28);
             this.purchaseListToolStripMenuItem1.Text = "Purchase List";
             this.purchaseListToolStripMenuItem1.Click += new System.EventHandler(this.purchaseListToolStripMenuItem1_Click);
+            // 
+            // purchaseOrderDrawToolStripMenuItem
+            // 
+            this.purchaseOrderDrawToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drawToolStripMenuItem,
+            this.instantToolStripMenuItem});
+            this.purchaseOrderDrawToolStripMenuItem.Name = "purchaseOrderDrawToolStripMenuItem";
+            this.purchaseOrderDrawToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
+            this.purchaseOrderDrawToolStripMenuItem.Text = "Purchase Orders";
+            this.purchaseOrderDrawToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderDrawToolStripMenuItem_Click);
             // 
             // returnToolStripMenuItem
             // 
@@ -352,6 +368,13 @@ namespace JProject
             this.payableSettleNLBToolStripMenuItem.Text = "Settle Payables";
             this.payableSettleNLBToolStripMenuItem.Click += new System.EventHandler(this.payableSettleNLBToolStripMenuItem_Click);
             // 
+            // balanceManagementToolStripMenuItem
+            // 
+            this.balanceManagementToolStripMenuItem.Name = "balanceManagementToolStripMenuItem";
+            this.balanceManagementToolStripMenuItem.Size = new System.Drawing.Size(261, 28);
+            this.balanceManagementToolStripMenuItem.Text = "Balance Management";
+            this.balanceManagementToolStripMenuItem.Click += new System.EventHandler(this.balanceManagementToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -396,12 +419,25 @@ namespace JProject
             this.lblloggedIn.TabIndex = 9;
             this.lblloggedIn.Text = "Admin1";
             // 
-            // balanceManagementToolStripMenuItem
+            // drawToolStripMenuItem
             // 
-            this.balanceManagementToolStripMenuItem.Name = "balanceManagementToolStripMenuItem";
-            this.balanceManagementToolStripMenuItem.Size = new System.Drawing.Size(261, 28);
-            this.balanceManagementToolStripMenuItem.Text = "Balance Management";
-            this.balanceManagementToolStripMenuItem.Click += new System.EventHandler(this.balanceManagementToolStripMenuItem_Click);
+            this.drawToolStripMenuItem.Name = "drawToolStripMenuItem";
+            this.drawToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.drawToolStripMenuItem.Text = "Draw";
+            this.drawToolStripMenuItem.Click += new System.EventHandler(this.drawToolStripMenuItem_Click);
+            // 
+            // instantToolStripMenuItem
+            // 
+            this.instantToolStripMenuItem.Name = "instantToolStripMenuItem";
+            this.instantToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.instantToolStripMenuItem.Text = "Instant";
+            this.instantToolStripMenuItem.Click += new System.EventHandler(this.instantToolStripMenuItem_Click);
+            // 
+            // addStockToolStripMenuItem
+            // 
+            this.addStockToolStripMenuItem.Name = "addStockToolStripMenuItem";
+            this.addStockToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
+            this.addStockToolStripMenuItem.Text = "Add Stock";
             // 
             // AdminDashboard
             // 
@@ -472,6 +508,10 @@ namespace JProject
         private System.Windows.Forms.ToolStripMenuItem settlementsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem payableSettleNLBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem balanceManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrderDrawToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addStockToolStripMenuItem;
     }
 }
 

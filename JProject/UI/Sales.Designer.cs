@@ -508,6 +508,7 @@ namespace JProject.UI
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSales.Location = new System.Drawing.Point(14, 35);
             this.dgvSales.Name = "dgvSales";
+            this.dgvSales.ReadOnly = true;
             this.dgvSales.RowHeadersWidth = 51;
             this.dgvSales.RowTemplate.Height = 24;
             this.dgvSales.Size = new System.Drawing.Size(782, 333);
@@ -853,6 +854,7 @@ namespace JProject.UI
             this.txtInvNo.Name = "txtInvNo";
             this.txtInvNo.Size = new System.Drawing.Size(232, 24);
             this.txtInvNo.TabIndex = 52;
+            this.txtInvNo.TextChanged += new System.EventHandler(this.txtInvNo_TextChanged);
             this.txtInvNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInvNo_KeyPress);
             // 
             // panel5
@@ -904,6 +906,7 @@ namespace JProject.UI
             this.dgvSalesStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSalesStock.Location = new System.Drawing.Point(207, 3);
             this.dgvSalesStock.Name = "dgvSalesStock";
+            this.dgvSalesStock.ReadOnly = true;
             this.dgvSalesStock.RowHeadersWidth = 51;
             this.dgvSalesStock.RowTemplate.Height = 24;
             this.dgvSalesStock.Size = new System.Drawing.Size(967, 163);

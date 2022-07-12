@@ -314,6 +314,7 @@ namespace JProject.UI
             this.dgvReturn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReturn.Location = new System.Drawing.Point(16, 45);
             this.dgvReturn.Name = "dgvReturn";
+            this.dgvReturn.ReadOnly = true;
             this.dgvReturn.RowHeadersWidth = 51;
             this.dgvReturn.RowTemplate.Height = 24;
             this.dgvReturn.Size = new System.Drawing.Size(751, 356);
@@ -355,6 +356,7 @@ namespace JProject.UI
             this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStock.Location = new System.Drawing.Point(16, 47);
             this.dgvStock.Name = "dgvStock";
+            this.dgvStock.ReadOnly = true;
             this.dgvStock.RowHeadersWidth = 51;
             this.dgvStock.RowTemplate.Height = 24;
             this.dgvStock.Size = new System.Drawing.Size(607, 356);

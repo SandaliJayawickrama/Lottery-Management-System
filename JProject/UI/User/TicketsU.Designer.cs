@@ -93,6 +93,7 @@ namespace JProject.UI.User
             this.dgvTicketsU.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTicketsU.Location = new System.Drawing.Point(480, 273);
             this.dgvTicketsU.Name = "dgvTicketsU";
+            this.dgvTicketsU.ReadOnly = true;
             this.dgvTicketsU.RowHeadersWidth = 51;
             this.dgvTicketsU.RowTemplate.Height = 24;
             this.dgvTicketsU.Size = new System.Drawing.Size(724, 454);

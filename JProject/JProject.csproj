@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="BLL\Instant_PurchasesBLL.cs" />
     <Compile Include="BLL\Instant_StockBLL.cs" />
+    <Compile Include="BLL\PO_TransactionBLL.cs" />
     <Compile Include="BLL\PurchaseBLL.cs" />
+    <Compile Include="BLL\Purchase_OrderBLL.cs" />
     <Compile Include="BLL\Purchase_TransactionBLL.cs" />
     <Compile Include="BLL\ReturnsBLL.cs" />
     <Compile Include="BLL\Return_TransactionBLL.cs" />
@@ -67,7 +69,9 @@
     <Compile Include="DAL\Instant_StockDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
     <Compile Include="DAL\AdminDAL\userDAL.cs" />
+    <Compile Include="DAL\PO_TransactionDAL.cs" />
     <Compile Include="DAL\PurchaseDAL.cs" />
+    <Compile Include="DAL\Purchase_OrderDAL.cs" />
     <Compile Include="DAL\Purchase_TransactionDAL.cs" />
     <Compile Include="DAL\ReturnsDAL.cs" />
     <Compile Include="DAL\Return_TransactionDAL.cs" />
@@ -161,11 +165,23 @@
     <Compile Include="UI\Purchase.Designer.cs">
       <DependentUpon>Purchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Purchases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Purchases.Designer.cs">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Purchase_Infor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Purchase_Infor.Designer.cs">
       <DependentUpon>Purchase_Infor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Purchase_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Purchase_Order.Designer.cs">
+      <DependentUpon>Purchase_Order.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Return_Purchase.cs">
       <SubType>Form</SubType>
@@ -261,8 +277,14 @@
     <EmbeddedResource Include="UI\Purchase.resx">
       <DependentUpon>Purchase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Purchases.resx">
+      <DependentUpon>Purchases.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Purchase_Infor.resx">
       <DependentUpon>Purchase_Infor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Purchase_Order.resx">
+      <DependentUpon>Purchase_Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Return_Purchase.resx">
       <DependentUpon>Return_Purchase.cs</DependentUpon>

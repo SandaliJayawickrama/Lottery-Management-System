@@ -739,5 +739,10 @@ namespace JProject.UI
                 e.Handled = true;
             }
         }
+
+        private void txtInvNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

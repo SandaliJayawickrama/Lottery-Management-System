@@ -29,7 +29,7 @@ namespace JProject.UI
 
         private void Return_Purchase_Load(object sender, EventArgs e)
         {
-           returnsDT.Columns.Add("Ticket_name");
+            returnsDT.Columns.Add("Ticket_name");
             returnsDT.Columns.Add("Starting Bcode");
             returnsDT.Columns.Add("Quantity");
             returnsDT.Columns.Add("Ending Bcode");
