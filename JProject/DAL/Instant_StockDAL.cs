@@ -260,7 +260,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "SELECT quantity FROM instant_stock WHERE ticket_name = @ticket_name AND supplier=@supplier ";
+                string sql = "SELECT quantity FROM instant_stock WHERE ticket_name=@ticket_name AND supplier=@supplier";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ticket_name", tickName);

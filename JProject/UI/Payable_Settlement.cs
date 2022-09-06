@@ -16,5 +16,15 @@ namespace JProject.UI
         {
             InitializeComponent();
         }
+
+        private void Payable_Settlement_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -43,17 +43,19 @@ namespace JProject.UI
             this.dgvRecieved = new System.Windows.Forms.DataGridView();
             this.lblHeader4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTickName = new System.Windows.Forms.TextBox();
+            this.txtBalQty = new System.Windows.Forms.TextBox();
+            this.lblBalQty = new System.Windows.Forms.Label();
             this.lblOrderQty = new System.Windows.Forms.Label();
             this.txtOrdQty = new System.Windows.Forms.TextBox();
             this.txtUprice = new System.Windows.Forms.TextBox();
             this.lblUprice = new System.Windows.Forms.Label();
-            this.txtSupplier2 = new System.Windows.Forms.TextBox();
-            this.txtTickName = new System.Windows.Forms.TextBox();
+            this.txtPoId = new System.Windows.Forms.TextBox();
             this.txtDrDate = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblTname = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblSupplier = new System.Windows.Forms.Label();
+            this.lblPoId = new System.Windows.Forms.Label();
             this.txtLineTotal = new System.Windows.Forms.TextBox();
             this.lblDrawDate = new System.Windows.Forms.Label();
             this.lblDrawNo = new System.Windows.Forms.Label();
@@ -107,6 +109,7 @@ namespace JProject.UI
             this.txtTotalQty.Size = new System.Drawing.Size(139, 27);
             this.txtTotalQty.TabIndex = 59;
             this.txtTotalQty.Text = "0";
+            this.txtTotalQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalQty_KeyPress);
             // 
             // txtGndTotal
             // 
@@ -116,6 +119,7 @@ namespace JProject.UI
             this.txtGndTotal.Size = new System.Drawing.Size(267, 27);
             this.txtGndTotal.TabIndex = 55;
             this.txtGndTotal.Text = "0";
+            this.txtGndTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGndTotal_KeyPress);
             // 
             // lblHeader2
             // 
@@ -137,6 +141,7 @@ namespace JProject.UI
             this.btnSave.TabIndex = 55;
             this.btnSave.Text = "Save ";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblTotalQty
             // 
@@ -189,6 +194,7 @@ namespace JProject.UI
             this.dgvOrder.RowTemplate.Height = 24;
             this.dgvOrder.Size = new System.Drawing.Size(748, 356);
             this.dgvOrder.TabIndex = 40;
+            this.dgvOrder.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrder_RowHeaderMouseDoubleClick);
             // 
             // panel3
             // 
@@ -224,17 +230,19 @@ namespace JProject.UI
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtTickName);
+            this.panel1.Controls.Add(this.txtBalQty);
+            this.panel1.Controls.Add(this.lblBalQty);
             this.panel1.Controls.Add(this.lblOrderQty);
             this.panel1.Controls.Add(this.txtOrdQty);
             this.panel1.Controls.Add(this.txtUprice);
             this.panel1.Controls.Add(this.lblUprice);
-            this.panel1.Controls.Add(this.txtSupplier2);
-            this.panel1.Controls.Add(this.txtTickName);
+            this.panel1.Controls.Add(this.txtPoId);
             this.panel1.Controls.Add(this.txtDrDate);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.lblTname);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.lblSupplier);
+            this.panel1.Controls.Add(this.lblPoId);
             this.panel1.Controls.Add(this.txtLineTotal);
             this.panel1.Controls.Add(this.lblDrawDate);
             this.panel1.Controls.Add(this.lblDrawNo);
@@ -250,11 +258,41 @@ namespace JProject.UI
             this.panel1.Size = new System.Drawing.Size(1463, 167);
             this.panel1.TabIndex = 84;
             // 
+            // txtTickName
+            // 
+            this.txtTickName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTickName.Location = new System.Drawing.Point(16, 47);
+            this.txtTickName.Name = "txtTickName";
+            this.txtTickName.Size = new System.Drawing.Size(259, 28);
+            this.txtTickName.TabIndex = 88;
+            this.txtTickName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTickName_KeyPress);
+            // 
+            // txtBalQty
+            // 
+            this.txtBalQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBalQty.ForeColor = System.Drawing.Color.Maroon;
+            this.txtBalQty.Location = new System.Drawing.Point(504, 49);
+            this.txtBalQty.Name = "txtBalQty";
+            this.txtBalQty.Size = new System.Drawing.Size(144, 27);
+            this.txtBalQty.TabIndex = 86;
+            this.txtBalQty.Text = "0";
+            this.txtBalQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBalQty_KeyPress);
+            // 
+            // lblBalQty
+            // 
+            this.lblBalQty.AutoSize = true;
+            this.lblBalQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBalQty.Location = new System.Drawing.Point(501, 13);
+            this.lblBalQty.Name = "lblBalQty";
+            this.lblBalQty.Size = new System.Drawing.Size(119, 25);
+            this.lblBalQty.TabIndex = 85;
+            this.lblBalQty.Text = "Balance Qty";
+            // 
             // lblOrderQty
             // 
             this.lblOrderQty.AutoSize = true;
             this.lblOrderQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderQty.Location = new System.Drawing.Point(326, 13);
+            this.lblOrderQty.Location = new System.Drawing.Point(350, 13);
             this.lblOrderQty.Name = "lblOrderQty";
             this.lblOrderQty.Size = new System.Drawing.Size(98, 25);
             this.lblOrderQty.TabIndex = 84;
@@ -263,65 +301,62 @@ namespace JProject.UI
             // txtOrdQty
             // 
             this.txtOrdQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOrdQty.Location = new System.Drawing.Point(330, 47);
+            this.txtOrdQty.Location = new System.Drawing.Point(354, 47);
             this.txtOrdQty.Name = "txtOrdQty";
             this.txtOrdQty.Size = new System.Drawing.Size(116, 27);
             this.txtOrdQty.TabIndex = 83;
             this.txtOrdQty.Text = "0";
+            this.txtOrdQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOrdQty_KeyPress);
             // 
             // txtUprice
             // 
             this.txtUprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUprice.Location = new System.Drawing.Point(295, 120);
+            this.txtUprice.Location = new System.Drawing.Point(143, 120);
             this.txtUprice.Name = "txtUprice";
             this.txtUprice.Size = new System.Drawing.Size(106, 27);
             this.txtUprice.TabIndex = 82;
             this.txtUprice.Text = "0";
+            this.txtUprice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUprice_KeyPress);
             // 
             // lblUprice
             // 
             this.lblUprice.AutoSize = true;
             this.lblUprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUprice.Location = new System.Drawing.Point(290, 92);
+            this.lblUprice.Location = new System.Drawing.Point(138, 92);
             this.lblUprice.Name = "lblUprice";
             this.lblUprice.Size = new System.Drawing.Size(95, 25);
             this.lblUprice.TabIndex = 81;
             this.lblUprice.Text = "Unit Price";
             // 
-            // txtSupplier2
+            // txtPoId
             // 
-            this.txtSupplier2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier2.Location = new System.Drawing.Point(183, 120);
-            this.txtSupplier2.Name = "txtSupplier2";
-            this.txtSupplier2.Size = new System.Drawing.Size(91, 27);
-            this.txtSupplier2.TabIndex = 80;
-            // 
-            // txtTickName
-            // 
-            this.txtTickName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTickName.Location = new System.Drawing.Point(15, 47);
-            this.txtTickName.Name = "txtTickName";
-            this.txtTickName.Size = new System.Drawing.Size(259, 28);
-            this.txtTickName.TabIndex = 79;
+            this.txtPoId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPoId.Location = new System.Drawing.Point(15, 120);
+            this.txtPoId.Name = "txtPoId";
+            this.txtPoId.Size = new System.Drawing.Size(75, 24);
+            this.txtPoId.TabIndex = 80;
+            this.txtPoId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPoId_KeyPress);
             // 
             // txtDrDate
             // 
             this.txtDrDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDrDate.Location = new System.Drawing.Point(15, 120);
+            this.txtDrDate.Location = new System.Drawing.Point(349, 120);
             this.txtDrDate.Name = "txtDrDate";
             this.txtDrDate.Size = new System.Drawing.Size(150, 27);
             this.txtDrDate.TabIndex = 78;
+            this.txtDrDate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDrDate_KeyPress);
             // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(1207, 103);
+            this.btnAdd.Location = new System.Drawing.Point(1263, 103);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(119, 44);
             this.btnAdd.TabIndex = 77;
             this.btnAdd.Text = "ADD";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblTname
             // 
@@ -337,36 +372,37 @@ namespace JProject.UI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1019, 13);
+            this.label1.Location = new System.Drawing.Point(1120, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 25);
             this.label1.TabIndex = 75;
             this.label1.Text = "Line Total";
             // 
-            // lblSupplier
+            // lblPoId
             // 
-            this.lblSupplier.AutoSize = true;
-            this.lblSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSupplier.Location = new System.Drawing.Point(178, 92);
-            this.lblSupplier.Name = "lblSupplier";
-            this.lblSupplier.Size = new System.Drawing.Size(84, 25);
-            this.lblSupplier.TabIndex = 59;
-            this.lblSupplier.Text = "Supplier";
+            this.lblPoId.AutoSize = true;
+            this.lblPoId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPoId.Location = new System.Drawing.Point(12, 96);
+            this.lblPoId.Name = "lblPoId";
+            this.lblPoId.Size = new System.Drawing.Size(51, 20);
+            this.lblPoId.TabIndex = 59;
+            this.lblPoId.Text = "PO Id";
             // 
             // txtLineTotal
             // 
             this.txtLineTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLineTotal.Location = new System.Drawing.Point(1023, 47);
+            this.txtLineTotal.Location = new System.Drawing.Point(1124, 47);
             this.txtLineTotal.Name = "txtLineTotal";
             this.txtLineTotal.Size = new System.Drawing.Size(214, 28);
             this.txtLineTotal.TabIndex = 74;
             this.txtLineTotal.Text = "0";
+            this.txtLineTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLineTotal_KeyPress);
             // 
             // lblDrawDate
             // 
             this.lblDrawDate.AutoSize = true;
             this.lblDrawDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDrawDate.Location = new System.Drawing.Point(11, 92);
+            this.lblDrawDate.Location = new System.Drawing.Point(345, 92);
             this.lblDrawDate.Name = "lblDrawDate";
             this.lblDrawDate.Size = new System.Drawing.Size(103, 25);
             this.lblDrawDate.TabIndex = 61;
@@ -376,7 +412,7 @@ namespace JProject.UI
             // 
             this.lblDrawNo.AutoSize = true;
             this.lblDrawNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDrawNo.Location = new System.Drawing.Point(560, 13);
+            this.lblDrawNo.Location = new System.Drawing.Point(714, 13);
             this.lblDrawNo.Name = "lblDrawNo";
             this.lblDrawNo.Size = new System.Drawing.Size(87, 25);
             this.lblDrawNo.TabIndex = 62;
@@ -386,7 +422,7 @@ namespace JProject.UI
             // 
             this.lblRecievedQty.AutoSize = true;
             this.lblRecievedQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecievedQty.Location = new System.Drawing.Point(727, 13);
+            this.lblRecievedQty.Location = new System.Drawing.Point(881, 13);
             this.lblRecievedQty.Name = "lblRecievedQty";
             this.lblRecievedQty.Size = new System.Drawing.Size(129, 25);
             this.lblRecievedQty.TabIndex = 72;
@@ -396,7 +432,7 @@ namespace JProject.UI
             // 
             this.lblStBcode.AutoSize = true;
             this.lblStBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStBcode.Location = new System.Drawing.Point(560, 92);
+            this.lblStBcode.Location = new System.Drawing.Point(714, 92);
             this.lblStBcode.Name = "lblStBcode";
             this.lblStBcode.Size = new System.Drawing.Size(152, 25);
             this.lblStBcode.TabIndex = 64;
@@ -405,25 +441,28 @@ namespace JProject.UI
             // txtEdBcode
             // 
             this.txtEdBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdBcode.Location = new System.Drawing.Point(816, 120);
+            this.txtEdBcode.Location = new System.Drawing.Point(970, 120);
             this.txtEdBcode.Name = "txtEdBcode";
             this.txtEdBcode.Size = new System.Drawing.Size(218, 27);
             this.txtEdBcode.TabIndex = 71;
+            this.txtEdBcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdBcode_KeyPress);
             // 
             // txtRecQty
             // 
             this.txtRecQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecQty.Location = new System.Drawing.Point(731, 47);
+            this.txtRecQty.Location = new System.Drawing.Point(885, 47);
             this.txtRecQty.Name = "txtRecQty";
             this.txtRecQty.Size = new System.Drawing.Size(116, 27);
             this.txtRecQty.TabIndex = 70;
             this.txtRecQty.Text = "0";
+            this.txtRecQty.TextChanged += new System.EventHandler(this.txtRecQty_TextChanged);
+            this.txtRecQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRecQty_KeyPress);
             // 
             // lblEdBcode
             // 
             this.lblEdBcode.AutoSize = true;
             this.lblEdBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEdBcode.Location = new System.Drawing.Point(811, 92);
+            this.lblEdBcode.Location = new System.Drawing.Point(965, 92);
             this.lblEdBcode.Name = "lblEdBcode";
             this.lblEdBcode.Size = new System.Drawing.Size(151, 25);
             this.lblEdBcode.TabIndex = 67;
@@ -432,7 +471,7 @@ namespace JProject.UI
             // txtDrno
             // 
             this.txtDrno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDrno.Location = new System.Drawing.Point(564, 47);
+            this.txtDrno.Location = new System.Drawing.Point(718, 47);
             this.txtDrno.Name = "txtDrno";
             this.txtDrno.Size = new System.Drawing.Size(109, 27);
             this.txtDrno.TabIndex = 68;
@@ -440,7 +479,7 @@ namespace JProject.UI
             // txtStBcode
             // 
             this.txtStBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStBcode.Location = new System.Drawing.Point(564, 120);
+            this.txtStBcode.Location = new System.Drawing.Point(718, 120);
             this.txtStBcode.Name = "txtStBcode";
             this.txtStBcode.Size = new System.Drawing.Size(221, 27);
             this.txtStBcode.TabIndex = 69;
@@ -483,6 +522,7 @@ namespace JProject.UI
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.Size = new System.Drawing.Size(79, 27);
             this.txtCategory.TabIndex = 95;
+            this.txtCategory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCategory_KeyPress);
             // 
             // lblCategory
             // 
@@ -521,6 +561,7 @@ namespace JProject.UI
             this.txtSupplier1.Name = "txtSupplier1";
             this.txtSupplier1.Size = new System.Drawing.Size(73, 27);
             this.txtSupplier1.TabIndex = 80;
+            this.txtSupplier1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSupplier1_KeyPress);
             // 
             // txtPoNo
             // 
@@ -530,6 +571,7 @@ namespace JProject.UI
             this.txtPoNo.Size = new System.Drawing.Size(271, 27);
             this.txtPoNo.TabIndex = 97;
             this.txtPoNo.TextChanged += new System.EventHandler(this.txtPoNo_TextChanged);
+            this.txtPoNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPoNo_KeyPress);
             // 
             // lblInvoiceNo
             // 
@@ -565,6 +607,7 @@ namespace JProject.UI
             this.txtPoDate.Size = new System.Drawing.Size(183, 27);
             this.txtPoDate.TabIndex = 90;
             this.txtPoDate.Text = "NULL";
+            this.txtPoDate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPoDate_KeyPress);
             // 
             // Purchase
             // 
@@ -616,12 +659,11 @@ namespace JProject.UI
         private System.Windows.Forms.DataGridView dgvRecieved;
         private System.Windows.Forms.Label lblHeader4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtTickName;
         private System.Windows.Forms.TextBox txtDrDate;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblTname;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblSupplier;
+        private System.Windows.Forms.Label lblPoId;
         private System.Windows.Forms.TextBox txtLineTotal;
         private System.Windows.Forms.Label lblDrawDate;
         private System.Windows.Forms.Label lblDrawNo;
@@ -640,7 +682,7 @@ namespace JProject.UI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSupplier1;
-        private System.Windows.Forms.TextBox txtSupplier2;
+        private System.Windows.Forms.TextBox txtPoId;
         private System.Windows.Forms.TextBox txtPoNo;
         private System.Windows.Forms.Label lblInvoiceNo;
         private System.Windows.Forms.Label lblOrderQty;
@@ -649,5 +691,8 @@ namespace JProject.UI
         private System.Windows.Forms.Label lblUprice;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox txtPoDate;
+        private System.Windows.Forms.TextBox txtBalQty;
+        private System.Windows.Forms.Label lblBalQty;
+        private System.Windows.Forms.TextBox txtTickName;
     }
 }

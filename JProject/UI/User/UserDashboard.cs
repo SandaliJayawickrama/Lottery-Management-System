@@ -28,20 +28,10 @@ namespace JProject.UI
         {            
         }
 
-        private void purchaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void itemsToolStripMenuItem_Click(object sender, EventArgs e)
         { 
-        }
-
-        private void purchaseToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Purchases purchase = new Purchases();
-            purchase.Show();
-        }
+        }       
 
         private void purchaseListToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -125,6 +115,28 @@ namespace JProject.UI
         {
             InsStock_List insStock = new InsStock_List();
             insStock.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void createNewDrawToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Purchase_Order purchase_order = new Purchase_Order();
+            purchase_order.Show();
+        }
+
+        private void createNewInstantToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void drawInstantToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Purchase purchaseIn = new Purchase();
+            purchaseIn.Show();
         }
     }
 }

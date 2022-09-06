@@ -71,12 +71,6 @@ namespace JProject
             
         }
 
-        private void purchaseToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Purchases purchase = new Purchases();
-            purchase.Show();
-        }
-
         private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Sales sales = new Sales();
@@ -191,7 +185,31 @@ namespace JProject
 
         private void instantToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            InsPurchase_Order Inspurchase_order = new InsPurchase_Order();
+            Inspurchase_order.Show();
+        }
 
+        private void drawToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Purchase purchaseIn = new Purchase();
+            purchaseIn.Show();
+        }
+
+        private void purchaseStockInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void salesReturnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Return_Sales SalesReturn = new Return_Sales();
+            SalesReturn.Show();
+        }
+
+        private void cashDepositToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cash_Deposit cashDept = new Cash_Deposit();
+            cashDept.Show();
         }
     }
 }

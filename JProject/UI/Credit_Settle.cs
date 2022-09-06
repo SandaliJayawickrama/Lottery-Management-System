@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace JProject.UI
@@ -20,6 +21,8 @@ namespace JProject.UI
         }
 
         AgentDAL agDal = new AgentDAL();
+        Balance_TransactionDAL balDal = new Balance_TransactionDAL();
+        userDAL Udal = new userDAL();
 
         private void txtSearchAgent_TextChanged(object sender, EventArgs e)
         {
@@ -47,10 +50,12 @@ namespace JProject.UI
             txtAgentNo.Text = ag.agent_no;
             txtCreditLimit.Text = ag.credit_Limit.ToString();
             txtCreditAmount.Text = ag.credit_amount.ToString();
+            txtRetLimitNlb.Text = ag.returnBal_nlb.ToString();
+            txtRetLimitDlb.Text = ag.returnBal_dlb.ToString();
 
         }
 
-        //Calculate Total SEttlement
+        //Calculate Total Settlement
         private decimal CalcTotalSettlement()
         {
             decimal cash = decimal.Parse(txtCash.Text);
@@ -83,11 +88,6 @@ namespace JProject.UI
             return balance;
         }
 
-        private void lblTotAmount_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCalc_Click(object sender, EventArgs e)
         {
             decimal settlement = CalcTotalSettlement();
@@ -98,32 +98,103 @@ namespace JProject.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool isSuccess = false;
-
             string Aname = txtAgentName.Text;
             string Ano = txtAgentNo.Text;
-
+            decimal retLimitNlb = decimal.Parse(txtRetLimitNlb.Text);
+            decimal retLimitDlb = decimal.Parse(txtRetLimitDlb.Text);
             decimal credit = decimal.Parse(txtCreditAmount.Text);
 
             decimal settle = CalcTotalSettlement();
             decimal creditBalance = CalcCreditBalance();
+
             txtTotSettle.Text = settle.ToString();
             txtCreditBalance.Text = creditBalance.ToString();
 
-            isSuccess = agDal.DecreaseCreditAmount(Aname,Ano, settle);
+            bool isRetBalance = false;
+            bool isAllSuccess = false;
 
-            if (isSuccess == true && settle<=credit && credit!=0)
+            using (TransactionScope scope = new TransactionScope()) 
             {
-                //Data succeefully Inserted
-                MessageBox.Show("Successfull");
-                clear();
-            }
-            else
-            {
-                //Faild to Insert Data
-                MessageBox.Show("Faild to settle!");
+
+                //check return balances                
+                decimal retNlb = decimal.Parse(txtReturnNlb.Text);
+                decimal retDlb = decimal.Parse(txtReturnDlb.Text);
+
+                if (retLimitNlb >= retNlb && retLimitDlb >= retDlb)
+                {
+                    isRetBalance = true;
+                }
+                else
+                {
+                    //Faild to Insert Data
+                    MessageBox.Show("Invalid Return amount..!");
+                }
+
+                //Decrease credit and return amounts
+                bool isAgentCreditSuccess = agDal.DecreaseCreditAmount(Aname, Ano, settle);
+                bool isAgentRetSuccess = agDal.DecreaseReturnAmount(Aname, Ano, retNlb, retDlb);
+
+                //settle credit recievables in Balance Transaction table
+                Balance_TransactionBLL balBll = new Balance_TransactionBLL();
+                DataTable balDT = balDal.SelectLastRowBalances();
+
+                decimal totCash = decimal.Parse(txtCash.Text) + decimal.Parse(txtCheque.Text);
+
+                balBll.Description = "Settle Credit Recievable";
+                balBll.Cash = decimal.Parse(balDT.Rows[0][2].ToString()) + totCash;
+                balBll.Win_Nlb = decimal.Parse(balDT.Rows[0][5].ToString()) + decimal.Parse(txtWinNlb.Text);
+                balBll.Win_Dlb = decimal.Parse(balDT.Rows[0][6].ToString()) + decimal.Parse(txtWinDlb.Text);
+                balBll.Credi_recievables = decimal.Parse(balDT.Rows[0][7].ToString()) - decimal.Parse(txtTotSettle.Text);
+                balBll.Return_PayableNLB = decimal.Parse(balDT.Rows[0][14].ToString()) - decimal.Parse(txtReturnNlb.Text);
+                balBll.Return_PayableDLB = decimal.Parse(balDT.Rows[0][15].ToString()) - decimal.Parse(txtReturnDlb.Text);
+
+                balBll.Bank = decimal.Parse(balDT.Rows[0][3].ToString());
+                balBll.Stock = decimal.Parse(balDT.Rows[0][4].ToString());
+                balBll.Stock_recievablesNLB = decimal.Parse(balDT.Rows[0][8].ToString());
+                balBll.Stock_recievablesDLB = decimal.Parse(balDT.Rows[0][9].ToString());
+                balBll.Return_recievablesNLB = decimal.Parse(balDT.Rows[0][10].ToString());
+                balBll.Return_recievablesDLB = decimal.Parse(balDT.Rows[0][11].ToString());  
+                balBll.Credit_PayableNLB = decimal.Parse(balDT.Rows[0][12].ToString());
+                balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString());
+                balBll.Capital = decimal.Parse(balDT.Rows[0][16].ToString());
+                balBll.Income = decimal.Parse(balDT.Rows[0][17].ToString());
+                balBll.Expenses = decimal.Parse(balDT.Rows[0][18].ToString());
+                balBll.emai_Nlb = decimal.Parse(balDT.Rows[0][21].ToString());
+                balBll.emai_Dlb = decimal.Parse(balDT.Rows[0][22].ToString());
+                balBll.freeIssue_receivableNLB = decimal.Parse(balDT.Rows[0][23].ToString());
+                balBll.freeIssue_receivableDLB = decimal.Parse(balDT.Rows[0][24].ToString());
+                balBll.other_discountGiving = decimal.Parse(balDT.Rows[0][25].ToString());
+
+                balBll.added_date = DateTime.Now;
+
+                //getting the user name of LoggedIn user
+                string loggedUser = Login.loggedIn;
+                userBLL urs = Udal.GetUsername(loggedUser);
+                balBll.added_by = urs.username;
+
+                bool isBalanceSettle = balDal.UpdateTransactionBalance(balBll);
+
+                isAllSuccess = isAgentCreditSuccess && isAgentRetSuccess && isBalanceSettle && isRetBalance;
+
+
+                if (isAllSuccess == true && settle <= credit && credit != 0)
+                {
+                    //Data succeefully Inserted
+                    scope.Complete();
+                    MessageBox.Show("Successfull");
+
+                    //Clear all the txt boxes
+                    clear();
+                }
+                else
+                {
+                    //Faild to Insert Data
+                    MessageBox.Show("Faild to settle!");
+                }
+
             }
         }
+        
 
         private void clear()
         {
@@ -140,11 +211,13 @@ namespace JProject.UI
             txtWinDlb.Text = "0";
             txtReturnNlb.Text = "0";
             txtReturnDlb.Text = "0";
+            txtRetLimitNlb.Text = "0";
+            txtRetLimitDlb.Text = "0";
         }
 
         private void Credit_Settle_Load(object sender, EventArgs e)
         {
-
+            lblDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
@@ -250,6 +323,88 @@ namespace JProject.UI
         {
             char ch = e.KeyChar;
             if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCash_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCash.Text.ToString() == "")
+            {
+                txtCash.Text = "0";
+            }
+        }
+
+        private void txtCheque_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCheque.Text.ToString() == "")
+            {
+                txtCheque.Text = "0";
+            }
+        }
+
+        private void txtWinNlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtWinNlb.Text.ToString() == "")
+            {
+                txtWinNlb.Text = "0";
+            }
+        }
+
+        private void txtWinDlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtWinDlb.Text.ToString() == "")
+            {
+                txtWinDlb.Text = "0";
+            }
+        }
+
+        private void txtCreditBalance_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCreditBalance.Text.ToString() == "")
+            {
+                txtCreditBalance.Text = "0";
+            }
+        }
+
+        private void txtReturnNlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtReturnNlb.Text.ToString() == "")
+            {
+                txtReturnNlb.Text = "0";
+            }
+        }
+
+        private void txtReturnDlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtReturnDlb.Text.ToString() == "")
+            {
+                txtReturnDlb.Text = "0";
+            }
+        }
+
+        private void txtTotSettle_TextChanged(object sender, EventArgs e)
+        {
+            if (txtTotSettle.Text.ToString() == "")
+            {
+                txtTotSettle.Text = "0";
+            }
+        }
+
+        private void txtRetLimitNlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRetLimitDlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
             {
                 e.Handled = true;
             }

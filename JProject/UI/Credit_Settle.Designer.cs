@@ -31,6 +31,10 @@ namespace JProject.UI
         {
             this.lblHeader1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtRetLimitDlb = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtRetLimitNlb = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtCreditAmount = new System.Windows.Forms.TextBox();
             this.lblCreditAmount = new System.Windows.Forms.Label();
             this.txtCreditLimit = new System.Windows.Forms.TextBox();
@@ -64,6 +68,7 @@ namespace JProject.UI
             this.lblCash = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lblDate = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +86,11 @@ namespace JProject.UI
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtRetLimitDlb);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtRetLimitNlb);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtCreditAmount);
             this.panel1.Controls.Add(this.lblCreditAmount);
             this.panel1.Controls.Add(this.txtCreditLimit);
@@ -94,24 +104,65 @@ namespace JProject.UI
             this.panel1.Controls.Add(this.txtSearchAgent);
             this.panel1.Location = new System.Drawing.Point(12, 58);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1046, 126);
+            this.panel1.Size = new System.Drawing.Size(1046, 216);
             this.panel1.TabIndex = 34;
+            // 
+            // txtRetLimitDlb
+            // 
+            this.txtRetLimitDlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRetLimitDlb.Location = new System.Drawing.Point(572, 162);
+            this.txtRetLimitDlb.Name = "txtRetLimitDlb";
+            this.txtRetLimitDlb.Size = new System.Drawing.Size(186, 27);
+            this.txtRetLimitDlb.TabIndex = 57;
+            this.txtRetLimitDlb.Text = "0";
+            this.txtRetLimitDlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRetLimitDlb_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(568, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 20);
+            this.label3.TabIndex = 56;
+            this.label3.Text = "Return Limit DLB";
+            // 
+            // txtRetLimitNlb
+            // 
+            this.txtRetLimitNlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRetLimitNlb.Location = new System.Drawing.Point(572, 84);
+            this.txtRetLimitNlb.Name = "txtRetLimitNlb";
+            this.txtRetLimitNlb.Size = new System.Drawing.Size(186, 27);
+            this.txtRetLimitNlb.TabIndex = 55;
+            this.txtRetLimitNlb.Text = "0";
+            this.txtRetLimitNlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRetLimitNlb_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(568, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(140, 20);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "Return Limit NLB";
             // 
             // txtCreditAmount
             // 
             this.txtCreditAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCreditAmount.ForeColor = System.Drawing.Color.Red;
-            this.txtCreditAmount.Location = new System.Drawing.Point(802, 84);
+            this.txtCreditAmount.Location = new System.Drawing.Point(804, 166);
             this.txtCreditAmount.Name = "txtCreditAmount";
-            this.txtCreditAmount.Size = new System.Drawing.Size(221, 30);
+            this.txtCreditAmount.Size = new System.Drawing.Size(190, 30);
             this.txtCreditAmount.TabIndex = 53;
+            this.txtCreditAmount.Text = "0";
             this.txtCreditAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreditAmount_KeyPress);
             // 
             // lblCreditAmount
             // 
             this.lblCreditAmount.AutoSize = true;
             this.lblCreditAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreditAmount.Location = new System.Drawing.Point(807, 57);
+            this.lblCreditAmount.Location = new System.Drawing.Point(800, 139);
             this.lblCreditAmount.Name = "lblCreditAmount";
             this.lblCreditAmount.Size = new System.Drawing.Size(130, 24);
             this.lblCreditAmount.TabIndex = 52;
@@ -119,18 +170,19 @@ namespace JProject.UI
             // 
             // txtCreditLimit
             // 
-            this.txtCreditLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreditLimit.Location = new System.Drawing.Point(543, 84);
+            this.txtCreditLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreditLimit.Location = new System.Drawing.Point(804, 84);
             this.txtCreditLimit.Name = "txtCreditLimit";
-            this.txtCreditLimit.Size = new System.Drawing.Size(186, 24);
+            this.txtCreditLimit.Size = new System.Drawing.Size(186, 27);
             this.txtCreditLimit.TabIndex = 51;
+            this.txtCreditLimit.Text = "0";
             this.txtCreditLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreditLimit_KeyPress);
             // 
             // lblCreditLimit
             // 
             this.lblCreditLimit.AutoSize = true;
             this.lblCreditLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreditLimit.Location = new System.Drawing.Point(550, 61);
+            this.lblCreditLimit.Location = new System.Drawing.Point(800, 61);
             this.lblCreditLimit.Name = "lblCreditLimit";
             this.lblCreditLimit.Size = new System.Drawing.Size(96, 20);
             this.lblCreditLimit.TabIndex = 50;
@@ -139,9 +191,9 @@ namespace JProject.UI
             // txtAgentNo
             // 
             this.txtAgentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAgentNo.Location = new System.Drawing.Point(283, 84);
+            this.txtAgentNo.Location = new System.Drawing.Point(26, 148);
             this.txtAgentNo.Name = "txtAgentNo";
-            this.txtAgentNo.Size = new System.Drawing.Size(186, 24);
+            this.txtAgentNo.Size = new System.Drawing.Size(240, 24);
             this.txtAgentNo.TabIndex = 48;
             this.txtAgentNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAgentNo_KeyPress);
             // 
@@ -159,7 +211,7 @@ namespace JProject.UI
             // 
             this.lblAgentNo.AutoSize = true;
             this.lblAgentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgentNo.Location = new System.Drawing.Point(288, 61);
+            this.lblAgentNo.Location = new System.Drawing.Point(22, 125);
             this.lblAgentNo.Name = "lblAgentNo";
             this.lblAgentNo.Size = new System.Drawing.Size(75, 20);
             this.lblAgentNo.TabIndex = 47;
@@ -180,7 +232,7 @@ namespace JProject.UI
             this.txtAgentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAgentName.Location = new System.Drawing.Point(24, 84);
             this.txtAgentName.Name = "txtAgentName";
-            this.txtAgentName.Size = new System.Drawing.Size(186, 24);
+            this.txtAgentName.Size = new System.Drawing.Size(242, 24);
             this.txtAgentName.TabIndex = 46;
             this.txtAgentName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAgentName_KeyPress);
             // 
@@ -188,7 +240,7 @@ namespace JProject.UI
             // 
             this.lblAgentName.AutoSize = true;
             this.lblAgentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgentName.Location = new System.Drawing.Point(31, 61);
+            this.lblAgentName.Location = new System.Drawing.Point(22, 61);
             this.lblAgentName.Name = "lblAgentName";
             this.lblAgentName.Size = new System.Drawing.Size(98, 20);
             this.lblAgentName.TabIndex = 37;
@@ -227,7 +279,7 @@ namespace JProject.UI
             this.panel4.Controls.Add(this.lblCash);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(26, 213);
+            this.panel4.Location = new System.Drawing.Point(26, 325);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1032, 402);
             this.panel4.TabIndex = 46;
@@ -236,7 +288,7 @@ namespace JProject.UI
             // 
             this.lblCreditBalance.AutoSize = true;
             this.lblCreditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreditBalance.Location = new System.Drawing.Point(679, 110);
+            this.lblCreditBalance.Location = new System.Drawing.Point(733, 145);
             this.lblCreditBalance.Name = "lblCreditBalance";
             this.lblCreditBalance.Size = new System.Drawing.Size(203, 20);
             this.lblCreditBalance.TabIndex = 80;
@@ -244,12 +296,13 @@ namespace JProject.UI
             // 
             // txtCreditBalance
             // 
-            this.txtCreditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCreditBalance.Location = new System.Drawing.Point(665, 147);
+            this.txtCreditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCreditBalance.Location = new System.Drawing.Point(737, 179);
             this.txtCreditBalance.Name = "txtCreditBalance";
-            this.txtCreditBalance.Size = new System.Drawing.Size(323, 27);
+            this.txtCreditBalance.Size = new System.Drawing.Size(242, 27);
             this.txtCreditBalance.TabIndex = 81;
             this.txtCreditBalance.Text = "0";
+            this.txtCreditBalance.TextChanged += new System.EventHandler(this.txtCreditBalance_TextChanged);
             this.txtCreditBalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCreditBalance_KeyPress);
             // 
             // txtCheque
@@ -260,6 +313,7 @@ namespace JProject.UI
             this.txtCheque.Size = new System.Drawing.Size(323, 24);
             this.txtCheque.TabIndex = 79;
             this.txtCheque.Text = "0";
+            this.txtCheque.TextChanged += new System.EventHandler(this.txtCheque_TextChanged);
             this.txtCheque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCheque_KeyPress);
             // 
             // lblCheque
@@ -276,7 +330,7 @@ namespace JProject.UI
             // 
             this.btnCalc.BackColor = System.Drawing.Color.LightCoral;
             this.btnCalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCalc.Location = new System.Drawing.Point(375, 343);
+            this.btnCalc.Location = new System.Drawing.Point(265, 286);
             this.btnCalc.Name = "btnCalc";
             this.btnCalc.Size = new System.Drawing.Size(114, 35);
             this.btnCalc.TabIndex = 67;
@@ -292,18 +346,18 @@ namespace JProject.UI
             this.txtWinDlb.Size = new System.Drawing.Size(143, 24);
             this.txtWinDlb.TabIndex = 73;
             this.txtWinDlb.Text = "0";
+            this.txtWinDlb.TextChanged += new System.EventHandler(this.txtWinDlb_TextChanged);
             this.txtWinDlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWinDlb_KeyPress);
             // 
             // lblTotAmount
             // 
             this.lblTotAmount.AutoSize = true;
             this.lblTotAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotAmount.Location = new System.Drawing.Point(3, 282);
+            this.lblTotAmount.Location = new System.Drawing.Point(733, 65);
             this.lblTotAmount.Name = "lblTotAmount";
             this.lblTotAmount.Size = new System.Drawing.Size(147, 20);
             this.lblTotAmount.TabIndex = 60;
             this.lblTotAmount.Text = "Total Settlement";
-            this.lblTotAmount.Click += new System.EventHandler(this.lblTotAmount_Click);
             // 
             // lblDlbW
             // 
@@ -318,11 +372,12 @@ namespace JProject.UI
             // txtTotSettle
             // 
             this.txtTotSettle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotSettle.Location = new System.Drawing.Point(174, 275);
+            this.txtTotSettle.Location = new System.Drawing.Point(737, 106);
             this.txtTotSettle.Name = "txtTotSettle";
-            this.txtTotSettle.Size = new System.Drawing.Size(323, 27);
+            this.txtTotSettle.Size = new System.Drawing.Size(242, 27);
             this.txtTotSettle.TabIndex = 61;
             this.txtTotSettle.Text = "0";
+            this.txtTotSettle.TextChanged += new System.EventHandler(this.txtTotSettle_TextChanged);
             this.txtTotSettle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotSettle_KeyPress);
             // 
             // lblNlbW
@@ -343,6 +398,7 @@ namespace JProject.UI
             this.txtWinNlb.Size = new System.Drawing.Size(142, 24);
             this.txtWinNlb.TabIndex = 71;
             this.txtWinNlb.Text = "0";
+            this.txtWinNlb.TextChanged += new System.EventHandler(this.txtWinNlb_TextChanged);
             this.txtWinNlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWinNlb_KeyPress);
             // 
             // txtReturnDlb
@@ -353,6 +409,7 @@ namespace JProject.UI
             this.txtReturnDlb.Size = new System.Drawing.Size(144, 24);
             this.txtReturnDlb.TabIndex = 69;
             this.txtReturnDlb.Text = "0";
+            this.txtReturnDlb.TextChanged += new System.EventHandler(this.txtReturnDlb_TextChanged);
             this.txtReturnDlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReturnDlb_KeyPress);
             // 
             // lblDlbR
@@ -393,6 +450,7 @@ namespace JProject.UI
             this.txtReturnNlb.Size = new System.Drawing.Size(144, 24);
             this.txtReturnNlb.TabIndex = 65;
             this.txtReturnNlb.Text = "0";
+            this.txtReturnNlb.TextChanged += new System.EventHandler(this.txtReturnNlb_TextChanged);
             this.txtReturnNlb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReturnNlb_KeyPress);
             // 
             // lblReturn
@@ -413,6 +471,7 @@ namespace JProject.UI
             this.txtCash.Size = new System.Drawing.Size(323, 24);
             this.txtCash.TabIndex = 63;
             this.txtCash.Text = "0";
+            this.txtCash.TextChanged += new System.EventHandler(this.txtCash_TextChanged);
             this.txtCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCash_KeyPress);
             // 
             // lblCash
@@ -439,20 +498,31 @@ namespace JProject.UI
             // 
             this.btnSave.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(743, 270);
+            this.btnSave.Location = new System.Drawing.Point(737, 286);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(164, 43);
+            this.btnSave.Size = new System.Drawing.Size(171, 53);
             this.btnSave.TabIndex = 55;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(905, 17);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(46, 24);
+            this.lblDate.TabIndex = 54;
+            this.lblDate.Text = "date";
             // 
             // Credit_Settle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1076, 643);
+            this.ClientSize = new System.Drawing.Size(1076, 752);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblHeader1);
@@ -506,5 +576,10 @@ namespace JProject.UI
         private System.Windows.Forms.Label lblCheque;
         private System.Windows.Forms.Label lblCreditBalance;
         private System.Windows.Forms.TextBox txtCreditBalance;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.TextBox txtRetLimitDlb;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtRetLimitNlb;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -26,6 +26,7 @@ namespace JProject.UI
         userDAL Udal = new userDAL();
         ReturnsDAL RetDal = new ReturnsDAL();
         Return_TransactionDAL retTranDal = new Return_TransactionDAL();
+        Balance_TransactionDAL balDal = new Balance_TransactionDAL();
 
         private void Return_Purchase_Load(object sender, EventArgs e)
         {
@@ -37,6 +38,7 @@ namespace JProject.UI
             returnsDT.Columns.Add("Draw no");
             returnsDT.Columns.Add("Draw date");
             returnsDT.Columns.Add("Supplier");
+            returnsDT.Columns.Add("ID");
         }
 
         private void cmbSupplier_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,14 +56,15 @@ namespace JProject.UI
             //Get the index of particular row
             int rowIndex = e.RowIndex;
 
-            //Set values
+            //Set values           
             txtTickName.Text = dgvStock.Rows[rowIndex].Cells[1].Value.ToString();
             txtStBcode.Text = dgvStock.Rows[rowIndex].Cells[2].Value.ToString();
             txtEdBcode.Text = dgvStock.Rows[rowIndex].Cells[3].Value.ToString();
             txtDrno.Text = dgvStock.Rows[rowIndex].Cells[4].Value.ToString();
+            txtDrDate.Text = dgvStock.Rows[rowIndex].Cells[5].Value.ToString();
             txtQty.Text = dgvStock.Rows[rowIndex].Cells[6].Value.ToString();
             txtSup.Text = dgvStock.Rows[rowIndex].Cells[7].Value.ToString();
-            txtDrDate.Text = dgvStock.Rows[rowIndex].Cells[5].Value.ToString();
+            lblID.Text = dgvStock.Rows[rowIndex].Cells[0].Value.ToString();                    
             /*DateTime DrDate = new DateTime();
             string date = dgvStock.Rows[rowIndex].Cells[5].Value.ToString();
             DrDate = DateTime.Parse(date);
@@ -90,6 +93,7 @@ namespace JProject.UI
             string EdBcode = txtEdBcode.Text;
             decimal Qty = decimal.Parse(txtQty.Text);
             decimal line_tot = decimal.Parse(txtLineTotal.Text);
+            int id = int.Parse(lblID.Text);
 
             //calculate total Quantity
             decimal totQty = decimal.Parse(txtTotalQty.Text);
@@ -99,17 +103,41 @@ namespace JProject.UI
             decimal grandTotal = decimal.Parse(txtGndTotal.Text);
             grandTotal = grandTotal + line_tot;
 
-            //Add returns to the Return data Grid view
-            returnsDT.Rows.Add(tName, StBcode, Qty, EdBcode, line_tot, drNo, drDate, supplier);
+            //Check supplier is same or not and id is duplicate or not
+            bool isSupplier = true;
+            for (int i = 0; i < returnsDT.Rows.Count; i++)
+            {
+                string chk_sup = returnsDT.Rows[i][7].ToString();
+                int chk_sId = int.Parse(returnsDT.Rows[i][8].ToString());
+                if (supplier != chk_sup || id == chk_sId)
+                {
+                    isSupplier = false;
+                    break;
+                }
+            }
 
-            //Show data in Return DataGridView
-            dgvReturn.DataSource = returnsDT;
-            clear();
-            txtGndTotal.Text = grandTotal.ToString();
-            txtTotalQty.Text = totQty.ToString();
+            if (isSupplier != true)
+            {
+                // Display Error message
+                MessageBox.Show("Invalid Supplier or Duplicate record!");
+            }
+            else
+            {
+                //Add returns to the Return data Grid view
+                returnsDT.Rows.Add(tName, StBcode, Qty, EdBcode, line_tot, drNo, drDate, supplier, id);
+                lblSup1.Text = supplier;
 
-            //Remove data from Stock DataGridView
-            dgvStock.Rows.Remove(dgvStock.CurrentRow);
+                //Show data in Return DataGridView
+                dgvReturn.DataSource = returnsDT;
+                clear();
+                txtGndTotal.Text = grandTotal.ToString();
+                txtTotalQty.Text = totQty.ToString();
+
+                //Remove data from Stock DataGridView
+                dgvStock.Rows.Remove(dgvStock.CurrentRow);
+            }
+
+            
         }
 
         private void clear()
@@ -122,6 +150,7 @@ namespace JProject.UI
             txtEdBcode.Text = "";
             txtQty.Text = "0";
             txtLineTotal.Text = "0";
+            lblID.Text = "";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -188,6 +217,53 @@ namespace JProject.UI
                     bool R = RetDal.InsertReturn(returnBll);
                     isSuccess = RT && R && stkSuccess;
                 }
+
+                //Updatee balances in Balance Transaction table
+                Balance_TransactionBLL balBll = new Balance_TransactionBLL();
+                DataTable balDT = balDal.SelectLastRowBalances();
+
+                //balBll.Description = "Stock Purchase Return";
+                balBll.Cash = decimal.Parse(balDT.Rows[0][2].ToString());
+                balBll.Bank = decimal.Parse(balDT.Rows[0][3].ToString());
+                balBll.Stock = decimal.Parse(balDT.Rows[0][4].ToString()) - decimal.Parse(txtGndTotal.Text);
+                balBll.Win_Nlb = decimal.Parse(balDT.Rows[0][5].ToString());
+                balBll.Win_Dlb = decimal.Parse(balDT.Rows[0][6].ToString());
+                balBll.Credi_recievables = decimal.Parse(balDT.Rows[0][7].ToString());
+                balBll.Stock_recievablesNLB = decimal.Parse(balDT.Rows[0][8].ToString());
+                balBll.Stock_recievablesDLB = decimal.Parse(balDT.Rows[0][9].ToString());
+                balBll.Credit_PayableNLB = decimal.Parse(balDT.Rows[0][12].ToString());
+                balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString());
+                balBll.Return_PayableNLB = decimal.Parse(balDT.Rows[0][14].ToString());
+                balBll.Return_PayableDLB = decimal.Parse(balDT.Rows[0][15].ToString());
+                balBll.Capital = decimal.Parse(balDT.Rows[0][16].ToString());
+                balBll.Income = decimal.Parse(balDT.Rows[0][17].ToString());
+                balBll.Expenses = decimal.Parse(balDT.Rows[0][18].ToString());
+                balBll.emai_Nlb = decimal.Parse(balDT.Rows[0][21].ToString());
+                balBll.emai_Dlb = decimal.Parse(balDT.Rows[0][22].ToString());
+                balBll.freeIssue_receivableNLB = decimal.Parse(balDT.Rows[0][23].ToString());
+                balBll.freeIssue_receivableDLB = decimal.Parse(balDT.Rows[0][24].ToString());
+                balBll.other_discountGiving = decimal.Parse(balDT.Rows[0][25].ToString());
+
+                if (lblSup1.Text == "NLB")
+                {
+                    balBll.Description = "Stock Purchase Return" + " - NLB";
+                    balBll.Return_recievablesNLB = decimal.Parse(balDT.Rows[0][10].ToString()) + decimal.Parse(txtGndTotal.Text);
+                    balBll.Return_recievablesDLB = decimal.Parse(balDT.Rows[0][11].ToString());                  
+                }
+                else if (lblSup1.Text == "DLB")
+                {
+                    balBll.Description = "Stock Purchase Return" + " - DLB";
+                    balBll.Return_recievablesNLB = decimal.Parse(balDT.Rows[0][10].ToString());
+                    balBll.Return_recievablesDLB = decimal.Parse(balDT.Rows[0][11].ToString()) + decimal.Parse(txtGndTotal.Text);
+                }
+
+                balBll.added_date = DateTime.Now;
+                balBll.added_by = usr.username;
+
+                bool isBalanceSettle = balDal.UpdateTransactionBalance(balBll);
+
+
+
 
                 if (isSuccess == true)
                 {

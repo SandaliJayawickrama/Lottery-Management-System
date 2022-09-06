@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace JProject.UI
 {
-    public partial class Purchase_Order : Form
+    public partial class InsPurchase_Order : Form
     {
-        public Purchase_Order()
+        public InsPurchase_Order()
         {
             InitializeComponent();
         }
@@ -28,10 +28,10 @@ namespace JProject.UI
         PO_TransactionDAL PoTransDal = new PO_TransactionDAL();
         Balance_TransactionDAL balDal = new Balance_TransactionDAL();
 
-        private void Purchase_Order_Load(object sender, EventArgs e)
+        private void InsPurchase_Order_Load(object sender, EventArgs e)
         {
-            string cate = txtCat.Text;
-            txtPoNo.Text = PoTransDal.CreatePurchaseOrderNo(cate);
+            string cat = txtCat.Text;
+            txtPoNo.Text = PoTransDal.CreatePurchaseOrderNo(cat);
 
             //Specify columns for PurchaseDataTable          
             purOrderDT.Columns.Add("Ticket Name");
@@ -73,7 +73,6 @@ namespace JProject.UI
                 txtTickName.Text = "";
                 txtSup.Text = "";
                 txtUprice.Text = "0";
-                dtpDrdate.Text = "";
                 txtQty.Text = "0";
                 txtLineTotal.Text = "0";
                 return;
@@ -86,7 +85,6 @@ namespace JProject.UI
             txtTickName.Text = t.ticket_name;
             txtSup.Text = t.ticket_type;
             txtUprice.Text = t.ticket_Uprice.ToString();
-
         }
 
         private void txtQty_TextChanged(object sender, EventArgs e)
@@ -106,13 +104,13 @@ namespace JProject.UI
                 //display line-total in text boxes
                 txtLineTotal.Text = lineTotal.ToString();
             }
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string Tname = txtTickName.Text;
-            DateTime drawDate = DateTime.Parse(dtpDrdate.Text);
+            //DateTime drawDate = DateTime.Parse("0001-01-01");
+            DateTime drawDate = DateTime.Parse("1999-01-01");
             decimal Uprice = decimal.Parse(txtUprice.Text);
             decimal Qty = decimal.Parse(txtQty.Text);
             decimal lineTotal = decimal.Parse(txtLineTotal.Text);
@@ -149,9 +147,9 @@ namespace JProject.UI
                 //Display Error message
                 MessageBox.Show("Enter all details");
             }
-            else if (category == "" || category == "Instant" || category == "Special Instant")
+            else if (category == "" || category == "Draw" || category == "Special Draw")
             {
-                MessageBox.Show("Cannot add Instant Tickets");
+                MessageBox.Show("Cannot add Draw Tickets");
             }
             else if (isSupplier != true)
             {
@@ -176,8 +174,7 @@ namespace JProject.UI
         {
             txtSearch.Text = "";
             txtTickName.Text = "";
-            dtpDrdate.Text = "";
-            txtUprice.Text = "0";   
+            txtUprice.Text = "0";
             txtQty.Text = "0";
             txtLineTotal.Text = "0";
             txtSup.Text = "";
@@ -316,14 +313,14 @@ namespace JProject.UI
             decimal EmaiDlb = decimal.Parse(txtScanDlb.Text);
             decimal balEmaiDlb = decimal.Parse(lblScanBalDlb.Text);
 
-            if (supplier == "NLB") 
+            if (supplier == "NLB")
             {
-                if(txtScanDlb.Text == "0" && txtRetDlb.Text == "0" && EmaiNlb <= balEmaiNlb)
+                if (txtScanDlb.Text == "0" && txtRetDlb.Text == "0" && EmaiNlb <= balEmaiNlb)
                 {
                     isSup = true;
-                }         
+                }
             }
-            else if(supplier == "DLB") 
+            else if (supplier == "DLB")
             {
                 if (txtScanNlb.Text == "0" && txtRetNlb.Text == "0" && EmaiDlb <= balEmaiDlb)
                 {
@@ -392,21 +389,7 @@ namespace JProject.UI
 
                     //Insert Purchases order into Database
                     bool P = putOrderDal.InsertPurchaseOrders(pur_order);
-                    isSuccess = PT && P;
-
-                    //Get Stock
-                    /*StockBLL stock = new StockBLL();
-
-                    stock.ticket_name = purOrderDT.Rows[i][0].ToString();
-                    stock.starting_Bcode = purOrderDT.Rows[i][4].ToString();
-                    stock.ending_Bcode = purOrderDT.Rows[i][5].ToString();
-                    stock.draw_no = purOrderDT.Rows[i][6].ToString();
-                    stock.draw_date = DateTime.Parse(purOrderDT.Rows[i][7].ToString());
-                    stock.quantity = decimal.Parse(purOrderDT.Rows[i][2].ToString());
-                    stock.supplier = purOrderDT.Rows[i][8].ToString();
-
-                    bool stkSuccess = false;
-                    stkSuccess = StDal.InsertStock(stock);*/
+                    isSuccess = PT && P;                   
                 }
 
                 //Updatee balances in Balance Transaction table
@@ -421,7 +404,7 @@ namespace JProject.UI
                 balBll.Return_recievablesNLB = decimal.Parse(balDT.Rows[0][10].ToString()) - decimal.Parse(txtRetNlb.Text);
                 balBll.Return_recievablesDLB = decimal.Parse(balDT.Rows[0][11].ToString()) - decimal.Parse(txtRetDlb.Text);
 
-                if(txtSup1.Text == "NLB")
+                if (txtSup1.Text == "NLB")
                 {
                     balBll.Credit_PayableNLB = decimal.Parse(balDT.Rows[0][12].ToString()) + decimal.Parse(txtCredit.Text);
                     balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString());
@@ -429,7 +412,7 @@ namespace JProject.UI
                     balBll.Stock_recievablesNLB = decimal.Parse(balDT.Rows[0][8].ToString()) + decimal.Parse(txtGndTotal.Text);
                     balBll.Stock_recievablesDLB = decimal.Parse(balDT.Rows[0][9].ToString());
                 }
-                else if(txtSup1.Text == "DLB")
+                else if (txtSup1.Text == "DLB")
                 {
                     balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString()) + decimal.Parse(txtCredit.Text);
                     balBll.Credit_PayableNLB = decimal.Parse(balDT.Rows[0][12].ToString());
@@ -443,7 +426,7 @@ namespace JProject.UI
                 balBll.Win_Dlb = decimal.Parse(balDT.Rows[0][6].ToString());
                 balBll.Credi_recievables = decimal.Parse(balDT.Rows[0][7].ToString());
                 balBll.Return_PayableNLB = decimal.Parse(balDT.Rows[0][14].ToString());
-                balBll.Return_PayableDLB = decimal.Parse(balDT.Rows[0][15].ToString());                                                   
+                balBll.Return_PayableDLB = decimal.Parse(balDT.Rows[0][15].ToString());
                 balBll.Capital = decimal.Parse(balDT.Rows[0][16].ToString());
                 balBll.Income = decimal.Parse(balDT.Rows[0][17].ToString());
                 balBll.Expenses = decimal.Parse(balDT.Rows[0][18].ToString());
@@ -462,9 +445,9 @@ namespace JProject.UI
 
                 bool isSuplier = checkSupplierAndBalances();
 
-                bool isAllSuccess = isSuccess && isBalanceSettle;           
+                bool isAllSuccess = isSuccess && isBalanceSettle;
 
-                if (isAllSuccess == true && balance == 0 && txtSup1.Text != "" && isSuplier==true)
+                if (isAllSuccess == true && balance == 0 && txtSup1.Text != "" && isSuplier == true)
                 {
                     //Purchase Complete
                     scope.Complete();
@@ -482,11 +465,10 @@ namespace JProject.UI
                     txtTickName.Text = "";
                     txtSup.Text = "";
                     txtUprice.Text = "0";
-                    dtpDrdate.Text = "";
                     txtQty.Text = "0";
                     txtLineTotal.Text = "0";
                     txtTotalQty.Text = "0";
-                    txtGndTotal.Text = "0";               
+                    txtGndTotal.Text = "0";
                     txtCash.Text = "0";
                     txtBank.Text = "0";
                     txtScanNlb.Text = "0";
@@ -496,7 +478,7 @@ namespace JProject.UI
                     txtCredit.Text = "0";
                     txtBalance.Text = "0";
                 }
-                else if(isSuplier == false)
+                else if (isSuplier == false)
                 {
                     //Error message
                     MessageBox.Show("Invalid Settlement..!");
@@ -508,7 +490,7 @@ namespace JProject.UI
                 }
             }
         }
-        
+
         private void txtCredit_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;

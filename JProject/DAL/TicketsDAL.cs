@@ -207,7 +207,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "SELECT ticket_name, ticket_type, ticket_Uprice FROM tickets WHERE ticket_name LIKE '%"+keyword+"%' ";
+                string sql = "SELECT ticket_name, ticket_type, ticket_Uprice, category FROM tickets WHERE ticket_name LIKE '%" + keyword+"%' ";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                 conn.Open();
@@ -221,6 +221,7 @@ namespace JProject.DAL
                     tPurchase.ticket_name = dt.Rows[0]["ticket_name"].ToString();
                     tPurchase.ticket_type = dt.Rows[0]["ticket_type"].ToString();
                     tPurchase.ticket_Uprice = decimal.Parse(dt.Rows[0]["ticket_Uprice"].ToString());
+                    tPurchase.category = dt.Rows[0]["category"].ToString();
                 }
             }
             catch(Exception ex)

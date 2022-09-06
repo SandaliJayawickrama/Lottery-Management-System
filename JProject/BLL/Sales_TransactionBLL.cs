@@ -25,6 +25,7 @@ namespace JProject.BLL
         public string added_by { get; set; }
         public decimal free_nlb { get; set; }
         public decimal free_dlb { get; set; }
-        public DataTable SalesTrans { get; set; }
+        public decimal other { get; set; }
+        public DataTable SalesTrans { get; set; }        
     }
 }

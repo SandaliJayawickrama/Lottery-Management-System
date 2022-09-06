@@ -29,21 +29,13 @@ namespace JProject.UI
         DataTable SalesDT = new DataTable();
         SalesDAL Sdal = new SalesDAL();
         Instant_StockDAL InsStkDal = new Instant_StockDAL();
-
-        private void txtAgentName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        Balance_TransactionDAL balDal = new Balance_TransactionDAL();
 
         private void label11_Click(object sender, EventArgs e)
         {
 
         }
+
 
         private void txtSearchAgent_TextChanged(object sender, EventArgs e)
         {
@@ -85,6 +77,7 @@ namespace JProject.UI
                 txtLineTotal.Text = "0";
                 txtInventory.Text = "0";
                 txtTotInven.Text = "0";
+                lblCategory.Text = "";
                 return;
             }
 
@@ -95,6 +88,7 @@ namespace JProject.UI
             txtTname.Text = t.ticket_name;
             txtSupplier.Text = t.ticket_type;
             txtUprice.Text = t.ticket_Uprice.ToString();
+            lblCategory.Text = t.category;
         }
 
         private void txtAgentName_KeyPress(object sender, KeyPressEventArgs e)
@@ -212,60 +206,40 @@ namespace JProject.UI
             {
                 e.Handled = true;
             }
-        }
-
-        private void lblTname_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void txtInventory_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvSalesStock_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void txtDrawDate_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dgvSalesStock_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
+        }     
+      
         private void txtTname_TextChanged(object sender, EventArgs e)
+        {
+            //string Tname = txtTname.Text;
+            //string sup = txtSupplier.Text;
+            //string category = Tdal.GetTicketCategory(Tname, sup);
+            //string category = lblCategory.Text;
+
+            /*if (category== "Instant" || category== "Special Instant")
+            {
+                //decimal inventory = 0;
+                decimal inventory = InsStkDal.Get_InsInventoryBalance(Tname, sup);
+
+                //Set inventrory balance
+                txtInventory.Text = inventory.ToString();
+            }*/
+        }
+
+        private void lblCategory_TextChanged(object sender, EventArgs e)
         {
             string Tname = txtTname.Text;
             string sup = txtSupplier.Text;
-            string category = Tdal.GetTicketCategory(Tname, sup);
-
-            if(category== "Instant" || category== "Special Instant")
+            string category = lblCategory.Text;
+            if (category == "Instant" || category == "Special Instant")
             {
-                decimal inventory = 0;
-                inventory = InsStkDal.Get_InsInventoryBalance(Tname, sup);
+                //decimal inventory = 0;
+                decimal inventory = InsStkDal.Get_InsInventoryBalance(Tname, sup);
 
                 //Set inventrory balance
                 txtInventory.Text = inventory.ToString();
             }
-        }     
+
+        }
 
         private void txtDrawNo_TextChanged(object sender, EventArgs e)
         {
@@ -356,6 +330,15 @@ namespace JProject.UI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            string category = lblCategory.Text;          
+
+            if(category == "Instant" || category == "Special Instant")
+            {
+                txtDrawNo.Text = "NULL";
+                txtStBcode.Text = "0";
+                txtEdBcode.Text = "0";
+            }
+
             string tikName = txtTname.Text;
             string drNo = txtDrawNo.Text;
             string drDate = txtDrawDate.Text.ToString();
@@ -421,11 +404,6 @@ namespace JProject.UI
             txtTotInven.Text = "0";
         }
 
-        private void txtStBcode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             //Get values for Sales Transaction
@@ -445,6 +423,7 @@ namespace JProject.UI
             salesTranBll.added_date = DateTime.Now;
             salesTranBll.free_nlb = decimal.Parse(txtFreeNlb.Text);
             salesTranBll.free_dlb = decimal.Parse(txtFreeDlb.Text);
+            salesTranBll.other = decimal.Parse(txtOther.Text);
 
             //get the username of logged in user
             string username = Login.loggedIn;
@@ -541,12 +520,45 @@ namespace JProject.UI
                         stkSuccess = InsStkDal.Decrease_InsStockQty(insStk.ticket_name, insStk.quantity);
                     }
                     
-
                     //Insert sales into Database
                     bool SalesSuccess = Sdal.InsertSales(sales);
 
                     isSuccess = StranSuccess && stkSuccess && SalesSuccess && AgCrSuccess;
                 }
+
+                //Updatee balances in Balance Transaction table
+                Balance_TransactionBLL balBll = new Balance_TransactionBLL();
+                DataTable balDT = balDal.SelectLastRowBalances();
+
+                balBll.Description = "Sales Transaction";
+                balBll.Cash = decimal.Parse(balDT.Rows[0][2].ToString()) + decimal.Parse(txtCash.Text);             
+                balBll.Stock = decimal.Parse(balDT.Rows[0][4].ToString()) - decimal.Parse(txtTotAmount.Text);
+                balBll.Win_Nlb = decimal.Parse(balDT.Rows[0][5].ToString()) + decimal.Parse(txtWinNlb.Text);
+                balBll.Win_Dlb = decimal.Parse(balDT.Rows[0][6].ToString()) + decimal.Parse(txtWinDlb.Text);
+                balBll.Credi_recievables = decimal.Parse(balDT.Rows[0][7].ToString()) + decimal.Parse(txtCredit.Text);              
+                balBll.Return_PayableNLB = decimal.Parse(balDT.Rows[0][14].ToString()) - decimal.Parse(txtReturnNlb.Text);
+                balBll.Return_PayableDLB = decimal.Parse(balDT.Rows[0][15].ToString()) - decimal.Parse(txtReturnDlb.Text);
+                balBll.freeIssue_receivableNLB = decimal.Parse(balDT.Rows[0][23].ToString()) + decimal.Parse(txtFreeNlb.Text);
+                balBll.freeIssue_receivableDLB = decimal.Parse(balDT.Rows[0][24].ToString()) + decimal.Parse(txtFreeDlb.Text);
+                balBll.other_discountGiving = decimal.Parse(balDT.Rows[0][25].ToString()) + decimal.Parse(txtOther.Text);
+
+                balBll.Bank = decimal.Parse(balDT.Rows[0][3].ToString());
+                balBll.Stock_recievablesNLB = decimal.Parse(balDT.Rows[0][8].ToString());
+                balBll.Stock_recievablesDLB = decimal.Parse(balDT.Rows[0][9].ToString());
+                balBll.Return_recievablesNLB = decimal.Parse(balDT.Rows[0][10].ToString());
+                balBll.Return_recievablesDLB = decimal.Parse(balDT.Rows[0][11].ToString());
+                balBll.Credit_PayableNLB = decimal.Parse(balDT.Rows[0][12].ToString());
+                balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString());            
+                balBll.Capital = decimal.Parse(balDT.Rows[0][16].ToString());
+                balBll.Income = decimal.Parse(balDT.Rows[0][17].ToString());
+                balBll.Expenses = decimal.Parse(balDT.Rows[0][18].ToString());
+                balBll.emai_Nlb = decimal.Parse(balDT.Rows[0][21].ToString());
+                balBll.emai_Dlb = decimal.Parse(balDT.Rows[0][22].ToString());
+
+                balBll.added_date = DateTime.Now;
+                balBll.added_by = usr.username;
+
+                bool isBalanceSettle = balDal.UpdateTransactionBalance(balBll);
 
                 decimal balance = BalanceCalculation();
                 txtBalance.Text = balance.ToString();
@@ -554,7 +566,26 @@ namespace JProject.UI
                 string agent = txtAgentName.Text;
                 string agentNo = txtAgentNo.Text;
 
-                if (isSuccess == true && balance==0 && agent!="" && agentNo!="")
+                //check entered return amounts
+                decimal retBalNlb = decimal.Parse(txtRetBalNlb.Text);
+                decimal retBalDlb = decimal.Parse(txtRetBalDlb.Text);
+
+                decimal retNlb = decimal.Parse(txtReturnNlb.Text);
+                decimal retDlb = decimal.Parse(txtReturnDlb.Text);
+                bool isReturns = false;
+
+                if (retBalNlb>=retNlb && retBalDlb>=retDlb)
+                {
+                    isReturns = agDal.DecreaseReturnAmount(AgentName, AgentNo, retNlb, retDlb);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Return amount!");
+                }
+
+                bool isAllSuccess = isSuccess && isBalanceSettle;
+
+                if (isAllSuccess == true && balance==0 && agent!="" && agentNo!="" && isReturns==true)
                 {
                     scope.Complete();
                     MessageBox.Show("Successfull");
@@ -589,17 +620,13 @@ namespace JProject.UI
                     txtBalance.Text = "0";
                     txtFreeNlb.Text = "0";
                     txtFreeDlb.Text = "0";
+                    txtOther.Text = "0";
                 }
                 else
                 {
                     MessageBox.Show("Faild to add sales");
                 }
             }
-        }
-
-        private void txtCash_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private decimal BalanceCalculation()
@@ -613,10 +640,11 @@ namespace JProject.UI
             decimal credit = decimal.Parse(txtCredit.Text);
             decimal freeN = decimal.Parse(txtFreeNlb.Text);
             decimal freeD = decimal.Parse(txtFreeDlb.Text);
+            decimal other = decimal.Parse(txtOther.Text);
 
-            decimal balance = total - (cash + retN + retD + winN + winD + credit + freeN + freeD);
+            decimal balance = total - (cash + retN + retD + winN + winD + credit + freeN + freeD + other);
 
-            if (cash==0 && retN==0 && retD==0 && winN==0 && winD==0 && credit==0 && freeN==0 && freeD==0)
+            if (cash==0 && retN==0 && retD==0 && winN==0 && winD==0 && credit==0 && freeN==0 && freeD==0 && other==0)
             {
                 balance = total;
             }
@@ -639,12 +667,7 @@ namespace JProject.UI
             txtInventory.Text = dgvSalesStock.Rows[rowIndex].Cells[6].Value.ToString();
             txtStBcode.Text = dgvSalesStock.Rows[rowIndex].Cells[2].Value.ToString();
         }
-
-        private void txtDrawNo_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
+     
         private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
@@ -726,11 +749,6 @@ namespace JProject.UI
             }
         }
 
-        private void txtTotAmount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
@@ -740,9 +758,146 @@ namespace JProject.UI
             }
         }
 
-        private void txtInvNo_TextChanged(object sender, EventArgs e)
+        private void txtLineTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
         }
+
+        private void txtEdBcode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAgentNo_TextChanged(object sender, EventArgs e)
+        {
+            string agentName = txtAgentName.Text;
+            string agentNo = txtAgentNo.Text;
+
+            //Check the values
+            if (agentName == "" || agentNo == "")
+            {
+                txtCreditBal.Text = "0";
+                txtRetBalNlb.Text = "0";
+                txtRetBalDlb.Text = "0";
+                return;
+            }
+
+            //get balances   
+            AgentBLL agnBll = agDal.GetCreditAndReturnBalances(agentName, agentNo);
+
+            //Values display in text boxes
+            txtCreditBal.Text = agnBll.credit_amount.ToString();
+            txtRetBalNlb.Text = agnBll.returnBal_nlb.ToString();
+            txtRetBalDlb.Text = agnBll.returnBal_dlb.ToString();
+        }
+
+        private void txtCreditBal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRetBalNlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRetBalDlb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) || Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCash_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCash.Text.ToString() == "")
+            {
+                txtCash.Text = "0";
+            }
+        }
+
+        private void txtCredit_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCredit.Text.ToString() == "")
+            {
+                txtCredit.Text = "0";
+            }
+        }
+
+        private void txtFreeNlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtFreeNlb.Text.ToString() == "")
+            {
+                txtFreeNlb.Text = "0";
+            }
+        }
+
+        private void txtFreeDlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtFreeDlb.Text.ToString() == "")
+            {
+                txtFreeDlb.Text = "0";
+            }
+        }
+
+        private void txtReturnNlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtReturnNlb.Text.ToString() == "")
+            {
+                txtReturnNlb.Text = "0";
+            }
+        }
+
+        private void txtReturnDlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtReturnDlb.Text.ToString() == "")
+            {
+                txtReturnDlb.Text = "0";
+            }
+        }
+
+        private void txtOther_TextChanged(object sender, EventArgs e)
+        {
+            if (txtOther.Text.ToString() == "")
+            {
+                txtOther.Text = "0";
+            }
+        }
+
+        private void txtWinNlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtReturnNlb.Text.ToString() == "")
+            {
+                txtReturnNlb.Text = "0";
+            }
+        }
+
+        private void txtWinDlb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtReturnDlb.Text.ToString() == "")
+            {
+                txtReturnDlb.Text = "0";
+            }
+        }
+
+        
     }
 }

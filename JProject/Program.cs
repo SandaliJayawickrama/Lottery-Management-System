@@ -18,11 +18,11 @@ namespace JProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new InsStock_List());
-            //Application.Run(new Login());
+            Application.Run(new Login());
             //Application.Run(new Purchase_Order());
-            Application.Run(new Purchase());
+            //Application.Run(new Return_Purchase());
             //Application.Run(new AdminDashboard());
-            //Application.Run(new Balances_Management());
+            //Application.Run(new Return_Purchase());
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -65,6 +66,38 @@ namespace JProject.DAL
 
             return isSuccess;
         }
+        #endregion
+
+        #region Select Today draw Dated Sales Tickets for Sales_Return 
+        public DataTable SelectTodayDatedDrawSales()
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            DataTable dt = new DataTable();
+
+            try
+            {
+                string sql = "SELECT * FROM sales WHERE draw_date = cast(getdate() as Date)";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                conn.Open();
+
+                adapter.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return dt;
+        }
+
         #endregion
     }
 }

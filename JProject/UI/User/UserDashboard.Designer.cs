@@ -37,33 +37,36 @@ namespace JProject.UI
             this.label2 = new System.Windows.Forms.Label();
             this.menuAdmin = new System.Windows.Forms.MenuStrip();
             this.itemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAgentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditSettleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agentListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ticketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateTicketsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ticketListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNewDrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNewInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseStockInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drawInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.purchaseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.returnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.purchaseReturnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.winToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesSummeryDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockDrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stockInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.picDashboard = new System.Windows.Forms.PictureBox();
             this.lblloggedIn = new System.Windows.Forms.Label();
             this.labelUser = new System.Windows.Forms.Label();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.labelFooter = new System.Windows.Forms.Label();
-            this.addAgentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.creditSettleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.agentListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ticketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addNewTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateTicketsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ticketListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseReturnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesSummeryDailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockDrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockInstantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuAdmin.SuspendLayout();
@@ -83,6 +86,7 @@ namespace JProject.UI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1318, 156);
             this.panel1.TabIndex = 8;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // pictureBox1
             // 
@@ -131,7 +135,7 @@ namespace JProject.UI
             this.menuAdmin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemsToolStripMenuItem,
             this.salesToolStripMenuItem,
-            this.purchaseToolStripMenuItem,
+            this.purchasesToolStripMenuItem,
             this.returnToolStripMenuItem,
             this.stockToolStripMenuItem,
             this.winToolStripMenuItem,
@@ -153,6 +157,27 @@ namespace JProject.UI
             this.itemsToolStripMenuItem.Text = "Agents";
             this.itemsToolStripMenuItem.Click += new System.EventHandler(this.itemsToolStripMenuItem_Click);
             // 
+            // addAgentsToolStripMenuItem
+            // 
+            this.addAgentsToolStripMenuItem.Name = "addAgentsToolStripMenuItem";
+            this.addAgentsToolStripMenuItem.Size = new System.Drawing.Size(188, 28);
+            this.addAgentsToolStripMenuItem.Text = "Add Agents";
+            this.addAgentsToolStripMenuItem.Click += new System.EventHandler(this.addAgentsToolStripMenuItem_Click);
+            // 
+            // creditSettleToolStripMenuItem
+            // 
+            this.creditSettleToolStripMenuItem.Name = "creditSettleToolStripMenuItem";
+            this.creditSettleToolStripMenuItem.Size = new System.Drawing.Size(188, 28);
+            this.creditSettleToolStripMenuItem.Text = "Credit Settle";
+            this.creditSettleToolStripMenuItem.Click += new System.EventHandler(this.creditSettleToolStripMenuItem_Click);
+            // 
+            // agentListToolStripMenuItem
+            // 
+            this.agentListToolStripMenuItem.Name = "agentListToolStripMenuItem";
+            this.agentListToolStripMenuItem.Size = new System.Drawing.Size(188, 28);
+            this.agentListToolStripMenuItem.Text = "Agent List";
+            this.agentListToolStripMenuItem.Click += new System.EventHandler(this.agentListToolStripMenuItem_Click);
+            // 
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -163,30 +188,89 @@ namespace JProject.UI
             this.salesToolStripMenuItem.Text = "Tickets";
             this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
             // 
-            // purchaseToolStripMenuItem
+            // ticketToolStripMenuItem
             // 
-            this.purchaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.purchaseToolStripMenuItem1,
-            this.purchaseListToolStripMenuItem,
-            this.purchaseListToolStripMenuItem1});
-            this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
-            this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
-            this.purchaseToolStripMenuItem.Text = "Purchases";
-            this.purchaseToolStripMenuItem.Click += new System.EventHandler(this.purchaseToolStripMenuItem_Click);
+            this.ticketToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addNewTicketToolStripMenuItem,
+            this.updateTicketsToolStripMenuItem});
+            this.ticketToolStripMenuItem.Name = "ticketToolStripMenuItem";
+            this.ticketToolStripMenuItem.Size = new System.Drawing.Size(169, 28);
+            this.ticketToolStripMenuItem.Text = "Ticket";
             // 
-            // purchaseToolStripMenuItem1
+            // addNewTicketToolStripMenuItem
             // 
-            this.purchaseToolStripMenuItem1.Name = "purchaseToolStripMenuItem1";
-            this.purchaseToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
-            this.purchaseToolStripMenuItem1.Text = "Purchase - Draw";
-            this.purchaseToolStripMenuItem1.Click += new System.EventHandler(this.purchaseToolStripMenuItem1_Click);
+            this.addNewTicketToolStripMenuItem.Name = "addNewTicketToolStripMenuItem";
+            this.addNewTicketToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.addNewTicketToolStripMenuItem.Text = "Add New Ticket";
+            this.addNewTicketToolStripMenuItem.Click += new System.EventHandler(this.addNewTicketToolStripMenuItem_Click);
+            // 
+            // updateTicketsToolStripMenuItem
+            // 
+            this.updateTicketsToolStripMenuItem.Name = "updateTicketsToolStripMenuItem";
+            this.updateTicketsToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.updateTicketsToolStripMenuItem.Text = "Update Tickets";
+            this.updateTicketsToolStripMenuItem.Click += new System.EventHandler(this.updateTicketsToolStripMenuItem_Click);
+            // 
+            // ticketListToolStripMenuItem
+            // 
+            this.ticketListToolStripMenuItem.Name = "ticketListToolStripMenuItem";
+            this.ticketListToolStripMenuItem.Size = new System.Drawing.Size(169, 28);
+            this.ticketListToolStripMenuItem.Text = "Ticket List";
+            this.ticketListToolStripMenuItem.Click += new System.EventHandler(this.ticketListToolStripMenuItem_Click);
+            // 
+            // purchasesToolStripMenuItem
+            // 
+            this.purchasesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.purchaseOrdersToolStripMenuItem,
+            this.purchaseStockInToolStripMenuItem,
+            this.purchaseListToolStripMenuItem});
+            this.purchasesToolStripMenuItem.Name = "purchasesToolStripMenuItem";
+            this.purchasesToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
+            this.purchasesToolStripMenuItem.Text = "Purchases";
+            // 
+            // purchaseOrdersToolStripMenuItem
+            // 
+            this.purchaseOrdersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createNewDrawToolStripMenuItem,
+            this.createNewInstantToolStripMenuItem});
+            this.purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
+            this.purchaseOrdersToolStripMenuItem.Size = new System.Drawing.Size(242, 28);
+            this.purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
+            // 
+            // createNewDrawToolStripMenuItem
+            // 
+            this.createNewDrawToolStripMenuItem.Name = "createNewDrawToolStripMenuItem";
+            this.createNewDrawToolStripMenuItem.Size = new System.Drawing.Size(254, 28);
+            this.createNewDrawToolStripMenuItem.Text = "Create New - Draw";
+            this.createNewDrawToolStripMenuItem.Click += new System.EventHandler(this.createNewDrawToolStripMenuItem_Click);
+            // 
+            // createNewInstantToolStripMenuItem
+            // 
+            this.createNewInstantToolStripMenuItem.Name = "createNewInstantToolStripMenuItem";
+            this.createNewInstantToolStripMenuItem.Size = new System.Drawing.Size(254, 28);
+            this.createNewInstantToolStripMenuItem.Text = "Create New - Instant";
+            this.createNewInstantToolStripMenuItem.Click += new System.EventHandler(this.createNewInstantToolStripMenuItem_Click);
+            // 
+            // purchaseStockInToolStripMenuItem
+            // 
+            this.purchaseStockInToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drawInstantToolStripMenuItem});
+            this.purchaseStockInToolStripMenuItem.Name = "purchaseStockInToolStripMenuItem";
+            this.purchaseStockInToolStripMenuItem.Size = new System.Drawing.Size(242, 28);
+            this.purchaseStockInToolStripMenuItem.Text = "Purchase - Stock In";
+            // 
+            // drawInstantToolStripMenuItem
+            // 
+            this.drawInstantToolStripMenuItem.Name = "drawInstantToolStripMenuItem";
+            this.drawInstantToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.drawInstantToolStripMenuItem.Text = "Draw / Instant";
+            this.drawInstantToolStripMenuItem.Click += new System.EventHandler(this.drawInstantToolStripMenuItem_Click);
             // 
             // purchaseListToolStripMenuItem
             // 
             this.purchaseListToolStripMenuItem.Name = "purchaseListToolStripMenuItem";
-            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(233, 28);
-            this.purchaseListToolStripMenuItem.Text = "Purchase - Instant";
-            this.purchaseListToolStripMenuItem.Click += new System.EventHandler(this.purchaseListToolStripMenuItem_Click);
+            this.purchaseListToolStripMenuItem.Size = new System.Drawing.Size(242, 28);
+            this.purchaseListToolStripMenuItem.Text = "Purchase List";
             // 
             // returnToolStripMenuItem
             // 
@@ -197,6 +281,20 @@ namespace JProject.UI
             this.returnToolStripMenuItem.Size = new System.Drawing.Size(62, 27);
             this.returnToolStripMenuItem.Text = "Sales";
             // 
+            // salesToolStripMenuItem1
+            // 
+            this.salesToolStripMenuItem1.Name = "salesToolStripMenuItem1";
+            this.salesToolStripMenuItem1.Size = new System.Drawing.Size(162, 28);
+            this.salesToolStripMenuItem1.Text = "Sales";
+            this.salesToolStripMenuItem1.Click += new System.EventHandler(this.salesToolStripMenuItem1_Click);
+            // 
+            // salesListToolStripMenuItem
+            // 
+            this.salesListToolStripMenuItem.Name = "salesListToolStripMenuItem";
+            this.salesListToolStripMenuItem.Size = new System.Drawing.Size(162, 28);
+            this.salesListToolStripMenuItem.Text = "Sales List";
+            this.salesListToolStripMenuItem.Click += new System.EventHandler(this.salesListToolStripMenuItem_Click);
+            // 
             // stockToolStripMenuItem
             // 
             this.stockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -204,6 +302,13 @@ namespace JProject.UI
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(76, 27);
             this.stockToolStripMenuItem.Text = "Return";
+            // 
+            // purchaseReturnsToolStripMenuItem
+            // 
+            this.purchaseReturnsToolStripMenuItem.Name = "purchaseReturnsToolStripMenuItem";
+            this.purchaseReturnsToolStripMenuItem.Size = new System.Drawing.Size(227, 28);
+            this.purchaseReturnsToolStripMenuItem.Text = "Purchase Returns";
+            this.purchaseReturnsToolStripMenuItem.Click += new System.EventHandler(this.purchaseReturnsToolStripMenuItem_Click);
             // 
             // winToolStripMenuItem
             // 
@@ -213,6 +318,13 @@ namespace JProject.UI
             this.winToolStripMenuItem.Size = new System.Drawing.Size(83, 27);
             this.winToolStripMenuItem.Text = "Reports";
             // 
+            // salesSummeryDailyToolStripMenuItem
+            // 
+            this.salesSummeryDailyToolStripMenuItem.Name = "salesSummeryDailyToolStripMenuItem";
+            this.salesSummeryDailyToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
+            this.salesSummeryDailyToolStripMenuItem.Text = "Sales Summery - Daily";
+            this.salesSummeryDailyToolStripMenuItem.Click += new System.EventHandler(this.salesSummeryDailyToolStripMenuItem_Click);
+            // 
             // stockToolStripMenuItem1
             // 
             this.stockToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -221,6 +333,20 @@ namespace JProject.UI
             this.stockToolStripMenuItem1.Name = "stockToolStripMenuItem1";
             this.stockToolStripMenuItem1.Size = new System.Drawing.Size(66, 27);
             this.stockToolStripMenuItem1.Text = "Stock";
+            // 
+            // stockDrawToolStripMenuItem
+            // 
+            this.stockDrawToolStripMenuItem.Name = "stockDrawToolStripMenuItem";
+            this.stockDrawToolStripMenuItem.Size = new System.Drawing.Size(206, 28);
+            this.stockDrawToolStripMenuItem.Text = "Stock - Draw";
+            this.stockDrawToolStripMenuItem.Click += new System.EventHandler(this.stockDrawToolStripMenuItem_Click);
+            // 
+            // stockInstantToolStripMenuItem
+            // 
+            this.stockInstantToolStripMenuItem.Name = "stockInstantToolStripMenuItem";
+            this.stockInstantToolStripMenuItem.Size = new System.Drawing.Size(206, 28);
+            this.stockInstantToolStripMenuItem.Text = "Stock - Instant";
+            this.stockInstantToolStripMenuItem.Click += new System.EventHandler(this.stockInstantToolStripMenuItem_Click);
             // 
             // picDashboard
             // 
@@ -274,106 +400,6 @@ namespace JProject.UI
             this.labelFooter.Text = "Developed By: SRJ";
             this.labelFooter.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // addAgentsToolStripMenuItem
-            // 
-            this.addAgentsToolStripMenuItem.Name = "addAgentsToolStripMenuItem";
-            this.addAgentsToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.addAgentsToolStripMenuItem.Text = "Add Agents";
-            this.addAgentsToolStripMenuItem.Click += new System.EventHandler(this.addAgentsToolStripMenuItem_Click);
-            // 
-            // creditSettleToolStripMenuItem
-            // 
-            this.creditSettleToolStripMenuItem.Name = "creditSettleToolStripMenuItem";
-            this.creditSettleToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.creditSettleToolStripMenuItem.Text = "Credit Settle";
-            this.creditSettleToolStripMenuItem.Click += new System.EventHandler(this.creditSettleToolStripMenuItem_Click);
-            // 
-            // agentListToolStripMenuItem
-            // 
-            this.agentListToolStripMenuItem.Name = "agentListToolStripMenuItem";
-            this.agentListToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.agentListToolStripMenuItem.Text = "Agent List";
-            this.agentListToolStripMenuItem.Click += new System.EventHandler(this.agentListToolStripMenuItem_Click);
-            // 
-            // ticketToolStripMenuItem
-            // 
-            this.ticketToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addNewTicketToolStripMenuItem,
-            this.updateTicketsToolStripMenuItem});
-            this.ticketToolStripMenuItem.Name = "ticketToolStripMenuItem";
-            this.ticketToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.ticketToolStripMenuItem.Text = "Ticket";
-            // 
-            // addNewTicketToolStripMenuItem
-            // 
-            this.addNewTicketToolStripMenuItem.Name = "addNewTicketToolStripMenuItem";
-            this.addNewTicketToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.addNewTicketToolStripMenuItem.Text = "Add New Ticket";
-            this.addNewTicketToolStripMenuItem.Click += new System.EventHandler(this.addNewTicketToolStripMenuItem_Click);
-            // 
-            // updateTicketsToolStripMenuItem
-            // 
-            this.updateTicketsToolStripMenuItem.Name = "updateTicketsToolStripMenuItem";
-            this.updateTicketsToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.updateTicketsToolStripMenuItem.Text = "Update Tickets";
-            this.updateTicketsToolStripMenuItem.Click += new System.EventHandler(this.updateTicketsToolStripMenuItem_Click);
-            // 
-            // ticketListToolStripMenuItem
-            // 
-            this.ticketListToolStripMenuItem.Name = "ticketListToolStripMenuItem";
-            this.ticketListToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.ticketListToolStripMenuItem.Text = "Ticket List";
-            this.ticketListToolStripMenuItem.Click += new System.EventHandler(this.ticketListToolStripMenuItem_Click);
-            // 
-            // purchaseListToolStripMenuItem1
-            // 
-            this.purchaseListToolStripMenuItem1.Name = "purchaseListToolStripMenuItem1";
-            this.purchaseListToolStripMenuItem1.Size = new System.Drawing.Size(233, 28);
-            this.purchaseListToolStripMenuItem1.Text = "Purchase List";
-            this.purchaseListToolStripMenuItem1.Click += new System.EventHandler(this.purchaseListToolStripMenuItem1_Click);
-            // 
-            // salesToolStripMenuItem1
-            // 
-            this.salesToolStripMenuItem1.Name = "salesToolStripMenuItem1";
-            this.salesToolStripMenuItem1.Size = new System.Drawing.Size(224, 28);
-            this.salesToolStripMenuItem1.Text = "Sales";
-            this.salesToolStripMenuItem1.Click += new System.EventHandler(this.salesToolStripMenuItem1_Click);
-            // 
-            // salesListToolStripMenuItem
-            // 
-            this.salesListToolStripMenuItem.Name = "salesListToolStripMenuItem";
-            this.salesListToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.salesListToolStripMenuItem.Text = "Sales List";
-            this.salesListToolStripMenuItem.Click += new System.EventHandler(this.salesListToolStripMenuItem_Click);
-            // 
-            // purchaseReturnsToolStripMenuItem
-            // 
-            this.purchaseReturnsToolStripMenuItem.Name = "purchaseReturnsToolStripMenuItem";
-            this.purchaseReturnsToolStripMenuItem.Size = new System.Drawing.Size(227, 28);
-            this.purchaseReturnsToolStripMenuItem.Text = "Purchase Returns";
-            this.purchaseReturnsToolStripMenuItem.Click += new System.EventHandler(this.purchaseReturnsToolStripMenuItem_Click);
-            // 
-            // salesSummeryDailyToolStripMenuItem
-            // 
-            this.salesSummeryDailyToolStripMenuItem.Name = "salesSummeryDailyToolStripMenuItem";
-            this.salesSummeryDailyToolStripMenuItem.Size = new System.Drawing.Size(266, 28);
-            this.salesSummeryDailyToolStripMenuItem.Text = "Sales Summery - Daily";
-            this.salesSummeryDailyToolStripMenuItem.Click += new System.EventHandler(this.salesSummeryDailyToolStripMenuItem_Click);
-            // 
-            // stockDrawToolStripMenuItem
-            // 
-            this.stockDrawToolStripMenuItem.Name = "stockDrawToolStripMenuItem";
-            this.stockDrawToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.stockDrawToolStripMenuItem.Text = "Stock - Draw";
-            this.stockDrawToolStripMenuItem.Click += new System.EventHandler(this.stockDrawToolStripMenuItem_Click);
-            // 
-            // stockInstantToolStripMenuItem
-            // 
-            this.stockInstantToolStripMenuItem.Name = "stockInstantToolStripMenuItem";
-            this.stockInstantToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.stockInstantToolStripMenuItem.Text = "Stock - Instant";
-            this.stockInstantToolStripMenuItem.Click += new System.EventHandler(this.stockInstantToolStripMenuItem_Click);
-            // 
             // UserDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -413,7 +439,6 @@ namespace JProject.UI
         private System.Windows.Forms.MenuStrip menuAdmin;
         private System.Windows.Forms.ToolStripMenuItem itemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem returnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem winToolStripMenuItem;
@@ -422,8 +447,6 @@ namespace JProject.UI
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Panel panelFooter;
         private System.Windows.Forms.Label labelFooter;
-        private System.Windows.Forms.ToolStripMenuItem purchaseToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem purchaseListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem addAgentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem creditSettleToolStripMenuItem;
@@ -432,12 +455,18 @@ namespace JProject.UI
         private System.Windows.Forms.ToolStripMenuItem addNewTicketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateTicketsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ticketListToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem purchaseListToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem salesListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem purchaseReturnsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesSummeryDailyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockDrawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockInstantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchasesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseOrdersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createNewDrawToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createNewInstantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseStockInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drawInstantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem purchaseListToolStripMenuItem;
     }
 }
