@@ -50,8 +50,8 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Create Draw PO No
-        public string CreatePurchaseOrderNo()
+        #region Create Draw and Instant PO No
+        public string CreatePurchaseOrderNo(string category)
         {
             SqlConnection conn = new SqlConnection(myconnstring);
             string PoNo = "";
@@ -64,8 +64,15 @@ namespace JProject.DAL
                 var mon = DateTime.Now.Month;
                 var da = DateTime.Now.Day;
 
-                PoNo = "Drw/PO-" + yr + "/" + mon + "/" + da + "-" + CurrentIdNo;
-                
+                if(category == "Draw")
+                {
+                    PoNo = "Drw/PO-" + yr + "/" + mon + "/" + da + "-" + CurrentIdNo;
+                }
+                else if(category == "Instant")
+                {
+                    PoNo = "Ins/PO-" + yr + "/" + mon + "/" + da + "-" + CurrentIdNo;
+                }
+                               
             }
             catch (Exception ex)
             {
@@ -184,5 +191,85 @@ namespace JProject.DAL
             return purchase;
         }
         #endregion
+
+        #region Get Current Quantity & amount Balances for Purchase Module 
+        public PO_TransactionBLL GetCurrentBalances(string PoNo, string sup)
+        {
+            SqlConnection conn = new SqlConnection(myconnstring);
+
+            DataTable dt = new DataTable();
+            PO_TransactionBLL purchase = new PO_TransactionBLL();
+
+            try
+            {
+
+                string sql = "SELECT balance_qty, balance_amount FROM po_transaction WHERE po_no=@po_no AND supplier=@supplier";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@po_no", PoNo);
+                cmd.Parameters.AddWithValue("@supplier", sup);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                conn.Open();
+                adapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    purchase.balance_qty = decimal.Parse(dt.Rows[0]["balance_qty"].ToString());
+                    purchase.balance_amount = decimal.Parse(dt.Rows[0]["balance_amount"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return purchase;
+        }
+        #endregion
+
+        #region Update Balance field according to Recieved Quantity in Purchase Module
+        public bool Update_Balances(string po_no, string supplier, decimal balQty, decimal balAmount)
+        {
+            bool isSuccess = false;
+
+            SqlConnection conn = new SqlConnection(myconnstring);
+            try
+            {
+                string sql = "UPDATE po_transaction SET balance_qty=@balance_qty, balance_amount=@balance_amount WHERE po_no=@po_no AND supplier=@supplier";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@balance_qty", balQty);
+                cmd.Parameters.AddWithValue("@balance_amount", balAmount);
+                cmd.Parameters.AddWithValue("@supplier", supplier);
+                cmd.Parameters.AddWithValue("@po_no", po_no);
+
+                conn.Open();
+
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    isSuccess = true;
+                }
+                else
+                {
+                    isSuccess = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return isSuccess;
+        }
+        #endregion
+
     }
 }

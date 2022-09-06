@@ -14,17 +14,17 @@ namespace JProject.BLL
         public DateTime po_date { get; set; }
         public string ticket_Name { get; set; }
         public decimal unit_price { get; set; }
-        public string draw_No { get; set; }
+        public string draw_no { get; set; }
         public DateTime draw_date { get; set; }
         public string starting_Bcode { get; set; }
         public string ending_Bcode { get; set; }
-        public decimal quantity { get; set; }
+        public decimal order_qty { get; set; }
+        public decimal recieved_qty { get; set; }
         public decimal line_total { get; set; }
         public DateTime added_date { get; set; }
         public string added_by { get; set; }
-
-        public string inv_no { get; set; }
-        public DateTime inv_date { get; set; }
-
+  
+        //public string draw_No { get; set; }
+    
     }
 }

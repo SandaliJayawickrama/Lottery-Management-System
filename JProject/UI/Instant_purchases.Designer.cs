@@ -376,7 +376,7 @@ namespace JProject.UI
             // 
             this.btnSave.BackColor = System.Drawing.Color.LightSeaGreen;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(233, 310);
+            this.btnSave.Location = new System.Drawing.Point(233, 318);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(174, 63);
             this.btnSave.TabIndex = 55;

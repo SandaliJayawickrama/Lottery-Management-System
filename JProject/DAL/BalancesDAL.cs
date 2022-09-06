@@ -13,7 +13,7 @@ namespace JProject.DAL
     class BalancesDAL
     {
         static string myconnstring = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
-
+        
         #region Get current cash value from balances table
         public decimal GetCurrentCashValue()
         {
@@ -159,7 +159,10 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Update Balances Management
+
+
+
+        #region Update Balances from Blance Management
         public bool UpdateBalances(decimal cash, decimal bank, decimal payable_Nlb, decimal payable_Dlb)
         {
             bool isSuccess = false;
@@ -242,7 +245,7 @@ namespace JProject.DAL
 
 
 
-        #region Update PayableNlb Balance in Balances from purchases
+        #region Update PayableNlb Balance in Balances from Purchases
         public bool UpdatePayableNlb(decimal payable_Nlb)
         {
             bool isSuccess = false;
@@ -314,6 +317,8 @@ namespace JProject.DAL
         }
         #endregion
 
+
+
         #region Update PayableDlb Balance in Balances from purchases
         public bool UpdatePayableDlb(decimal payable_Dlb)
         {
@@ -352,7 +357,7 @@ namespace JProject.DAL
         }
         #endregion
 
-        #region Increase payableNlb Balance From Purchase
+        #region Increase payableDlb Balance From Purchase
         public bool IncreasepPayableDlbBalance(decimal payDlb)
         {
             bool isSuccess = false;
@@ -385,6 +390,8 @@ namespace JProject.DAL
             return isSuccess;
         }
         #endregion
+
+
 
     }
 }

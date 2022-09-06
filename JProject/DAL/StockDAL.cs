@@ -62,6 +62,9 @@ namespace JProject.DAL
         }
         #endregion
 
+       
+
+
         #region Get Current Inventory Balance From Relevent Column
         public decimal GetCurrentQuantity(string tName, string StBcode)
         {
@@ -384,6 +387,9 @@ namespace JProject.DAL
             return total;
         }
         #endregion
+
+
+
            
         #region Select Today draw Dated Stock for Purchase Return
         public DataTable SelectTodayStock(string supplier)

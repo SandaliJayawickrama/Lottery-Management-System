@@ -65,6 +65,8 @@ namespace JProject.UI
             this.lblGndTotal = new System.Windows.Forms.Label();
             this.lblAgent = new System.Windows.Forms.Label();
             this.txtAgent = new System.Windows.Forms.TextBox();
+            this.lblSup1 = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReturn)).BeginInit();
@@ -246,6 +248,7 @@ namespace JProject.UI
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblID);
             this.panel1.Controls.Add(this.txtTickName);
             this.panel1.Controls.Add(this.txtDrDate);
             this.panel1.Controls.Add(this.btnAdd);
@@ -302,9 +305,9 @@ namespace JProject.UI
             // 
             this.panel3.Controls.Add(this.dgvReturn);
             this.panel3.Controls.Add(this.lblHeader2);
-            this.panel3.Location = new System.Drawing.Point(688, 426);
+            this.panel3.Location = new System.Drawing.Point(736, 426);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(787, 412);
+            this.panel3.Size = new System.Drawing.Size(751, 412);
             this.panel3.TabIndex = 77;
             // 
             // dgvReturn
@@ -317,7 +320,7 @@ namespace JProject.UI
             this.dgvReturn.ReadOnly = true;
             this.dgvReturn.RowHeadersWidth = 51;
             this.dgvReturn.RowTemplate.Height = 24;
-            this.dgvReturn.Size = new System.Drawing.Size(751, 356);
+            this.dgvReturn.Size = new System.Drawing.Size(715, 356);
             this.dgvReturn.TabIndex = 40;
             // 
             // lblHeader2
@@ -336,7 +339,7 @@ namespace JProject.UI
             this.panel2.Controls.Add(this.dgvStock);
             this.panel2.Location = new System.Drawing.Point(12, 426);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(647, 412);
+            this.panel2.Size = new System.Drawing.Size(718, 412);
             this.panel2.TabIndex = 78;
             // 
             // label2
@@ -359,7 +362,7 @@ namespace JProject.UI
             this.dgvStock.ReadOnly = true;
             this.dgvStock.RowHeadersWidth = 51;
             this.dgvStock.RowTemplate.Height = 24;
-            this.dgvStock.Size = new System.Drawing.Size(607, 356);
+            this.dgvStock.Size = new System.Drawing.Size(682, 356);
             this.dgvStock.TabIndex = 40;
             this.dgvStock.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStock_RowHeaderMouseDoubleClick);
             // 
@@ -459,12 +462,35 @@ namespace JProject.UI
             this.txtAgent.Text = "J G Wasantha";
             this.txtAgent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAgent_KeyPress);
             // 
+            // lblSup1
+            // 
+            this.lblSup1.AutoSize = true;
+            this.lblSup1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSup1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblSup1.Location = new System.Drawing.Point(1103, 81);
+            this.lblSup1.Name = "lblSup1";
+            this.lblSup1.Size = new System.Drawing.Size(14, 20);
+            this.lblSup1.TabIndex = 120;
+            this.lblSup1.Text = ".";
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblID.Location = new System.Drawing.Point(22, 122);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(13, 20);
+            this.lblID.TabIndex = 121;
+            this.lblID.Text = ".";
+            // 
             // Return_Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(1482, 850);
+            this.ClientSize = new System.Drawing.Size(1499, 850);
+            this.Controls.Add(this.lblSup1);
             this.Controls.Add(this.txtAgent);
             this.Controls.Add(this.lblAgent);
             this.Controls.Add(this.panel4);
@@ -531,5 +557,7 @@ namespace JProject.UI
         private System.Windows.Forms.TextBox txtTickName;
         private System.Windows.Forms.Label lblAgent;
         private System.Windows.Forms.TextBox txtAgent;
+        private System.Windows.Forms.Label lblSup1;
+        private System.Windows.Forms.Label lblID;
     }
 }

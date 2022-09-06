@@ -48,13 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Balance_TransactionBLL.cs" />
+    <Compile Include="BLL\Cash_DepositBLL.cs" />
     <Compile Include="BLL\Instant_PurchasesBLL.cs" />
     <Compile Include="BLL\Instant_StockBLL.cs" />
     <Compile Include="BLL\PO_TransactionBLL.cs" />
     <Compile Include="BLL\PurchaseBLL.cs" />
     <Compile Include="BLL\Purchase_OrderBLL.cs" />
     <Compile Include="BLL\Purchase_TransactionBLL.cs" />
+    <Compile Include="BLL\ReturnSales_TransactionBLL.cs" />
     <Compile Include="BLL\ReturnsBLL.cs" />
+    <Compile Include="BLL\Return_SalesBLL.cs" />
     <Compile Include="BLL\Return_TransactionBLL.cs" />
     <Compile Include="BLL\SalesBLL.cs" />
     <Compile Include="BLL\Sales_TransactionBLL.cs" />
@@ -65,6 +69,8 @@
     <Compile Include="BLL\AdminBLL\userBLL.cs" />
     <Compile Include="DAL\AgentDAL.cs" />
     <Compile Include="DAL\BalancesDAL.cs" />
+    <Compile Include="DAL\Balance_TransactionDAL.cs" />
+    <Compile Include="DAL\Cash_DepositDAL.cs" />
     <Compile Include="DAL\Instant_PurchasesDAL.cs" />
     <Compile Include="DAL\Instant_StockDAL.cs" />
     <Compile Include="DAL\loginDAL.cs" />
@@ -73,7 +79,9 @@
     <Compile Include="DAL\PurchaseDAL.cs" />
     <Compile Include="DAL\Purchase_OrderDAL.cs" />
     <Compile Include="DAL\Purchase_TransactionDAL.cs" />
+    <Compile Include="DAL\ReturnSales_TransactionDAL.cs" />
     <Compile Include="DAL\ReturnsDAL.cs" />
+    <Compile Include="DAL\Return_SalesDAL.cs" />
     <Compile Include="DAL\Return_TransactionDAL.cs" />
     <Compile Include="DAL\SalesDAL.cs" />
     <Compile Include="DAL\Sales_TransactionDAL.cs" />
@@ -123,11 +131,29 @@
     <Compile Include="UI\Balances_Management.Designer.cs">
       <DependentUpon>Balances_Management.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Cash_Deposit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Cash_Deposit.Designer.cs">
+      <DependentUpon>Cash_Deposit.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Credit_Settle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Credit_Settle.Designer.cs">
       <DependentUpon>Credit_Settle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\InsPurchase_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\InsPurchase_Order.Designer.cs">
+      <DependentUpon>InsPurchase_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Return_Sales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Return_Sales.Designer.cs">
+      <DependentUpon>Return_Sales.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\InsStock_List.cs">
       <SubType>Form</SubType>
@@ -164,12 +190,6 @@
     </Compile>
     <Compile Include="UI\Purchase.Designer.cs">
       <DependentUpon>Purchase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Purchases.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Purchases.Designer.cs">
-      <DependentUpon>Purchases.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Purchase_Infor.cs">
       <SubType>Form</SubType>
@@ -256,8 +276,17 @@
     <EmbeddedResource Include="UI\Balances_Management.resx">
       <DependentUpon>Balances_Management.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Cash_Deposit.resx">
+      <DependentUpon>Cash_Deposit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Credit_Settle.resx">
       <DependentUpon>Credit_Settle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\InsPurchase_Order.resx">
+      <DependentUpon>InsPurchase_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Return_Sales.resx">
+      <DependentUpon>Return_Sales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\InsStock_List.resx">
       <DependentUpon>InsStock_List.cs</DependentUpon>
@@ -276,9 +305,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Purchase.resx">
       <DependentUpon>Purchase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Purchases.resx">
-      <DependentUpon>Purchases.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Purchase_Infor.resx">
       <DependentUpon>Purchase_Infor.cs</DependentUpon>
@@ -320,9 +346,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\UserBLL\" />
-    <Folder Include="DAL\UserDAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
