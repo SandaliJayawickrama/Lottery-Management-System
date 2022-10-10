@@ -70,7 +70,7 @@ namespace JProject.UI
                 txtSupplier.Text = "";
                 txtUprice.Text = "0";
                 txtDrawNo.Text = "";
-                txtDrawDate.Text = "";
+                dtpDrdate.Text = "";
                 txtStBcode.Text = "0";
                 txtQty.Text = "0";
                 txtEdBcode.Text = "";
@@ -87,7 +87,7 @@ namespace JProject.UI
             //Set the values on textboxes, based on t object
             txtTname.Text = t.ticket_name;
             txtSupplier.Text = t.ticket_type;
-            txtUprice.Text = t.ticket_Uprice.ToString();
+            txtUprice.Text = t.sales_Uprice.ToString();
             lblCategory.Text = t.category;
         }
 
@@ -206,8 +206,8 @@ namespace JProject.UI
             {
                 e.Handled = true;
             }
-        }     
-      
+        }
+
         private void txtTname_TextChanged(object sender, EventArgs e)
         {
             //string Tname = txtTname.Text;
@@ -241,40 +241,43 @@ namespace JProject.UI
 
         }
 
-        private void txtDrawNo_TextChanged(object sender, EventArgs e)
+
+
+        private void dtpDrdate_ValueChanged(object sender, EventArgs e)
         {
             string tickName = txtTname.Text;
-            string drawNo = txtDrawNo.Text;
+            //string drawNo = txtDrawNo.Text;
+            string drawDate = dtpDrdate.Text;
             decimal inventory = 0;
-            DateTime DrDate = new DateTime();
+            //DateTime DrDate = new DateTime();
 
-            if (tickName == "" || drawNo == "")
+            if (tickName == "" || drawDate == "")
             {
                 txtTotInven.Text = "0";
-                txtDrawDate.Text = "";
+                //dtpDrdate.Text = "";
                 dgvSalesStock.DataSource = null;
             }
             else
             {
                 //Display available inventories in Data Grid View
-                DataTable dt = stkDal.SelectAvailableStock(tickName,drawNo);               
+                DataTable dt = stkDal.SelectAvailableStock(tickName, drawDate);
                 dgvSalesStock.DataSource = dt;
 
                 //Display Draw Date in Text Box
-                DrDate = stkDal.GetDrawDate(drawNo, tickName);
-                txtDrawDate.Text = DrDate.ToString("yyyy-MM-dd");
+                /*DrDate = stkDal.GetDrawDate(drawNo, tickName);
+                txtDrawDate.Text = DrDate.ToString("yyyy-MM-dd");*/
 
-                if(dgvSalesStock.Rows.Count>0)
+                if (dgvSalesStock.Rows.Count > 0)
                 {
                     //Display available Total inventories in Text Box
-                    inventory = stkDal.GetCurrentTotalQty(drawNo, tickName);
+                    inventory = stkDal.GetCurrentTotalQty(drawDate, tickName);
                     txtTotInven.Text = inventory.ToString();
                 }
 
             }
         }
 
-        
+
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
             if (txtQty.Text.ToString() == "")
@@ -296,7 +299,7 @@ namespace JProject.UI
                 //Get ticket category
                 string Tname = txtTname.Text;
                 string supplier = txtSupplier.Text;
-                string Tcategory = Tdal.GetTicketCategory(Tname,supplier);
+                string Tcategory = Tdal.GetTicketCategory(Tname, supplier);
 
                 //Set Ending Bcode if the category is Draw
                 if (Tcategory == "Draw")
@@ -330,9 +333,9 @@ namespace JProject.UI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string category = lblCategory.Text;          
+            string category = lblCategory.Text;
 
-            if(category == "Instant" || category == "Special Instant")
+            if (category == "Instant" || category == "Special Instant")
             {
                 txtDrawNo.Text = "NULL";
                 txtStBcode.Text = "0";
@@ -341,7 +344,7 @@ namespace JProject.UI
 
             string tikName = txtTname.Text;
             string drNo = txtDrawNo.Text;
-            string drDate = txtDrawDate.Text.ToString();
+            string drDate = dtpDrdate.Text.ToString();
             decimal uPrice = decimal.Parse(txtUprice.Text);
             decimal qty = decimal.Parse(txtQty.Text);
             decimal lineTot = decimal.Parse(txtLineTotal.Text);
@@ -359,12 +362,12 @@ namespace JProject.UI
             grandTotal = grandTotal + lineTot;
 
             //check wether the required details are filled or not
-            if(tikName=="" || inventory==0 || qty == 0)
+            if (tikName == "" || inventory == 0 || qty == 0)
             {
                 // Display Error message
                 MessageBox.Show("Please fill required details");
             }
-            else if(qty > inventory)
+            else if (qty > inventory)
             {
                 // Display Error message
                 MessageBox.Show("Invalid Quantity");
@@ -395,7 +398,7 @@ namespace JProject.UI
             txtTname.Text = "";
             txtUprice.Text = "0";
             txtDrawNo.Text = "";
-            txtDrawDate.Text = "NULL";
+            dtpDrdate.Text = "";
             txtInventory.Text = "0";
             txtStBcode.Text = "0";
             txtEdBcode.Text = "";
@@ -436,8 +439,8 @@ namespace JProject.UI
             string AgentName = txtAgentName.Text;
             string AgentNo = txtAgentNo.Text;
             decimal creditAmount = decimal.Parse(txtCredit.Text);
-            decimal creditLimit = agDal.GetCreditLimit(AgentName,AgentNo);
-            decimal currentCredit = agDal.GetCurrentCreditAmount(AgentName,AgentNo);
+            decimal creditLimit = agDal.GetCreditLimit(AgentName, AgentNo);
+            decimal currentCredit = agDal.GetCurrentCreditAmount(AgentName, AgentNo);
 
             bool isSuccess = false;
 
@@ -459,7 +462,7 @@ namespace JProject.UI
 
 
                 //Use for loop to insert sales
-                for (int i=0; i<SalesDT.Rows.Count; i++)
+                for (int i = 0; i < SalesDT.Rows.Count; i++)
                 {
                     SalesBLL sales = new SalesBLL();
 
@@ -477,9 +480,9 @@ namespace JProject.UI
                     sales.added_by = usr.username;
                     sales.unit_price = decimal.Parse(SalesDT.Rows[i][3].ToString());
                     //sales.draw_date = DateTime.Parse(SalesDT.Rows[i][2].ToString());
-                   
+
                     string DrDate = SalesDT.Rows[i][2].ToString();
-                    if (DrDate == "NULL" || DrDate=="")
+                    if (DrDate == "NULL" || DrDate == "")
                     {
                         sales.draw_date = DateTime.Now;
                     }
@@ -491,8 +494,8 @@ namespace JProject.UI
                     //Get Ticket Ctegory
                     string tname = SalesDT.Rows[i][0].ToString();
                     string sup = SalesDT.Rows[i][8].ToString();
-                    string TickCategory = Tdal.GetTicketCategory(tname,sup);
-                                    
+                    string TickCategory = Tdal.GetTicketCategory(tname, sup);
+
                     bool stkSuccess = false;
 
                     if (TickCategory == "Draw")
@@ -506,10 +509,10 @@ namespace JProject.UI
                         stock.supplier = SalesDT.Rows[i][8].ToString();
                         stock.starting_Bcode = SalesDT.Rows[i][6].ToString();
                         stock.ending_Bcode = SalesDT.Rows[i][7].ToString();
-                        
+
                         stkSuccess = stkDal.UpdateOrDeleteStock(stock.starting_Bcode, stock.ticket_name, stock.quantity);
                     }
-                    else if(TickCategory == "Instant")
+                    else if (TickCategory == "Instant")
                     {
                         Instant_StockBLL insStk = new Instant_StockBLL();
 
@@ -519,7 +522,7 @@ namespace JProject.UI
 
                         stkSuccess = InsStkDal.Decrease_InsStockQty(insStk.ticket_name, insStk.quantity);
                     }
-                    
+
                     //Insert sales into Database
                     bool SalesSuccess = Sdal.InsertSales(sales);
 
@@ -531,11 +534,11 @@ namespace JProject.UI
                 DataTable balDT = balDal.SelectLastRowBalances();
 
                 balBll.Description = "Sales Transaction";
-                balBll.Cash = decimal.Parse(balDT.Rows[0][2].ToString()) + decimal.Parse(txtCash.Text);             
+                balBll.Cash = decimal.Parse(balDT.Rows[0][2].ToString()) + decimal.Parse(txtCash.Text);
                 balBll.Stock = decimal.Parse(balDT.Rows[0][4].ToString()) - decimal.Parse(txtTotAmount.Text);
                 balBll.Win_Nlb = decimal.Parse(balDT.Rows[0][5].ToString()) + decimal.Parse(txtWinNlb.Text);
                 balBll.Win_Dlb = decimal.Parse(balDT.Rows[0][6].ToString()) + decimal.Parse(txtWinDlb.Text);
-                balBll.Credi_recievables = decimal.Parse(balDT.Rows[0][7].ToString()) + decimal.Parse(txtCredit.Text);              
+                balBll.Credi_recievables = decimal.Parse(balDT.Rows[0][7].ToString()) + decimal.Parse(txtCredit.Text);
                 balBll.Return_PayableNLB = decimal.Parse(balDT.Rows[0][14].ToString()) - decimal.Parse(txtReturnNlb.Text);
                 balBll.Return_PayableDLB = decimal.Parse(balDT.Rows[0][15].ToString()) - decimal.Parse(txtReturnDlb.Text);
                 balBll.freeIssue_receivableNLB = decimal.Parse(balDT.Rows[0][23].ToString()) + decimal.Parse(txtFreeNlb.Text);
@@ -548,7 +551,7 @@ namespace JProject.UI
                 balBll.Return_recievablesNLB = decimal.Parse(balDT.Rows[0][10].ToString());
                 balBll.Return_recievablesDLB = decimal.Parse(balDT.Rows[0][11].ToString());
                 balBll.Credit_PayableNLB = decimal.Parse(balDT.Rows[0][12].ToString());
-                balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString());            
+                balBll.Credit_PayableDLB = decimal.Parse(balDT.Rows[0][13].ToString());
                 balBll.Capital = decimal.Parse(balDT.Rows[0][16].ToString());
                 balBll.Income = decimal.Parse(balDT.Rows[0][17].ToString());
                 balBll.Expenses = decimal.Parse(balDT.Rows[0][18].ToString());
@@ -574,7 +577,7 @@ namespace JProject.UI
                 decimal retDlb = decimal.Parse(txtReturnDlb.Text);
                 bool isReturns = false;
 
-                if (retBalNlb>=retNlb && retBalDlb>=retDlb)
+                if (retBalNlb >= retNlb && retBalDlb >= retDlb)
                 {
                     isReturns = agDal.DecreaseReturnAmount(AgentName, AgentNo, retNlb, retDlb);
                 }
@@ -585,7 +588,7 @@ namespace JProject.UI
 
                 bool isAllSuccess = isSuccess && isBalanceSettle;
 
-                if (isAllSuccess == true && balance==0 && agent!="" && agentNo!="" && isReturns==true)
+                if (isAllSuccess == true && balance == 0 && agent != "" && agentNo != "" && isReturns == true)
                 {
                     scope.Complete();
                     MessageBox.Show("Successfull");
@@ -602,7 +605,7 @@ namespace JProject.UI
                     txtTname.Text = "";
                     txtUprice.Text = "0";
                     txtDrawNo.Text = "";
-                    txtDrawDate.Text = "NULL";
+                    dtpDrdate.Text = "";
                     txtStBcode.Text = "0";
                     txtQty.Text = "0";
                     txtEdBcode.Text = "";
@@ -644,7 +647,7 @@ namespace JProject.UI
 
             decimal balance = total - (cash + retN + retD + winN + winD + credit + freeN + freeD + other);
 
-            if (cash==0 && retN==0 && retD==0 && winN==0 && winD==0 && credit==0 && freeN==0 && freeD==0 && other==0)
+            if (cash == 0 && retN == 0 && retD == 0 && winN == 0 && winD == 0 && credit == 0 && freeN == 0 && freeD == 0 && other == 0)
             {
                 balance = total;
             }
@@ -655,8 +658,8 @@ namespace JProject.UI
         private void btnCalc_Click(object sender, EventArgs e)
         {
             decimal balance = BalanceCalculation();
-                   
-            txtBalance.Text = balance.ToString();        
+
+            txtBalance.Text = balance.ToString();
         }
 
         private void dgvSalesStock_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -666,8 +669,9 @@ namespace JProject.UI
 
             txtInventory.Text = dgvSalesStock.Rows[rowIndex].Cells[6].Value.ToString();
             txtStBcode.Text = dgvSalesStock.Rows[rowIndex].Cells[2].Value.ToString();
+            txtDrawNo.Text = dgvSalesStock.Rows[rowIndex].Cells[4].Value.ToString();
         }
-     
+
         private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
@@ -897,7 +901,5 @@ namespace JProject.UI
                 txtReturnDlb.Text = "0";
             }
         }
-
-        
     }
 }

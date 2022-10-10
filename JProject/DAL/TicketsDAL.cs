@@ -62,7 +62,7 @@ namespace JProject.DAL
                 cmd.Parameters.AddWithValue("@added_by", t.added_by);
                 cmd.Parameters.AddWithValue("@sales_Uprice", t.sales_Uprice);
                 cmd.Parameters.AddWithValue("@category", t.category);
-                
+
 
                 conn.Open();
 
@@ -207,7 +207,7 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "SELECT ticket_name, ticket_type, ticket_Uprice, category FROM tickets WHERE ticket_name LIKE '%" + keyword+"%' ";
+                string sql = "SELECT ticket_name, ticket_type, ticket_Uprice, category, sales_Uprice FROM tickets WHERE ticket_name LIKE '%" + keyword + "%' ";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, conn);
                 conn.Open();
@@ -222,9 +222,10 @@ namespace JProject.DAL
                     tPurchase.ticket_type = dt.Rows[0]["ticket_type"].ToString();
                     tPurchase.ticket_Uprice = decimal.Parse(dt.Rows[0]["ticket_Uprice"].ToString());
                     tPurchase.category = dt.Rows[0]["category"].ToString();
+                    tPurchase.sales_Uprice = decimal.Parse(dt.Rows[0]["sales_Uprice"].ToString());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -262,7 +263,7 @@ namespace JProject.DAL
                     category = dt.Rows[0]["category"].ToString();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -327,7 +328,7 @@ namespace JProject.DAL
             {
                 string sql = "SELECT ticket_Uprice FROM tickets WHERE ticket_name = @ticket_name AND ticket_type=@ticket_type";
 
-                SqlCommand cmd = new SqlCommand(sql,conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ticket_name", tickName);
                 cmd.Parameters.AddWithValue("@ticket_type", supplier);
 
@@ -340,8 +341,8 @@ namespace JProject.DAL
                 {
                     uPrice = decimal.Parse(dt.Rows[0]["ticket_Uprice"].ToString());
                 }
-             }
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
