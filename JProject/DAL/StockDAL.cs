@@ -273,7 +273,7 @@ namespace JProject.DAL
         #endregion
 
         #region Select Stock for Sales stock Gridview
-        public DataTable SelectAvailableStock(string tName, string drawNo)
+        public DataTable SelectAvailableStock(string tName, string drawDate)
         {
             SqlConnection conn = new SqlConnection(myconnstring);
 
@@ -281,11 +281,11 @@ namespace JProject.DAL
             DataTable filledDT = new DataTable();
             try
             {
-                string sql = "SELECT * FROM stock WHERE ticket_name=@ticket_name AND draw_no=@draw_no";
+                string sql = "SELECT * FROM stock WHERE ticket_name=@ticket_name AND draw_date=@draw_date";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ticket_name", tName);
-                cmd.Parameters.AddWithValue("@draw_no", drawNo);
+                cmd.Parameters.AddWithValue("@draw_date", drawDate);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 conn.Open();
@@ -350,7 +350,7 @@ namespace JProject.DAL
         #endregion
 
         #region Get the Total(sum) Quantity
-        public decimal GetCurrentTotalQty(string drawNo, string tName)
+        public decimal GetCurrentTotalQty(string drawDate, string tName)
         {
             SqlConnection conn = new SqlConnection(myconnstring);
             decimal total = 0;
@@ -359,10 +359,10 @@ namespace JProject.DAL
 
             try
             {
-                string sql = "SELECT sum(quantity) AS total FROM stock WHERE ticket_name=@ticket_name AND draw_no = @draw_no";
+                string sql = "SELECT sum(quantity) AS total FROM stock WHERE ticket_name=@ticket_name AND draw_date=@draw_date";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@draw_no", drawNo);
+                cmd.Parameters.AddWithValue("@draw_date", drawDate);
                 cmd.Parameters.AddWithValue("@ticket_name", tName);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);

@@ -31,11 +31,12 @@ namespace JProject.UI
         {
             this.lblHeader1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtDrawDate = new System.Windows.Forms.TextBox();
+            this.dtpDrdate = new System.Windows.Forms.DateTimePicker();
+            this.lblCategory = new System.Windows.Forms.Label();
             this.lblDrawNo = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblInventory = new System.Windows.Forms.Label();
             this.txtDrawNo = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtInventory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
@@ -112,7 +113,6 @@ namespace JProject.UI
             this.txtCreditBal = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblRet = new System.Windows.Forms.Label();
-            this.lblCategory = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -137,12 +137,12 @@ namespace JProject.UI
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.dtpDrdate);
             this.panel2.Controls.Add(this.lblCategory);
-            this.panel2.Controls.Add(this.txtDrawDate);
             this.panel2.Controls.Add(this.lblDrawNo);
-            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.lblInventory);
             this.panel2.Controls.Add(this.txtDrawNo);
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.txtInventory);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtSupplier);
@@ -167,35 +167,37 @@ namespace JProject.UI
             this.panel2.Size = new System.Drawing.Size(1458, 144);
             this.panel2.TabIndex = 42;
             // 
-            // txtDrawDate
+            // dtpDrdate
             // 
-            this.txtDrawDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDrawDate.Location = new System.Drawing.Point(534, 70);
-            this.txtDrawDate.Name = "txtDrawDate";
-            this.txtDrawDate.Size = new System.Drawing.Size(183, 24);
-            this.txtDrawDate.TabIndex = 66;
-            this.txtDrawDate.Text = "NULL";
-            this.txtDrawDate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDrawDate_KeyPress_1);
+            this.dtpDrdate.CustomFormat = "yyyy-MM-dd";
+            this.dtpDrdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDrdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDrdate.Location = new System.Drawing.Point(410, 66);
+            this.dtpDrdate.Name = "dtpDrdate";
+            this.dtpDrdate.Size = new System.Drawing.Size(126, 28);
+            this.dtpDrdate.TabIndex = 119;
+            this.dtpDrdate.ValueChanged += new System.EventHandler(this.dtpDrdate_ValueChanged);
+            // 
+            // lblCategory
+            // 
+            this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategory.Location = new System.Drawing.Point(14, 108);
+            this.lblCategory.Name = "lblCategory";
+            this.lblCategory.Size = new System.Drawing.Size(13, 20);
+            this.lblCategory.TabIndex = 67;
+            this.lblCategory.Text = ".";
+            this.lblCategory.TextChanged += new System.EventHandler(this.lblCategory_TextChanged);
             // 
             // lblDrawNo
             // 
             this.lblDrawNo.AutoSize = true;
             this.lblDrawNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDrawNo.Location = new System.Drawing.Point(397, 47);
+            this.lblDrawNo.Location = new System.Drawing.Point(554, 47);
             this.lblDrawNo.Name = "lblDrawNo";
             this.lblDrawNo.Size = new System.Drawing.Size(75, 20);
             this.lblDrawNo.TabIndex = 65;
             this.lblDrawNo.Text = "Draw No";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(530, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 20);
-            this.label5.TabIndex = 63;
-            this.label5.Text = "Draw Date";
             // 
             // lblInventory
             // 
@@ -210,11 +212,20 @@ namespace JProject.UI
             // txtDrawNo
             // 
             this.txtDrawNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDrawNo.Location = new System.Drawing.Point(401, 70);
+            this.txtDrawNo.Location = new System.Drawing.Point(558, 70);
             this.txtDrawNo.Name = "txtDrawNo";
             this.txtDrawNo.Size = new System.Drawing.Size(127, 24);
             this.txtDrawNo.TabIndex = 61;
-            this.txtDrawNo.TextChanged += new System.EventHandler(this.txtDrawNo_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(406, 47);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(90, 20);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "Draw Date";
             // 
             // txtInventory
             // 
@@ -280,10 +291,10 @@ namespace JProject.UI
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQty.Location = new System.Drawing.Point(1035, 45);
+            this.lblQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQty.Location = new System.Drawing.Point(729, 47);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(71, 20);
+            this.lblQty.Size = new System.Drawing.Size(79, 20);
             this.lblQty.TabIndex = 53;
             this.lblQty.Text = "Quantity";
             // 
@@ -299,10 +310,10 @@ namespace JProject.UI
             // 
             // txtQty
             // 
-            this.txtQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQty.Location = new System.Drawing.Point(1036, 68);
+            this.txtQty.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQty.Location = new System.Drawing.Point(730, 70);
             this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(159, 24);
+            this.txtQty.Size = new System.Drawing.Size(145, 27);
             this.txtQty.TabIndex = 51;
             this.txtQty.Text = "0";
             this.txtQty.TextChanged += new System.EventHandler(this.txtQty_TextChanged);
@@ -311,7 +322,7 @@ namespace JProject.UI
             // txtStBcode
             // 
             this.txtStBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStBcode.Location = new System.Drawing.Point(773, 68);
+            this.txtStBcode.Location = new System.Drawing.Point(974, 68);
             this.txtStBcode.Name = "txtStBcode";
             this.txtStBcode.Size = new System.Drawing.Size(234, 24);
             this.txtStBcode.TabIndex = 50;
@@ -352,7 +363,7 @@ namespace JProject.UI
             // 
             this.lblStBcode.AutoSize = true;
             this.lblStBcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStBcode.Location = new System.Drawing.Point(769, 45);
+            this.lblStBcode.Location = new System.Drawing.Point(970, 45);
             this.lblStBcode.Name = "lblStBcode";
             this.lblStBcode.Size = new System.Drawing.Size(130, 20);
             this.lblStBcode.TabIndex = 44;
@@ -1035,17 +1046,6 @@ namespace JProject.UI
             this.lblRet.TabIndex = 88;
             this.lblRet.Text = "Return Balances";
             // 
-            // lblCategory
-            // 
-            this.lblCategory.AutoSize = true;
-            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategory.Location = new System.Drawing.Point(14, 108);
-            this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(13, 20);
-            this.lblCategory.TabIndex = 67;
-            this.lblCategory.Text = ".";
-            this.lblCategory.TextChanged += new System.EventHandler(this.lblCategory_TextChanged);
-            // 
             // Sales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1147,7 +1147,6 @@ namespace JProject.UI
         private System.Windows.Forms.TextBox txtInvNo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblDrawNo;
-        private System.Windows.Forms.TextBox txtDrawDate;
         private System.Windows.Forms.Button btnCalc;
         private System.Windows.Forms.TextBox txtFreeDlb;
         private System.Windows.Forms.Label label6;
@@ -1170,5 +1169,6 @@ namespace JProject.UI
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblRet;
         private System.Windows.Forms.Label lblCategory;
+        private System.Windows.Forms.DateTimePicker dtpDrdate;
     }
 }

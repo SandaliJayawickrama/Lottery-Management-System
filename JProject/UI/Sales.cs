@@ -70,7 +70,7 @@ namespace JProject.UI
                 txtSupplier.Text = "";
                 txtUprice.Text = "0";
                 txtDrawNo.Text = "";
-                txtDrawDate.Text = "";
+                dtpDrdate.Text = "";
                 txtStBcode.Text = "0";
                 txtQty.Text = "0";
                 txtEdBcode.Text = "";
@@ -87,7 +87,7 @@ namespace JProject.UI
             //Set the values on textboxes, based on t object
             txtTname.Text = t.ticket_name;
             txtSupplier.Text = t.ticket_type;
-            txtUprice.Text = t.ticket_Uprice.ToString();
+            txtUprice.Text = t.sales_Uprice.ToString();
             lblCategory.Text = t.category;
         }
 
@@ -241,40 +241,43 @@ namespace JProject.UI
 
         }
 
-        private void txtDrawNo_TextChanged(object sender, EventArgs e)
+        
+
+        private void dtpDrdate_ValueChanged(object sender, EventArgs e)
         {
             string tickName = txtTname.Text;
-            string drawNo = txtDrawNo.Text;
+            //string drawNo = txtDrawNo.Text;
+            string drawDate = dtpDrdate.Text;
             decimal inventory = 0;
-            DateTime DrDate = new DateTime();
+            //DateTime DrDate = new DateTime();
 
-            if (tickName == "" || drawNo == "")
+            if (tickName == "" || drawDate == "")
             {
                 txtTotInven.Text = "0";
-                txtDrawDate.Text = "";
+                //dtpDrdate.Text = "";
                 dgvSalesStock.DataSource = null;
             }
             else
             {
                 //Display available inventories in Data Grid View
-                DataTable dt = stkDal.SelectAvailableStock(tickName,drawNo);               
+                DataTable dt = stkDal.SelectAvailableStock(tickName, drawDate);
                 dgvSalesStock.DataSource = dt;
 
                 //Display Draw Date in Text Box
-                DrDate = stkDal.GetDrawDate(drawNo, tickName);
-                txtDrawDate.Text = DrDate.ToString("yyyy-MM-dd");
+                /*DrDate = stkDal.GetDrawDate(drawNo, tickName);
+                txtDrawDate.Text = DrDate.ToString("yyyy-MM-dd");*/
 
-                if(dgvSalesStock.Rows.Count>0)
+                if (dgvSalesStock.Rows.Count > 0)
                 {
                     //Display available Total inventories in Text Box
-                    inventory = stkDal.GetCurrentTotalQty(drawNo, tickName);
+                    inventory = stkDal.GetCurrentTotalQty(drawDate, tickName);
                     txtTotInven.Text = inventory.ToString();
                 }
 
             }
         }
 
-        
+
         private void txtQty_TextChanged(object sender, EventArgs e)
         {
             if (txtQty.Text.ToString() == "")
@@ -341,7 +344,7 @@ namespace JProject.UI
 
             string tikName = txtTname.Text;
             string drNo = txtDrawNo.Text;
-            string drDate = txtDrawDate.Text.ToString();
+            string drDate = dtpDrdate.Text.ToString();
             decimal uPrice = decimal.Parse(txtUprice.Text);
             decimal qty = decimal.Parse(txtQty.Text);
             decimal lineTot = decimal.Parse(txtLineTotal.Text);
@@ -395,7 +398,7 @@ namespace JProject.UI
             txtTname.Text = "";
             txtUprice.Text = "0";
             txtDrawNo.Text = "";
-            txtDrawDate.Text = "NULL";
+            dtpDrdate.Text = "";
             txtInventory.Text = "0";
             txtStBcode.Text = "0";
             txtEdBcode.Text = "";
@@ -602,7 +605,7 @@ namespace JProject.UI
                     txtTname.Text = "";
                     txtUprice.Text = "0";
                     txtDrawNo.Text = "";
-                    txtDrawDate.Text = "NULL";
+                    dtpDrdate.Text = "";
                     txtStBcode.Text = "0";
                     txtQty.Text = "0";
                     txtEdBcode.Text = "";
@@ -666,6 +669,7 @@ namespace JProject.UI
 
             txtInventory.Text = dgvSalesStock.Rows[rowIndex].Cells[6].Value.ToString();
             txtStBcode.Text = dgvSalesStock.Rows[rowIndex].Cells[2].Value.ToString();
+            txtDrawNo.Text = dgvSalesStock.Rows[rowIndex].Cells[4].Value.ToString();
         }
      
         private void txtCash_KeyPress(object sender, KeyPressEventArgs e)
@@ -897,7 +901,5 @@ namespace JProject.UI
                 txtReturnDlb.Text = "0";
             }
         }
-
-        
     }
 }

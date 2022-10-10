@@ -158,6 +158,11 @@ namespace JProject.UI
                 // Display Error message
                 MessageBox.Show("Invalid Supplier..!");
             }
+            else if (poNo == "" )
+            {
+                // Display Error message
+                MessageBox.Show("Please refresh the form!");
+            }
             else
             {
                 //Add ticket to the data Grid view
